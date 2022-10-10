@@ -31,10 +31,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('star', 'star.png');
     this.load.image('player', 'player.png');
 
-     //TILEMAP
-    //  this.load.setPath('tilemap/');
-    //  this.load.tilemapTiledJSON('map1', 'level1.json');
-    //  this.load.image('patronesLevel1', 'tilesetForest.png');
+    //TILEMAP
+    this.load.setPath('assets/tilemap/');
+    this.load.tilemapTiledJSON('map1', 'prueba.json');
+    this.load.image('patronesLevel1', 'tilesetForest.png');
     //  this.load.tilemapTiledJSON('map2', 'level2.json');
     //  this.load.image('patronesLevel2', 'tilesetbeach.png');
 
@@ -61,7 +61,7 @@ export default class Boot extends Phaser.Scene {
     });
     percentText.setOrigin(0.5, 0);
 
-  
+
   }
 
   /**
