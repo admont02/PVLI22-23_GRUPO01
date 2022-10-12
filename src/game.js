@@ -1,5 +1,7 @@
 import Boot from './boot.js';
 import Level from './level.js';
+import Menu from './menu.js';
+
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -14,7 +16,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Level],
+    scene: [Boot, Menu, Level],
     physics: { 
         default: 'arcade', 
         arcade: {  
