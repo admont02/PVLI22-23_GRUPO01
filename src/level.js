@@ -1,4 +1,5 @@
 import Player from './player.js';
+import movingObject from './MovingObject.js';
 
 /**
  * Escena principal del juego. 
@@ -21,6 +22,9 @@ export default class Level extends Phaser.Scene {
     this.createTileMap();
 
     this.player = new Player(this, 200, 300);
+
+    this.movingObject1 = new movingObject(this, 100, 100, this.player);
+
 
    // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
