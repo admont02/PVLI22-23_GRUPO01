@@ -15,8 +15,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
     this.speed = 300;
-
+    this.lives = 5;
     this.createInput();
+    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);
+    this.updateLives();
   }
   /**
  * Método para crear los controles del player.
@@ -29,6 +31,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.d = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     //cursores
     this.cursors = this.scene.input.keyboard.createCursorKeys();
+  }
+  updateLives() {
+    this.label.text = 'Lives ' + this.lives;
+  }
+  loseLive(n) {
+    if (this.lives > 0)
+      this.lives -= n;
+  }
+  earnLive(n) {
+    if (this.lives < this.maxLives)
+      this.lives += n;
   }
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
