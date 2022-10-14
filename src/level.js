@@ -1,5 +1,7 @@
 import Player from './player.js';
 import movingObject from './MovingObject.js';
+import BasicEnemy from './BasicEnemy.js';
+
 
 /**
  * Escena principal del juego. 
@@ -24,6 +26,8 @@ export default class Level extends Phaser.Scene {
     this.player = new Player(this, 200, 300);
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
+
+    this.basic1 = new BasicEnemy(this, 100, 100, 'star', this.player); 
 
 
    // this.physics.world.setBounds(0, 0, large, height);
