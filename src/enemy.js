@@ -27,7 +27,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
-
+        //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
         if(this.scene.physics.overlap(this.player, this))
         {
             this.destroy();
