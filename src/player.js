@@ -22,8 +22,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLives();
 
     this.canShoot = true;
-    this.timer = 0;
-    this.timerMax = 30;
+    this.timerCry = 0;
+    this.timerMaxCry = 30;
+
+    this.timerDash = 0;
+    this.timerMaxDash = 1000;
+
+    this.isDash = false;
+    this.canDash = true;
+    this.speedDash = 750;
+    this.aDown = this.sDown = this.wDown = this.dDown = false;
 
   }
 
@@ -38,6 +46,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.d = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
     this.e = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    this.f = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+
 
     //cursores
     this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -59,44 +69,113 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.timer += 1;
-    //eje Y
-    if (this.cursors.down.isDown || this.s.isDown)
-      this.body.setVelocityY(this.speed);
-
-    else if (this.cursors.up.isDown || this.w.isDown)
-      this.body.setVelocityY(-this.speed);
-    else
-      this.body.setVelocityY(0);
-    //eje X
-    if (this.cursors.right.isDown || this.d.isDown)
-      this.body.setVelocityX(this.speed);
-
-    else if (this.cursors.left.isDown || this.a.isDown)
-      this.body.setVelocityX(-this.speed);
-    else
-      this.body.setVelocityX(0);
-
-    this.body.velocity.normalize().scale(this.speed);
+    this.timerCry  += 1;
+    this.timerDash  += 1;
 
 
-    if(this.timer == this.timerMax)
+    if(!this.isDash)
     {
-      this.canShoot = true;
-      this.timer = 0;
-    } 
+            //eje Y
+        if (this.cursors.down.isDown || this.s.isDown)
+        {
+          this.body.setVelocityY(this.speed);
+          this.sDown = true;
+        }
+        else if (this.cursors.up.isDown || this.w.isDown)
+        {
+          this.body.setVelocityY(-this.speed);
+          this.wDown = true;
+        }
+        else
+        {
+          this.body.setVelocityY(0);
+          this.wDown = false;
+          this.sDown = false;
 
-    if(this.e.isDown && this.canShoot)
-    {
-      this.createCry();
-      this.canShoot = false;
-    }
+        }
+        //eje X
+        if (this.cursors.right.isDown || this.d.isDown)
+        {
+          this.body.setVelocityX(this.speed);
+          this.dDown = true;
+
+        }
+
+        else if (this.cursors.left.isDown || this.a.isDown)
+        {
+          this.body.setVelocityX(-this.speed);
+          this.aDown = true;
+
+        }
+        else
+        {
+          this.body.setVelocityX(0);
+          this.aDown = false;
+          this.dDown = false;
+        }
+
+        this.body.velocity.normalize().scale(this.speed);
+
+        if(this.e.isDown && this.canShoot)
+        {
+          this.createCry();
+          this.canShoot = false;
+        }
+  }
+
+  
+  if(this.timerCry  == this.timerMaxCry )
+  {
+    this.canShoot = true;
+    this.timerCry  = 0;
+  } 
+
+  if(this.timerDash  == this.timerMaxDash )
+  {
+    this.canDash = true;
+    this.timerDash  = 0;
+  } 
+   
+  if(this.f.isDown && this.canDash)
+  {
+    this.startDash();
+  }
   }
 
 
   createCry()
   {
     new Cry(this.scene, this.x, this.y);
+  }
+
+
+  startDash()
+  {
+    this.isDash = true;
+    this.canDash = false;
+
+    if(this.aDown) this.body.setVelocityX(-this.speedDash);
+    else if(this.wDown) this.body.setVelocityY(-this.speedDash);
+    else if(this.sDown) this.body.setVelocityY(this.speedDash);
+    else if(this.dDown) this.body.setVelocityX(this.speedDash);
+    else this.body.setVelocityX(this.speedDash);
+
+    this.timer = this.scene.time.addEvent({
+      delay: 1000,              
+      callback: () =>
+      {
+        this.stopDash();
+      }
+      
+  });
+
+    
+  }
+
+  stopDash()
+  {
+    this.isDash = false;
+    this.body.setVelocityX(0);
   }
 
 }
