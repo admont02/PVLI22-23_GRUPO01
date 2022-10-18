@@ -12,14 +12,20 @@
     this.body.setCollideWorldBounds();
 
 
+    this.player = player;
     this.pointer = this.scene.input.activePointer;
 
     this.setInteractive();
 
-    
     this.on("pointerdown", () => {
       this.startDrag();
   });
+
+  }
+
+
+  preUpdate(t, dt) {
+    super.preUpdate(t, dt);
 
   }
 
