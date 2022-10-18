@@ -47,7 +47,6 @@
   stopDrag()
   {
     this.scene.input.off('pointermove',this.doDrag,this);    
-   // this.scene.input.off('pointerup',this.stopDrag,this);
   }
  
 }
