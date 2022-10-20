@@ -6,6 +6,7 @@ import BasicEnemy from './BasicEnemy.js';
 import SpeedEnemy from './SpeedEnemy.js';
 //traemos clase SpeedEnemy
 import StrongEnemy from './StrongEnemy.js';
+import LifePowerUp from './lifePowerUp.js';
 
 
 
@@ -42,6 +43,8 @@ export default class Level extends Phaser.Scene {
    // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
+
+    new LifePowerUp(this,50,50,this.player);
   }
   createTileMap() {
     this.map = this.make.tilemap({

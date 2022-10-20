@@ -16,7 +16,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
     this.speed = 300;
-    this.lives = 5;
+    this.lives = 3;
+    this.maxLives = 5;
     this.createInput();
     this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);
     this.updateLives();
@@ -65,115 +66,101 @@ export default class Player extends Phaser.GameObjects.Sprite {
   earnLive(n) {
     if (this.lives < this.maxLives)
       this.lives += n;
+      this.updateLives();
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.timerCry  += 1;
-    this.timerDash  += 1;
+    this.timerCry += 1;
+    this.timerDash += 1;
 
 
-    if(!this.isDash)
-    {
-            //eje Y
-        if (this.cursors.down.isDown || this.s.isDown)
-        {
-          this.body.setVelocityY(this.speed);
-          this.sDown = true;
-        }
-        else if (this.cursors.up.isDown || this.w.isDown)
-        {
-          this.body.setVelocityY(-this.speed);
-          this.wDown = true;
-        }
-        else
-        {
-          this.body.setVelocityY(0);
-          this.wDown = false;
-          this.sDown = false;
+    if (!this.isDash) {
+      //eje Y
+      if (this.cursors.down.isDown || this.s.isDown) {
+        this.body.setVelocityY(this.speed);
+        this.sDown = true;
+      }
+      else if (this.cursors.up.isDown || this.w.isDown) {
+        this.body.setVelocityY(-this.speed);
+        this.wDown = true;
+      }
+      else {
+        this.body.setVelocityY(0);
+        this.wDown = false;
+        this.sDown = false;
 
-        }
-        //eje X
-        if (this.cursors.right.isDown || this.d.isDown)
-        {
-          this.body.setVelocityX(this.speed);
-          this.dDown = true;
+      }
+      //eje X
+      if (this.cursors.right.isDown || this.d.isDown) {
+        this.body.setVelocityX(this.speed);
+        this.dDown = true;
 
-        }
+      }
 
-        else if (this.cursors.left.isDown || this.a.isDown)
-        {
-          this.body.setVelocityX(-this.speed);
-          this.aDown = true;
+      else if (this.cursors.left.isDown || this.a.isDown) {
+        this.body.setVelocityX(-this.speed);
+        this.aDown = true;
 
-        }
-        else
-        {
-          this.body.setVelocityX(0);
-          this.aDown = false;
-          this.dDown = false;
-        }
+      }
+      else {
+        this.body.setVelocityX(0);
+        this.aDown = false;
+        this.dDown = false;
+      }
 
-        this.body.velocity.normalize().scale(this.speed);
+      this.body.velocity.normalize().scale(this.speed);
 
-        if(this.e.isDown && this.canShoot)
-        {
-          this.createCry();
-          this.canShoot = false;
-        }
-  }
+      if (this.e.isDown && this.canShoot) {
+        this.createCry();
+        this.canShoot = false;
+      }
+    }
 
-  
-  if(this.timerCry  == this.timerMaxCry )
-  {
-    this.canShoot = true;
-    this.timerCry  = 0;
-  } 
 
-  if(this.timerDash  == this.timerMaxDash )
-  {
-    this.canDash = true;
-    this.timerDash  = 0;
-  } 
-   
-  if(this.f.isDown && this.canDash)
-  {
-    this.startDash();
-  }
+    if (this.timerCry == this.timerMaxCry) {
+      this.canShoot = true;
+      this.timerCry = 0;
+    }
+
+    if (this.timerDash == this.timerMaxDash) {
+      this.canDash = true;
+      this.timerDash = 0;
+    }
+
+    if (this.f.isDown && this.canDash) {
+      this.startDash();
+    }
   }
 
 
-  createCry()
-  {
+  createCry() {
     new Cry(this.scene, this.x, this.y);
   }
 
 
-  startDash()
-  {
+  startDash() {
     this.isDash = true;
     this.canDash = false;
 
-    if(this.aDown) this.body.setVelocityX(-this.speedDash);
-    else if(this.wDown) this.body.setVelocityY(-this.speedDash);
-    else if(this.sDown) this.body.setVelocityY(this.speedDash);
-    else if(this.dDown) this.body.setVelocityX(this.speedDash);
+    if (this.aDown) this.body.setVelocityX(-this.speedDash);
+    else if (this.wDown) this.body.setVelocityY(-this.speedDash);
+    else if (this.sDown) this.body.setVelocityY(this.speedDash);
+    else if (this.dDown) this.body.setVelocityX(this.speedDash);
     else this.body.setVelocityX(this.speedDash);
 
     this.timer = this.scene.time.addEvent({
-      delay: 1000,              
-      callback: () =>
-      {
+      delay: 1000,
+      callback: () => {
         this.stopDash();
       }
-      
-  });
 
-    
+    });
+
+
   }
 
-  stopDash()
-  {
+  stopDash() {
     this.isDash = false;
     this.body.setVelocityX(0);
   }
