@@ -34,13 +34,15 @@ export default class Level extends Phaser.Scene {
     this.player = new Player(this, 200, 300);
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
+    
     //crear enemy BasicEnemy
-    this.basic1 = new BasicEnemy(this, 100, 100, 'star', this.player); 
+    this.enemigo = new BasicEnemy(this, 200, 200, 'star', this.player,500,100);
+    this.basic1 = new BasicEnemy(this, 100, 100, 'star', this.player,200,100); 
     //crear enemy SpeedEnemy
-    this.speed1 = new SpeedEnemy(this,200 , 200,'star' , this.player);
+    this.speed1 = new SpeedEnemy(this,200 , 200,'star' , this.player,700,100);
     //crear enemy SpeedEnemy
-    this.strong1 = new StrongEnemy(this,300 , 300,'star' , this.player);
-   // this.physics.world.setBounds(0, 0, large, height);
+    this.strong1 = new StrongEnemy(this,300 , 300,'star' , this.player,800,300);
+    // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
