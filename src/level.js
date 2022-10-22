@@ -2,6 +2,7 @@ import Player from './player.js';
 import movingObject from './MovingObject.js';
 //traemos clase BasicEnemy
 import BasicEnemy from './BasicEnemy.js';
+import RangedEnemy from './RangedEnemy.js';
 //traemos clase StrongEnemy
 import SpeedEnemy from './SpeedEnemy.js';
 //traemos clase SpeedEnemy
@@ -42,6 +43,7 @@ export default class Level extends Phaser.Scene {
     this.speed1 = new SpeedEnemy(this,200 , 200,'star' , this.player,700,100);
     //crear enemy SpeedEnemy
     this.strong1 = new StrongEnemy(this,300 , 300,'star' , this.player,800,300);
+    this.ranged = new RangedEnemy(this,300 , 300,'star' , this.player,0);
     // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
