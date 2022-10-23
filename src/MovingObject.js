@@ -1,3 +1,5 @@
+import GhostObject from "./GhostObject.js";
+
 
  export default class MovingObject extends Phaser.GameObjects.Sprite {
 
