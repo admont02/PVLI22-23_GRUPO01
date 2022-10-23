@@ -19,6 +19,9 @@ import GhostObject from "./GhostObject.js";
 
     this.setInteractive();
 
+    this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
+
+
     this.on("pointerdown", () => {
       this.startDrag();
   });
@@ -36,19 +39,22 @@ import GhostObject from "./GhostObject.js";
   {
     this.scene.input.on('pointermove',this.doDrag,this);
     this.scene.input.on('pointerup',this.stopDrag,this);
-
-
   }
 
   doDrag()
   {
       this.x = this.pointer.x;
       this.y = this.pointer.y;
+
+      this.ghost.destroy();
+      this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
   }
 
   stopDrag()
   {
-    this.scene.input.off('pointermove',this.doDrag,this);    
+    this.scene.input.off('pointermove',this.doDrag,this); 
+      
+
   }
  
 }
