@@ -32,8 +32,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this,this.newPosX,this.newPosY,100);
-        console.log(this.x);
-        console.log(this.newPosX);
+        //console.log(this.x);
+        //console.log(this.newPosX);
         var distance = (this.x - this.newPosX) +(this.y - this.newPosY) ;
         //overlap es para dos objetos con fisica
         if(distance<1)
