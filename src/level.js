@@ -1,14 +1,14 @@
 import Player from './player.js';
-import movingObject from './MovingObject.js';
+import movingObject from './Objects/MovingObject.js';
 //traemos clase BasicEnemy
-import BasicEnemy from './BasicEnemy.js';
-import RangedEnemy from './RangedEnemy.js';
+import BasicEnemy from './Enemies/BasicEnemy.js';
+import RangedEnemy from './Enemies/RangedEnemy.js';
 //traemos clase StrongEnemy
-import SpeedEnemy from './SpeedEnemy.js';
+import SpeedEnemy from './Enemies/SpeedEnemy.js';
 //traemos clase SpeedEnemy
-import StrongEnemy from './StrongEnemy.js';
-import LifePowerUp from './lifePowerUp.js';
-
+import StrongEnemy from './Enemies/StrongEnemy.js';
+import LifePowerUp from './Objects/lifePowerUp.js';
+import eye from './Objects/eye.js';
 
 
 
@@ -35,15 +35,18 @@ export default class Level extends Phaser.Scene {
     this.player = new Player(this, 200, 300);
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
+
     
-    //crear enemy BasicEnemy
-    this.enemigo = new BasicEnemy(this, 200, 200, 'star', this.player,500,100);
-    this.basic1 = new BasicEnemy(this, 100, 100, 'star', this.player,200,100); 
-    //crear enemy SpeedEnemy
-    this.speed1 = new SpeedEnemy(this,200 , 200,'star' , this.player,700,100);
-    //crear enemy SpeedEnemy
-    this.strong1 = new StrongEnemy(this,300 , 300,'star' , this.player,800,300);
-    this.ranged = new RangedEnemy(this,300 , 300,'star' , this.player,0);
+    //Grupo de enemigos
+    this.enemy = this.add.group();
+
+    this.enemy.add(new BasicEnemy(this, 200, 200, 'star', this.player,500,100));
+    this.enemy.add( new SpeedEnemy(this,200 , 200,'star' , this.player,700,100));
+    this.enemy.add(new StrongEnemy(this,300 , 300,'star' , this.player,800,300));
+    this.enemy.add(new RangedEnemy(this,300 , 300,'star' , this.player,0));
+
+    this.eye = new eye(this, 500, 300, this.player, this.enemy);
+
     // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);

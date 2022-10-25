@@ -1,4 +1,4 @@
-import Cry from './cry.js';
+import Cry from './Objects/cry.js';
 
 /**
  * Clase que representa el jugador del juego.

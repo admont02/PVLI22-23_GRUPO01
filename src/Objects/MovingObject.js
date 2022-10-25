@@ -21,7 +21,6 @@ import GhostObject from "./GhostObject.js";
 
     this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
 
-
     this.on("pointerdown", () => {
       this.startDrag();
   });
@@ -53,8 +52,7 @@ import GhostObject from "./GhostObject.js";
   stopDrag()
   {
     this.scene.input.off('pointermove',this.doDrag,this); 
-      
-
+    
   }
  
 }
