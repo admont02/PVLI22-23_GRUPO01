@@ -1,4 +1,5 @@
 import Cry from './Objects/cry.js';
+import Bottle from './Objects/bottle.js';
 
 /**
  * Clase que representa el jugador del juego.
@@ -18,6 +19,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = 300;
     this.lives = 3;
     this.maxLives = 5;
+    this.dirX = 0;
+    this.dirY = 0;
     this.createInput();
     this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);
     this.updateLives();
@@ -33,7 +36,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.canDash = true;
     this.speedDash = 750;
     this.aDown = this.sDown = this.wDown = this.dDown = false;
-
   }
 
   /**
@@ -74,34 +76,37 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.timerCry += 1;
     this.timerDash += 1;
 
-
     if (!this.isDash) {
       //eje Y
       if (this.cursors.down.isDown || this.s.isDown) {
+        if(this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(this.speed);
         this.sDown = true;
+        this.dirY = 1;
       }
       else if (this.cursors.up.isDown || this.w.isDown) {
+        if(this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
+        this.dirY = -1;
       }
       else {
         this.body.setVelocityY(0);
         this.wDown = false;
         this.sDown = false;
-
       }
       //eje X
       if (this.cursors.right.isDown || this.d.isDown) {
+        if(this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(this.speed);
         this.dDown = true;
-
+        this.dirX = 1;
       }
-
       else if (this.cursors.left.isDown || this.a.isDown) {
+        if(this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
-
+        this.dirX = -1;
       }
       else {
         this.body.setVelocityX(0);
@@ -117,6 +122,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
 
+    // Crea un nuevo bottle cuando se pulsa la tecla espacio
+    if(this.cursors.space.isDown){
+      console.log(this.dirX, this.dirY);  
+      this.bottle = new Bottle(this.scene, this.x, this.y, this.dirX, this.dirY);
+    }
+
+    this.body.velocity.normalize().scale(this.speed);
 
     if (this.timerCry == this.timerMaxCry) {
       this.canShoot = true;
@@ -154,10 +166,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       callback: () => {
         this.stopDash();
       }
-
     });
-
-
   }
 
   stopDash() {
