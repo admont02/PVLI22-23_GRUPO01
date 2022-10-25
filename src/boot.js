@@ -34,6 +34,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('eyeOpen', 'eyeOpen.png');
     this.load.image('eyeClose', 'eyeClose.png');
     this.load.image('area', 'area.png');
+    this.load.image('ranged', 'ranged.png');
+    this.load.image('tank', 'tank.png');
+    this.load.image('speed', 'speed.png');
+    this.load.image('heart', 'heart.png');
     this.load.image('transparente', 'transparente.png');
     this.load.image('player', 'player.png');
 

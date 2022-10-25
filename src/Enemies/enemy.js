@@ -23,7 +23,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           //decimos que escena tiene fisicas
           this.scene.physics.add.existing(this);
           //permite que en el ejeX  y ejeY se pueda hacer flip en su rotacion 
-          this.setFlip(true, true)
           this.player =player;
           // Queremos que el jugador no se salga de los límites del mundo o canvas
           this.body.setCollideWorldBounds();
