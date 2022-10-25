@@ -11,6 +11,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           super(scene, x, y, sprite);
           this.newPosX= 200;
           this.newPosY = 200;
+
+          //Velocidad
+          this.speed = speed;
+          this.speedBolean = false;
+
           //ponemos que esta escena es la existente y es la que se va a renderizar
           this.scene.add.existing(this);
           //ponemos origen en 0,0
@@ -24,6 +29,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           this.body.setCollideWorldBounds();
           //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
           //this.body.setVelocity(speed, speed);
+
+          
         }
     }
 
@@ -31,10 +38,13 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         super.preUpdate(t, dt);
         
         //movemos enemy a esa posicion con velocidad 100
-        this.scene.physics.moveTo(this,this.newPosX,this.newPosY,100);
+        this.scene.physics.moveTo(this,this.newPosX,this.newPosY, this.speed);
         //console.log(this.x);
         //console.log(this.newPosX);
+
         var distance = (this.x - this.newPosX) +(this.y - this.newPosY) ;
+
+
         //overlap es para dos objetos con fisica
         if(distance<1)
         {
@@ -53,6 +63,28 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         }
     }
 
-    
-      
+
+    duplicateStats()
+    {
+        if(!this.speedBolean)
+        {
+            this.speed *= 2;
+            this.speedBolean = true;
+        
+            this.timer = this.scene.time.addEvent({
+                delay: 750,              
+                callback: () =>
+                {
+                this.divideStats();
+                }
+            });
+        }
+     
+    }
+
+    divideStats()
+    {
+        this.speed = this.speed / 2;
+        this.speedBolean = false;
+    }      
 }

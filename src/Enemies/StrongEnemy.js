@@ -11,7 +11,7 @@ export default class StrongEnemy extends Enemy {
       constructor(scene, x, y, imgKey, player) {
       //constructor que invoca a la clase enemy con scene con tamaño posicion , con una velocidad determinada y con la foto star
       //falta poner el sprite que queramos
-          super(scene, x, y, 200, imgKey, player);
+          super(scene, x, y, 50, imgKey, player);
           //instancia para poder modificar clase player desde aqui
         
         //aplicar escala en X e Y en BasicEnemy 
