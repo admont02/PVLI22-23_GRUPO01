@@ -32,18 +32,17 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
     this.createTileMap();
 
-    this.player = new Player(this, 200, 300);
+    this.player = new Player(this, 700, 300);
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
 
-    
     //Grupo de enemigos
     this.enemy = this.add.group();
 
-    this.enemy.add(new BasicEnemy(this, 200, 200, 'star', this.player,500,100));
-    this.enemy.add( new SpeedEnemy(this,200 , 200,'star' , this.player,700,100));
-    this.enemy.add(new StrongEnemy(this,300 , 300,'star' , this.player,800,300));
-    this.enemy.add(new RangedEnemy(this,300 , 300,'star' , this.player,0));
+    this.enemy.add(new BasicEnemy(this, 400, 200, 'star', this.player,500,100));
+    this.enemy.add( new SpeedEnemy(this,400 , 200,'speed' , this.player,700,100));
+    this.enemy.add(new StrongEnemy(this,400 , 300,'tank' , this.player,800,300));
+    this.enemy.add(new RangedEnemy(this,400 , 300,'ranged' , this.player,0));
 
     this.eye = new eye(this, 500, 300, this.player, this.enemy);
 
@@ -51,7 +50,7 @@ export default class Level extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
-    new LifePowerUp(this,50,50,this.player);
+    new LifePowerUp(this,500,50,this.player);
   }
   createTileMap() {
     this.map = this.make.tilemap({
