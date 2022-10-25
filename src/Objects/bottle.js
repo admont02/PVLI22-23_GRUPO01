@@ -4,22 +4,23 @@
  */
  export default class Bottle extends Phaser.GameObjects.Sprite {
 
-    constructor(scene, x, y, dir) {
+    constructor(scene, x, y, dirX, dirY) {
       super(scene, x, y, 'bottle');
   
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
       this.speed = 100;
-      this.dir = dir;
+      this.dirX = dirX;
+      this.dirY = dirY;
       this.setScale(.1);
     }
 
     preUpdate(t, dt) {
       super.preUpdate(t, dt);
       
-      this.body.setVelocityX(this.speed * this.dir);
-      this.body.setVelocityY(0);  
+      this.body.setVelocityX(this.speed * this.dirX);
+      this.body.setVelocityY(this.speed * this.dirY);  
     }
 }
   
