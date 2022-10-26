@@ -5,6 +5,7 @@
  export default class Bottle extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, dirX, dirY) {
+      //en el super pasas el nombre del sprite bottle
       super(scene, x, y, 'bottle');
   
       this.scene.add.existing(this);

@@ -1,4 +1,5 @@
 import Enemy from './enemy.js';
+import balaRangedEnemy from '../Objects/balaRangedEnemy.js';//para poder instanciar balas enemigas
 
 export default class RangedEnemy extends Enemy {
     /**
@@ -27,19 +28,28 @@ export default class RangedEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        // if(t>this.tiempoBala)
-        // { //disparas cada 4 segundos
-        //   this.enemyShoot;
-        //   this.tiempoBala+=t;
-        // }
-        
-      }
+        if(t>this.tiempoBala)
+        { //disparas cada 4 segundos
+          this.enemyShoot();
+          this.tiempoBala+=t;
+        }
 
-      //disparar enemigo en x e y a la pos del player
-      enemyShoot()
-      {
-        this.scene.physics.moveTo(this,this.playerX,this.playerY,100);
-      }
+        
+        
+    }
+    //disparar enemigo en x e y a la pos del player
+    enemyShoot()
+    {
+      //creamos instancia de bottle que irá a la posicion de playerX y playerY
+      //  console.log(this.playerX, this.playerY);  
+      this.BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x, this.player.y);
+      this.body.velocity.normalize().scale(this.speed);
+      console.log("ah")
+      // this.body.velocity.normalize().scale(this.speed);
+      // this.scene.physics.moveTo(this,this.playerX,this.playerY,100);
+    }
+
+      
 
 
   }
