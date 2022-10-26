@@ -41,16 +41,27 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         //console.log(this.x);
         //console.log(this.newPosX);
 
+        //distcnai entre antigua posicion y nueva posicion
         var distance = (this.x - this.newPosX) +(this.y - this.newPosY) ;
 
-
-        //overlap es para dos objetos con fisica
-        if(distance<1)
+        // console.log(distance);
+        //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion , 
+        //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
+        if( distance <30 && distance>-30)
         {
+            // console.log(this.newPosX, this.newPosY);
             //llamamos a la funcion para cambiar valores
              //le asociamos x e y aleatorias
+            
              this.newPosX =  Phaser.Math.Between(0, this.scene.scale.width);
              this.newPosY =  Phaser.Math.Between(0, this.scene.scale.height);
+
+             //si hay un valor fuera de el tamaño del canvas o un poco menos ponemos otro a proposito para que no llegue al exterior
+             if(this.newPosX>900 || this.newPosY>400)
+             {
+                this.newPosX = 200
+                this.newPosY =  200
+             }
         }
         
         //permite que todos los hijos enemy puedan acceder al if este ya que es parte del update del enemy

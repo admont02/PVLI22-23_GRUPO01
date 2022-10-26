@@ -28,6 +28,7 @@ export default class RangedEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        console.log("ranged"+this.x, this.y);
         if(t>this.tiempoBala)
         { //disparas cada 4 segundos
           this.enemyShoot();
@@ -44,7 +45,7 @@ export default class RangedEnemy extends Enemy {
       //  console.log(this.playerX, this.playerY);  
       this.BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x, this.player.y);
       this.body.velocity.normalize().scale(this.speed);
-      console.log("ah")
+       
       // this.body.velocity.normalize().scale(this.speed);
       // this.scene.physics.moveTo(this,this.playerX,this.playerY,100);
     }
