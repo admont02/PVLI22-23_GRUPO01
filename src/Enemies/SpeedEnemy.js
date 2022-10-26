@@ -22,6 +22,7 @@ export default class SpeedEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        // console.log("speed : "+this.x, this.y);
       }
 
 

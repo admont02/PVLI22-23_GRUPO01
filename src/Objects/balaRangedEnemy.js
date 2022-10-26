@@ -21,7 +21,7 @@
 
     preUpdate(t, dt){
       super.preUpdate(t, dt);
-      console.log(this.dirX, this.dirY)
+      // console.log(this.dirX, this.dirY)
       this.body.setVelocityX(this.speed * this.dirX);
       this.body.setVelocityY(this.speed * this.dirY);  
     }
