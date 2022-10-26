@@ -40,6 +40,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('heart', 'heart.png');
     this.load.image('transparente', 'transparente.png');
     this.load.image('player', 'player.png');
+    this.load.image('basicEnemy' , 'basicEnemy.png')
 
     //TILEMAP
     this.load.setPath('assets/tilemap/');
