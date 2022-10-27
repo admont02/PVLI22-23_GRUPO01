@@ -21,6 +21,8 @@
       this.setFlipY(dirY < 0);
       this.setAngle(90 * dirY);
       //this.setAngle(Phaser.Math.RadToDeg(Math.atan2(dirY, dirX)));
+
+      this.damage = 1;
     }
 
     preUpdate(t, dt) {
@@ -29,7 +31,8 @@
       this.body.setVelocityX(this.speed * this.dirX);
       this.body.setVelocityY(this.speed * this.dirY);  
 
-      if(this.x > 1000 - this.body.width || this.x < 0 + this.body.width || this.y < 0 + this.body.height || this.y > 500 - this.body.height) {
+      if(this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroy(); }));
+      else if(this.x > 1000 - this.body.width || this.x < 0 + this.body.width || this.y < 0 + this.body.height || this.y > 500 - this.body.height) {
         this.destroy();
       }
     }

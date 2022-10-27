@@ -29,7 +29,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
           //this.body.setVelocity(speed, speed);
 
-          
+          this.lives = 3;
         }
     }
 
@@ -71,6 +71,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         {
             this.destroy();
         }
+
+        if(this.lives <= 0)
+        {
+            this.destroy();
+        }
     }
 
 
@@ -96,5 +101,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite
     {
         this.speed = this.speed / 2;
         this.speedBolean = false;
-    }      
+    }  
+    
+    takeDamage(damage)
+    {
+        this.lives -= damage;
+    }
 }
