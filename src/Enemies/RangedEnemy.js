@@ -31,8 +31,8 @@ export default class RangedEnemy extends Enemy {
         console.log("ranged"+this.x, this.y);
         if(t>this.tiempoBala)
         { //disparas cada 4 segundos
-          this.enemyShoot();
-          this.tiempoBala+=t;
+          // this.enemyShoot();
+          // this.tiempoBala+=t;
         }
 
         
