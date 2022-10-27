@@ -10,3 +10,10 @@ Nuestro proyecto “Good Nightmare Sweetie”, es un videojuego web hecho con Ph
 Twitter de nuestro estudio: https://twitter.com/dufruta?s=11&t=cYMcq%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%201XIetq8mHsaq4aE3Q
 
 Página web del proyecto: https://admont02.github.io/PVLI22-23_GRUPO01/
+
+## Architecture
+Actualmente, nuestro proyecto cuenta con este diagrama UML (Unified Modeling Languages) basado especialmente en la relación de herencia.
+![image](https://user-images.githubusercontent.com/82326212/198404418-682fdf8f-75a2-4927-8208-96d3f8a19405.png)
+
+## Assets
+Actualmente disponemos de assets temporales sacados de https://www.spriters-resource.com y nuestros enemigos son sacados de los videojuegos de Kirby
