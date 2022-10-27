@@ -33,6 +33,9 @@ export default class Level extends Phaser.Scene {
     this.createTileMap();
 
     this.player = new Player(this, 700, 300);
+    this.physics.add.collider(this.player, this.boxLayer);
+    this.boxLayer.setCollisionBetween(0, 999);
+
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
 
@@ -58,11 +61,10 @@ export default class Level extends Phaser.Scene {
       tileWidth: 50,
       tileHeight: 50
     });
-    const tileset1 = this.map.addTilesetImage('tilesetForest', 'patronesLevel1');
-    this.backgroundLayer = this.map.createLayer('Background', tileset1);
-    //this.groundLayer = this.map1.createLayer('Floor', tileset1);
-    //this.physics.add.collider(this.player, this.groundLayer);
-    //this.groundLayer.setCollisionBetween(0, 999);
+    const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
+    const tileset2 = this.map.addTilesetImage('tilesetForest', 'patronesLevel1');
+    this.backgroundLayer = this.map.createLayer('Suelo', tileset1);
+    this.boxLayer = this.map.createLayer('Capa de patrones 1', tileset2);
 
   }
 }
