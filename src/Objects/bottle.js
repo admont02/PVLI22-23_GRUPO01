@@ -10,11 +10,17 @@
   
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
-      this.body.setCollideWorldBounds();
-      this.speed = 100;
+      //this.body.setCircle(this.body.width / 2, this.body.height / 2);
+      this.speed = 500;
       this.dirX = dirX;
       this.dirY = dirY;
-      this.setScale(.1);
+      this.setScale(.05);
+
+      // Cambia la orientacion del sprite
+      this.setFlipX(dirX < 0);
+      this.setFlipY(dirY < 0);
+      this.setAngle(90 * dirY);
+      //this.setAngle(Phaser.Math.RadToDeg(Math.atan2(dirY, dirX)));
     }
 
     preUpdate(t, dt) {
@@ -22,6 +28,10 @@
       
       this.body.setVelocityX(this.speed * this.dirX);
       this.body.setVelocityY(this.speed * this.dirY);  
+
+      if(this.x > 1000 - this.body.width || this.x < 0 + this.body.width || this.y < 0 + this.body.height || this.y > 500 - this.body.height) {
+        this.destroy();
+      }
     }
 }
   

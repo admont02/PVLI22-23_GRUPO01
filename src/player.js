@@ -36,6 +36,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.canDash = true;
     this.speedDash = 750;
     this.aDown = this.sDown = this.wDown = this.dDown = false;
+
+    this.bottleTime = 0;
   }
 
   /**
@@ -123,9 +125,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     // Crea un nuevo bottle cuando se pulsa la tecla espacio
-    if(this.cursors.space.isDown){
-      console.log(this.dirX, this.dirY);  
-      this.bottle = new Bottle(this.scene, this.x, this.y, this.dirX, this.dirY);
+    if(t > this.bottleTime){
+      if(this.cursors.space.isDown){
+        console.log(this.dirX, this.dirY);  
+        this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
+        this.bottleTime = t + 1000;
+      }
     }
 
     this.body.velocity.normalize().scale(this.speed);
