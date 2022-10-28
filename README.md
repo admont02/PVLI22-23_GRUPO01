@@ -97,6 +97,9 @@ Estos ataques quitarán uno de daño al jugador, que se compensará con su poca 
 -E: LLorar
 
 -F: Dash
+
+-Barra espaciadora: lanzar biberones
+
 5. **Cámara**
 
 Good Nightmare Sweetie es un juego con vista top down, en el jugador que se controla se ve siempre en el centro de la pantalla.
