@@ -94,11 +94,9 @@ Estos ataques quitarán uno de daño al jugador, que se compensará con su poca 
 
 -A,W,S,D : Para moverse hacia los lados -Shift: Para correr
 
--E: Para interactuar con objetos
+-E: LLorar
 
--M: Abrir el mapa
-
-- 1, 2, 3, 4, 5, 6: utilizar objeto del inventario
+-F: Dash
 5. **Cámara**
 
 Good Nightmare Sweetie es un juego con vista top down, en el jugador que se controla se ve siempre en el centro de la pantalla.
