@@ -126,8 +126,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     // Crea un nuevo bottle cuando se pulsa la tecla espacio
     if(t > this.bottleTime){
-      if(this.cursors.space.isDown){
-        console.log(this.dirX, this.dirY);  
+      if(this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)){
         this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
         this.bottleTime = t + 1000;
       }
