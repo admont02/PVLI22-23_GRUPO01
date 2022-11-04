@@ -43,7 +43,7 @@ export default class RangedEnemy extends Enemy {
     enemyShoot()
     {
       //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
-      var BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x-this.x, this.player.y- this.y);
+      var BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x-this.x, this.player.y- this.y,this.player);
     }
 
     
