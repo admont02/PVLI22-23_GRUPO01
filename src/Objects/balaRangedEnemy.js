@@ -13,17 +13,32 @@
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
-      this.speed = 100;
+      this.speed = 1;
       this.dirX = dirX;
       this.dirY = dirY;
-      this.setScale(.1);
+      this.setScale(0.07);
+      //creas timer que llame en 2 segundos a un metodo que destruya la bala
+      this.timer = this.scene.time.addEvent(
+      {
+        delay: 1000,              
+        callback: () =>
+        {
+          this.destroyBala();
+        }
+        
+      });
     }
 
     preUpdate(t, dt){
       super.preUpdate(t, dt);
-      // console.log(this.dirX, this.dirY)
-      this.body.setVelocityX(this.speed * this.dirX);
-      this.body.setVelocityY(this.speed * this.dirY);  
+      //asi pones la direccion que es tu destino
+      this.body.setVelocityX(this.speed * (this.dirX));
+      this.body.setVelocityY(this.speed * (this.dirY));  
+    }
+
+    destroyBala()
+    {
+      this.destroy();
     }
 }
   

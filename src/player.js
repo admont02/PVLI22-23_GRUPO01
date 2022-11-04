@@ -23,7 +23,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.dirY = 0;
     this.createInput();
     this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);
-    this.updateLives();
+    this.updateLivesText();
 
     this.canShoot = true;
     this.timerCry = 0;
@@ -58,7 +58,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
   }
 
-  updateLives() {
+  updateLivesText() {
     this.label.text = 'Lives ' + this.lives;
   }
 

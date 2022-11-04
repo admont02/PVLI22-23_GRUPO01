@@ -69,7 +69,12 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
         if(this.scene.physics.overlap(this.player, this))
         {
+            //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
+            this.player.loseLive(1);
+            this.player. updateLivesText();
+            console.log(this.player.lives);
             this.destroy();
+
         }
 
         if(this.lives <= 0)
