@@ -58,7 +58,9 @@ export default class Level extends Phaser.Scene {
 
     new LifePowerUp(this,500,50,this.player);
   }
-  //comprueba sinquedan enemigos
+
+  
+//comprueba sinquedan enemigos
 update()
 {
   if(this.NumEnemigos()===0)
@@ -68,7 +70,9 @@ update()
   }
 }
 
-  createTileMap() {
+createTileMap() 
+  {
+
     this.map = this.make.tilemap({
       key: 'map1',
       tileWidth: 50,
