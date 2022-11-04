@@ -17,7 +17,8 @@ export default class RangedEnemy extends Enemy {
           this.setScale(0.5);
           this.playerX = this.player.x;
           this.playerY = this.player.y;
-          this.tiempoBala = 4;
+          this.tiempoBala = 4000;
+          this.lastShot =0;
         //aplicar escala en X e Y en BasicEnemy 
         //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
         //sino pones nada mete el tamaño por defecto
@@ -28,11 +29,11 @@ export default class RangedEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        console.log("ranged"+this.x, this.y);
-        if(t>this.tiempoBala)
+        this.delta = t- this.lastShot;// t es tiempo que ha pasado de partida en milisegundos
+        if(this.delta>this.tiempoBala)
         { //disparas cada 4 segundos
-          // this.enemyShoot();
-          // this.tiempoBala+=t;
+          this.enemyShoot();
+          this.lastShot=t;
         }
 
         
@@ -41,14 +42,11 @@ export default class RangedEnemy extends Enemy {
     //disparar enemigo en x e y a la pos del player
     enemyShoot()
     {
-      //creamos instancia de bottle que irá a la posicion de playerX y playerY
-      //  console.log(this.playerX, this.playerY);  
-      this.BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x, this.player.y);
-      this.body.velocity.normalize().scale(this.speed);
-       
-      // this.body.velocity.normalize().scale(this.speed);
-      // this.scene.physics.moveTo(this,this.playerX,this.playerY,100);
+      //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
+      var BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x-this.x, this.player.y- this.y);
     }
+
+    
 
       
 
