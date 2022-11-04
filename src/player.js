@@ -22,7 +22,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.dirX = 0;
     this.dirY = 0;
     this.createInput();
-    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);
+    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);//factor de desplazamiento del gameObject
     this.updateLivesText();
 
     this.canShoot = true;

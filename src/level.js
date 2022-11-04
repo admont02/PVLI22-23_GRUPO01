@@ -38,14 +38,17 @@ export default class Level extends Phaser.Scene {
 
 
     this.movingObject1 = new movingObject(this, 100, 100, this.player);
-
+    this.numEnemigosVivos = 0
     //Grupo de enemigos
     this.enemy = this.add.group();
-
+    
     this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemy', this.player,500,100));
     this.enemy.add( new SpeedEnemy(this,400 , 200,'speed' , this.player,700,100));
     this.enemy.add(new StrongEnemy(this,400 , 300,'tank' , this.player,800,300));
     this.enemy.add(new RangedEnemy(this,400 , 300,'ranged' , this.player,0));
+
+    //creamos objeto de level enemiesLEFT
+    this.label = this.add.text(850, 10, "Enemies Left: "+this.numEnemigosVivos).setScrollFactor(0);
 
     this.eye = new eye(this, 500, 300, this.player, this.enemy);
 
@@ -66,5 +69,21 @@ export default class Level extends Phaser.Scene {
     this.backgroundLayer = this.map.createLayer('Suelo', tileset1);
     this.boxLayer = this.map.createLayer('Capa de patrones 1', tileset2);
 
+  }
+
+  updateLivesEnemy() {
+    this.label.text = 'Enemies Left: ' + this.NumEnemigos();
+  }
+
+  AumentarEnemyVivo() {
+    this.numEnemigosVivos++;
+  }
+
+  QuitarEnemyVivo() {
+    this.numEnemigosVivos--;
+  }
+
+  NumEnemigos() {
+    return this.numEnemigosVivos;
   }
 }

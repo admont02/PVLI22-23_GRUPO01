@@ -15,9 +15,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           //Velocidad
           this.speed = speed;
           this.speedBolean = false;
+          //con this.scene conectas con todos los metodos
+          this.scene.AumentarEnemyVivo();
 
           //ponemos que esta escena es la existente y es la que se va a renderizar
-          this.scene.add.existing(this);
+          this.scene.add.existing(this)
           //ponemos origen en 0,0
           this.setOrigin(0,0);
           //decimos que escena tiene fisicas
@@ -73,14 +75,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite
             this.player.loseLive(1);
             this.player. updateLivesText();
             console.log(this.player.lives);
+            this.scene.QuitarEnemyVivo();
+            this.scene.updateLivesEnemy();
             this.destroy();
-
+            
         }
 
-        if(this.lives <= 0)
-        {
-            this.destroy();
-        }
+        // if(this.lives <= 0)
+        // {
+        //     this.destroy();
+        // }
     }
 
 
