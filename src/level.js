@@ -61,16 +61,20 @@ export default class Level extends Phaser.Scene {
 
   
 //comprueba sinquedan enemigos
-update()
-{
-  if(this.NumEnemigos()===0)
+  update()
   {
-    //this.scene.start
-    this.scene.start('menu')
+    if(this.NumEnemigos()===0)
+    {
+      //this.scene.start
+      this.scene.start('menu')
+    }
   }
-}
 
-createTileMap() 
+
+
+
+  
+  createTileMap() 
   {
 
     this.map = this.make.tilemap({
