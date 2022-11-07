@@ -60,6 +60,8 @@ export default class Level extends Phaser.Scene {
 
 
   }
+
+  
   //comprueba sinquedan enemigos
 update()
 {
@@ -71,9 +73,7 @@ update()
 
 }
 
-createTileMap() 
-  {
-
+  createTileMap() {
     this.map = this.make.tilemap({
       key: 'map1',
       tileWidth: 50,
