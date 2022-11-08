@@ -70,7 +70,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   earnLive(n) {
     if (this.lives < this.maxLives)
       this.lives += n;
-      this.updateLives();
+      this.updateLivesText();
   }
 
   preUpdate(t, dt) {

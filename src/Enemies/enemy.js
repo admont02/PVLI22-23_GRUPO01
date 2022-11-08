@@ -73,7 +73,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         {
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.loseLive(1);
-            this.player. updateLivesText();
+            this.player.updateLivesText();
             console.log(this.player.lives);
             this.scene.QuitarEnemyVivo();
             this.scene.updateLivesEnemy();
