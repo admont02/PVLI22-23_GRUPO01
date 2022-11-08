@@ -1,3 +1,4 @@
+import GhostBullet from '../Objects/ghostBullet.js';
 
 export default class Boss extends Phaser.GameObjects.Sprite 
 {
@@ -10,6 +11,9 @@ export default class Boss extends Phaser.GameObjects.Sprite
      constructor(scene, x, y, player){  {
           super(scene, x, y, 'boss');
 
+
+
+          this.isDash = false;
 
           this.doAction = false;
           this.setScale(0.2);
@@ -34,9 +38,14 @@ export default class Boss extends Phaser.GameObjects.Sprite
         super.preUpdate(t, dt);
         
         //movemos enemy a la posicion del jugador con velocidad 100
-        this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
+        if(!this.isDash)
+        {
+            this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
+            console.log("ando");
+
+        }
                
-        this.value = Phaser.Math.Between(0, 3000);
+        this.value = Phaser.Math.Between(0, 1500);
 
         if(this.value == 0)
         {
@@ -44,29 +53,28 @@ export default class Boss extends Phaser.GameObjects.Sprite
           
         }
 
+
     }
     
     makeAc()
     {
         this.stop();
         this.timer = this.scene.time.addEvent({
-            delay: 6000,              
+            delay: 4000,              
             callback: () =>
             {
               this.random = Phaser.Math.Between(0, 3);
 
-                if(this.random == 0)
-                {
-
-                }else if(this.random == 1)
-                {
-
-                }else{
-
-                }
-
+              if(this.random == 1)
+              this.shoot();
+              else if(this.random == 2)
+              {
+                this.dash();
+              }
 
               this.startMoving();
+
+                
             }
         });
        
@@ -85,9 +93,27 @@ export default class Boss extends Phaser.GameObjects.Sprite
 
     shoot()
     {
-         
+        new GhostBullet(this.scene, this.x, this.y, this.player);
     }
     
+
+    dash()
+    {
+        this.isDash = true;
+
+        this.dx =  this.player.x;
+        this.dy =  this.player.y;
+
+        this.scene.physics.moveTo(this, this.dx, this.dy, 500);
+
+        this.timer = this.scene.time.addEvent({
+            delay: 900,              
+            callback: () =>
+            {
+                this.isDash = false;
+            }
+        });
+    }
 
 
 }
