@@ -11,23 +11,16 @@ export default class Boss extends Phaser.GameObjects.Sprite
      constructor(scene, x, y, player){  {
           super(scene, x, y, 'boss');
 
-
-
           this.isDash = false;
-
           this.doAction = false;
           this.setScale(0.2);
          
           this.speed = 100;
 
           this.scene.add.existing(this)
-          //ponemos origen en 0,0
           this.setOrigin(0,0);
-          //decimos que escena tiene fisicas
           this.scene.physics.add.existing(this);
-          //permite que en el ejeX  y ejeY se pueda hacer flip en su rotacion 
           this.player =player;
-          // Queremos que el jugador no se salga de los límites del mundo o canvas
           this.body.setCollideWorldBounds();
       
 
@@ -36,7 +29,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-        
+
         //movemos enemy a la posicion del jugador con velocidad 100
         if(!this.isDash)
         {
@@ -53,6 +46,9 @@ export default class Boss extends Phaser.GameObjects.Sprite
           
         }
 
+        if(this.scene.NumEnemigos() == 0) 
+        this.destroy();
+
 
     }
     
@@ -65,7 +61,9 @@ export default class Boss extends Phaser.GameObjects.Sprite
             {
               this.random = Phaser.Math.Between(0, 3);
 
-              if(this.random == 1)
+              if(this.random == 0)
+              this.bossInvisible();
+              else if(this.random == 1)
               this.shoot();
               else if(this.random == 2)
               {
@@ -113,6 +111,28 @@ export default class Boss extends Phaser.GameObjects.Sprite
                 this.isDash = false;
             }
         });
+    }
+
+
+    bossInvisible()
+    { 
+        this.setVisible(false);
+        this.speed = 50;
+        
+        this.timer = this.scene.time.addEvent({
+            delay: 2000,              
+            callback: () =>
+            {
+              this.bossVisible();
+            }
+        });
+
+    }
+
+    bossVisible()
+    {
+        this.setVisible(true);
+        this.speed = 100;
     }
 
 
