@@ -1,4 +1,6 @@
 import Player from './player.js';
+import Boss from './Enemies/boss.js';
+
 
 /**
  * Escena principal del juego. 
@@ -24,8 +26,8 @@ export default class Level extends Phaser.Scene {
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
 
-
-   
+    this.boss = new Boss(this, 300, 300, this.player);
+    
     // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);

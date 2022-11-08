@@ -58,6 +58,8 @@ export default class Level extends Phaser.Scene {
 
     new LifePowerUp(this,500,50,this.player);
   }
+
+  
   //comprueba sinquedan enemigos
 update()
 {

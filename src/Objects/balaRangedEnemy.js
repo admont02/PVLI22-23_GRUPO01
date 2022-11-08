@@ -16,7 +16,7 @@
       this.speed = 1;
       this.dirX = dirX;
       this.dirY = dirY;
-      this.player=player;
+      this.player = player;
       this.setScale(0.07);
       //creas timer que llame en 2 segundos a un metodo que destruya la bala
       this.timer = this.scene.time.addEvent(
