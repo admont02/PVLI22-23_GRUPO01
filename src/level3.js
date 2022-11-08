@@ -30,10 +30,10 @@ export default class Level extends Phaser.Scene {
 
     this.enemy = this.add.group();
 
-    this.enemy.add(new eyeBoss(this, 200, 400, this.player));
-    this.enemy.add(new eyeBoss(this, 300, 200,this.player));
-    this.enemy.add(new eyeBoss(this, 300, 300,this.player));
-    this.enemy.add(new eyeBoss(this, 400, 300,this.player));
+    this.enemy.add(new eyeBoss(this, 100, 100, this.player));
+    this.enemy.add(new eyeBoss(this, 200, 100,this.player));
+    this.enemy.add(new eyeBoss(this, 300, 100,this.player));
+    this.enemy.add(new eyeBoss(this, 400, 100,this.player));
 
     this.boss = new Boss(this, 300, 300, this.player);
     

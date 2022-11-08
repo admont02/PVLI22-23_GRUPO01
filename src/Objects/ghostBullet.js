@@ -46,10 +46,7 @@
           this.player.updateLivesText();
           this.die();
       }
-
-    
     }
-
 
     die()
     {

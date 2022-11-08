@@ -57,6 +57,8 @@ export default class Level extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
 
     new LifePowerUp(this,500,50,this.player);
+
+
   }
 
   
@@ -68,6 +70,7 @@ update()
     //this.scene.start
     this.scene.start('menu')
   }
+
 }
 
   createTileMap() {

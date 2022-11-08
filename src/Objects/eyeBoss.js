@@ -1,4 +1,7 @@
 
+// Clase encargada de la vida del jefe
+
+
  export default class eyeBoss extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
@@ -32,7 +35,6 @@
 
   die()
   {
-
     this.scene.QuitarEnemyVivo();
     this.destroy();
   }

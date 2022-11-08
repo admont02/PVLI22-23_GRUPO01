@@ -23,7 +23,6 @@ export default class Boss extends Phaser.GameObjects.Sprite
           this.player =player;
           this.body.setCollideWorldBounds();
       
-
         }
     }
 
@@ -34,29 +33,37 @@ export default class Boss extends Phaser.GameObjects.Sprite
         if(!this.isDash)
         {
             this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
-            console.log("ando");
-
         }
                
-        this.value = Phaser.Math.Between(0, 1500);
+        //Los ataques se realizaran de manera aleatoria en un tiempo aleatorio
+        this.value = Phaser.Math.Between(0, 1000);
 
-        if(this.value == 0)
+        //Hacer accion
+        if(this.value == 0) this.makeAc();
+
+        //Colision con el jugador
+        if(this.scene.physics.overlap(this.player, this))
         {
-            this.makeAc();
-          
+            this.player.loseLive(1);
+            this.player.updateLivesText();
+            this.changePos();
         }
 
+
+        //Muerte del jefe
         if(this.scene.NumEnemigos() == 0) 
         this.destroy();
 
 
     }
     
+
+    //Se elige la siguiente accion
     makeAc()
     {
         this.stop();
         this.timer = this.scene.time.addEvent({
-            delay: 4000,              
+            delay: 1000,              
             callback: () =>
             {
               this.random = Phaser.Math.Between(0, 3);
@@ -71,30 +78,29 @@ export default class Boss extends Phaser.GameObjects.Sprite
               }
 
               this.startMoving();
-
-                
             }
         });
-       
     }
 
+    //Parar
     stop()
     {
         this.speed = 0;
     }
 
+    //Reestablecer velocidad
     startMoving()
     {
         this.speed = 100;
     }
 
-
+    //Disparar fantasma
     shoot()
     {
         new GhostBullet(this.scene, this.x, this.y, this.player);
     }
     
-
+    //Dash hacia la posicion de ese momento del jugador
     dash()
     {
         this.isDash = true;
@@ -113,7 +119,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
         });
     }
 
-
+    //Convertir al jefe en invisible
     bossInvisible()
     { 
         this.setVisible(false);
@@ -129,10 +135,23 @@ export default class Boss extends Phaser.GameObjects.Sprite
 
     }
 
+    //Hacet al jefe visible
     bossVisible()
     {
         this.setVisible(true);
-        this.speed = 100;
+        this.startMoving();
+    }
+
+    //Cuando el jugador toca al jefe
+    changePos()
+    {
+        this.rx = Phaser.Math.Between(200, 300);
+        this.ry = Phaser.Math.Between(200, 300);
+
+        this.x = this.player.x + this.rx;
+        this.y = this.player.y + this.ry;
+
+        this.bossInvisible();
     }
 
 
