@@ -39,6 +39,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.bottleTime = 0;
     this.launched = false;
+    this.cryLaunched = false;
   }
 
   /**
@@ -66,8 +67,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
       callbackScope: this
     });
   }
+  cryTimer() {
+    this.cryLaunched = true;
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: this.changeCryTimer,
+      callbackScope: this
+    });
+  }
   changeBottleTimer() {
     this.launched = false;
+  }
+  changeCryTimer() {
+    this.cryLaunched = false;
   }
   updateLivesText() {
     this.label.text = 'Lives ' + this.lives;
@@ -86,7 +98,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.timerCry += 1;
+
     this.timerDash += 1;
 
     if (!this.isDash) {
@@ -129,10 +141,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
       this.body.velocity.normalize().scale(this.speed);
 
-      if (this.e.isDown && this.canShoot) {
-        this.createCry();
-        this.canShoot = false;
-      }
+      this.createCry();
     }
 
     // Crea un nuevo bottle cuando se pulsa la tecla espacio
@@ -144,10 +153,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.body.velocity.normalize().scale(this.speed);
 
-    if (this.timerCry == this.timerMaxCry) {
-      this.canShoot = true;
-      this.timerCry = 0;
-    }
+
 
     if (this.timerDash == this.timerMaxDash) {
       this.canDash = true;
@@ -161,7 +167,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
   createCry() {
-    new Cry(this.scene, this.x, this.y);
+    if (this.e.isDown && !this.cryLaunched) {
+      new Cry(this.scene, this.x, this.y);
+      this.cryTimer();
+    }
   }
 
 
