@@ -38,6 +38,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.aDown = this.sDown = this.wDown = this.dDown = false;
 
     this.bottleTime = 0;
+    this.launched = false;
   }
 
   /**
@@ -57,7 +58,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //cursores
     this.cursors = this.scene.input.keyboard.createCursorKeys();
   }
-
+  bottleTimer() {
+    this.launched = true;
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: this.changeBottleTimer,
+      callbackScope: this
+    });
+  }
+  changeBottleTimer() {
+    this.launched = false;
+  }
   updateLivesText() {
     this.label.text = 'Lives ' + this.lives;
   }
@@ -70,7 +81,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   earnLive(n) {
     if (this.lives < this.maxLives)
       this.lives += n;
-      this.updateLivesText();
+    this.updateLivesText();
   }
 
   preUpdate(t, dt) {
@@ -81,13 +92,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (!this.isDash) {
       //eje Y
       if (this.cursors.down.isDown || this.s.isDown) {
-        if(this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(this.speed);
         this.sDown = true;
         this.dirY = 1;
       }
       else if (this.cursors.up.isDown || this.w.isDown) {
-        if(this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
@@ -99,13 +110,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
       //eje X
       if (this.cursors.right.isDown || this.d.isDown) {
-        if(this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(this.speed);
         this.dDown = true;
         this.dirX = 1;
       }
       else if (this.cursors.left.isDown || this.a.isDown) {
-        if(this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
@@ -125,12 +136,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     // Crea un nuevo bottle cuando se pulsa la tecla espacio
-    if(t > this.bottleTime){
-      if(this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)){
-        this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
-        this.bottleTime = t + 1000;
-      }
-    }
+
+    this.shootBottle();
+
+
+
 
     this.body.velocity.normalize().scale(this.speed);
 
@@ -177,5 +187,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.isDash = false;
     this.body.setVelocityX(0);
   }
-
+  shootBottle() {
+    if (!this.launched && this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)) {
+      this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
+      this.bottleTimer();
+    }
+  }
 }
