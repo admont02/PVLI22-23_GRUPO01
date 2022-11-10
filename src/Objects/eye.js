@@ -1,6 +1,6 @@
 import area from "./Area.js";
 
- export default class eye extends Phaser.GameObjects.Sprite {
+export default class eye extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
     super(scene, x, y, 'eyeClose');
@@ -16,35 +16,37 @@ import area from "./Area.js";
 
     this.open = false;
 
-    this.timerOpen = 500;
-    this.timerClose = 500;
-
   }
-
+  eyeTimer() {
+    this.scene.time.addEvent({
+      delay: 5000,
+      callback: this.closeEye,
+      callbackScope: this
+    });
+  }
+  closeEye() {
+    this.setTexture('eyeClose');
+    this.area.destroy();
+    this.open = false;
+  }
+  openEye() {
+    this.setTexture('eyeOpen');
+    this.area = new area(this.scene, this.x, this.y, this.player, this.enemies);
+    this.eyeTimer();
+  }
+  resetBoolean() {
+    this.open = false;
+  }
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    if(!this.open)
-    this.timerOpen -= 1;
-    else 
-    this.timerClose -= 1;
-
-    if(this.timerOpen == 0)
-    {
-      this.timerOpen = 500;
-      this.setTexture('eyeOpen');
-      this.area = new area(this.scene, this.x, this.y, this.player, this.enemies);
+    if (!this.open) {
       this.open = true;
-    }
-
-    if(this.timerClose == 0)
-    {
-      this.timerClose = 500;
-      this.setTexture('eyeClose');
-      this.area.destroy();
-      this.open = false;
+      this.scene.time.addEvent({
+        delay: 5000,
+        callback: this.openEye,
+        callbackScope: this
+      });
     }
   }
-
- 
 }
