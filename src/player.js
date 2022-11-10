@@ -10,7 +10,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * Constructor del jugador
    */
   constructor(scene, x, y) {
-    super(scene, x, y, 'player');
+    super(scene, x, y, 'topA');
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
@@ -108,12 +108,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityY(this.speed);
         this.sDown = true;
         this.dirY = 1;
+        this.play('bottom',true);
       }
       else if (this.cursors.up.isDown || this.w.isDown) {
         if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
+        this.play('top',true);
       }
       else {
         this.body.setVelocityY(0);
@@ -126,12 +128,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityX(this.speed);
         this.dDown = true;
         this.dirX = 1;
+        this.setFlip(false, false);
+        this.play('xAxis',true);
       }
       else if (this.cursors.left.isDown || this.a.isDown) {
         if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
+        this.setFlip(true, false);
+        this.play('xAxis',true);
+
       }
       else {
         this.body.setVelocityX(0);

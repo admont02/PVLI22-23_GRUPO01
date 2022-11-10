@@ -40,19 +40,22 @@ export default class Boot extends Phaser.Scene {
     this.load.image('heart', 'heart.png');
     this.load.image('transparente', 'transparente.png');
     this.load.image('player', 'player.png');
-    this.load.image('basicEnemy' , 'basicEnemy.png');
+    this.load.image('basicEnemy', 'basicEnemy.png');
     this.load.image('boss', 'jefe.png');
-    this.load.image('bottle' , 'bottleBlue.png');
+    this.load.image('bottle', 'bottleBlue.png');
     //cargamos imagen de bala enemiga ranged
-    this.load.image('balaRanged' , 'balaE.png');
-    this.load.image('bossBullet' , 'balaBoss.png');
+    this.load.image('balaRanged', 'balaE.png');
+    this.load.image('bossBullet', 'balaBoss.png');
 
-
+    this.load.setPath('assets/anims/');
+    this.load.spritesheet('topA', 'anim1.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('bottomA', 'anim2.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('rightA', 'anim3.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     //TILEMAP
     this.load.setPath('assets/tilemap/');
     this.load.tilemapTiledJSON('map1', 'prueba.json');
     this.load.image('patronesLevel1', 'tilesetForest.png');
-    this.load.image('suelo','suelo.png');
+    this.load.image('suelo', 'suelo.png');
     //  this.load.tilemapTiledJSON('map2', 'level2.json');
     //  this.load.image('patronesLevel2', 'tilesetbeach.png');
 
@@ -81,12 +84,34 @@ export default class Boot extends Phaser.Scene {
 
 
   }
+  createAnims() {
 
+    this.anims.create({
+      key: 'top',
+      frames: this.anims.generateFrameNumbers('topA', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'bottom',
+      frames: this.anims.generateFrameNumbers('bottomA', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    
+    this.anims.create({
+      key: 'xAxis',
+      frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+  }
   /**
    * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
    * nivel del juego
    */
   create() {
+    this.createAnims();
     this.scene.start('menu');
   }
 }
