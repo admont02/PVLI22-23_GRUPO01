@@ -1,6 +1,6 @@
 import Cry from './Objects/cry.js';
 import Bottle from './Objects/bottle.js';
-
+import HealthBar from './healthbar.js'
 /**
  * Clase que representa el jugador del juego.
  */
@@ -26,7 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLivesText();
 
     this.canShoot = true;
-
+    this.hp = new HealthBar(scene, x - 45, y - 110, this);
 
     this.timerDash = 0;
     this.timerMaxDash = 1000;
@@ -108,8 +108,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
+     this.hp.moveBar(this.x, this.y);
+    // console.log(this.hp.x);
 
-    
 
     if (!this.isDash) {
       this.animsPlayer();
@@ -223,7 +224,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
       if (this.dirY === -1) this.play('lastTop', true);
       else if (this.dirY === 1) this.play('lastBottom', true);
-      else this.play('lastXAxis', true);
+      else this.play('lastAxis', true);
     }
     else {
       if (this.cursors.down.isDown || this.s.isDown)
