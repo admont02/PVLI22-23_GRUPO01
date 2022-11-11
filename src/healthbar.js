@@ -11,7 +11,7 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
 
         this.draw();
 
-        scene.add.existing(this.bar);
+       scene.add.existing(this.bar);
     }
 
     modify(amount) {
