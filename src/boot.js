@@ -51,6 +51,8 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('topA', 'anim1.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('bottomA', 'anim2.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('rightA', 'anim3.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('idle', 'anim4.png',{ frameWidth: 34, frameHeight: 50, endFrame: 1 });
+
     //TILEMAP
     this.load.setPath('assets/tilemap/');
     this.load.tilemapTiledJSON('map1', 'prueba.json');
@@ -88,20 +90,26 @@ export default class Boot extends Phaser.Scene {
 
     this.anims.create({
       key: 'top',
-      frames: this.anims.generateFrameNumbers('topA', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('topA', { start: 0, end: 2 }),
       frameRate: 10,
       repeat: -1
     });
     this.anims.create({
       key: 'bottom',
-      frames: this.anims.generateFrameNumbers('bottomA', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('bottomA', { start: 0, end: 2 }),
       frameRate: 10,
       repeat: -1
     });
     
     this.anims.create({
       key: 'xAxis',
-      frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 2 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'idleA',
+      frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 1 }),
       frameRate: 10,
       repeat: -1
     });

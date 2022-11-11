@@ -102,6 +102,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.timerDash += 1;
 
     if (!this.isDash) {
+      if(this.body.velocity.x === 0 && this.body.velocity.y === 0){
+        this.play('idleA',true);
+      }
+      //else
       //eje Y
       if (this.cursors.down.isDown || this.s.isDown) {
         if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
