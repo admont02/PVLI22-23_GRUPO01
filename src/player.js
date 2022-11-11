@@ -53,6 +53,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.e = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.f = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+    this.p = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
 
     //cursores
@@ -108,60 +109,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.hp.moveBar(this.x, this.y);
+    this.pruebaRestarBarra();
     // console.log(this.hp.x);
 
 
     if (!this.isDash) {
       this.animsPlayer();
-      // if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
-      //   this.play('idleA', true);
-      // }
-      //else
-      //eje Y
-      if (this.cursors.down.isDown || this.s.isDown) {
-        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
-        this.body.setVelocityY(this.speed);
-        this.sDown = true;
-        this.dirY = 1;
-        // this.play('bottom', true);
-      }
-      else if (this.cursors.up.isDown || this.w.isDown) {
-        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
-        this.body.setVelocityY(-this.speed);
-        this.wDown = true;
-        this.dirY = -1;
-        // this.play('top', true);
-      }
-      else {
-        this.body.setVelocityY(0);
-        this.wDown = false;
-        this.sDown = false;
-      }
-      //eje X
-      if (this.cursors.right.isDown || this.d.isDown) {
-        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
-        this.body.setVelocityX(this.speed);
-        this.dDown = true;
-        this.dirX = 1;
-        // this.setFlip(false, false);
-        // this.play('xAxis', true);
-      }
-      else if (this.cursors.left.isDown || this.a.isDown) {
-        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
-        this.body.setVelocityX(-this.speed);
-        this.aDown = true;
-        this.dirX = -1;
-        // this.setFlip(true, false);
-        // this.play('xAxis', true);
-
-      }
-      else {
-        this.body.setVelocityX(0);
-        this.aDown = false;
-        this.dDown = false;
-      }
-
+      this.movePlayer();
+      //normalizar vel
       this.body.velocity.normalize().scale(this.speed);
 
       this.createCry();
@@ -220,6 +175,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.bottleTimer();
     }
   }
+  /**
+ * Método en el que se realizan las animaciones del jugador
+ * ,en función de donde se está moviendo.
+ */
   animsPlayer() {
     if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
       if (this.dirY === -1) this.play('lastTop', true);
@@ -241,5 +200,52 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
 
+  }
+  /**
+* Método en el que se realiza el movimiento del jugador (8 dir)
+*/
+  movePlayer() {
+    //eje Y
+    if (this.cursors.down.isDown || this.s.isDown) {
+      if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+      this.body.setVelocityY(this.speed);
+      this.sDown = true;
+      this.dirY = 1;
+    }
+    else if (this.cursors.up.isDown || this.w.isDown) {
+      if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+      this.body.setVelocityY(-this.speed);
+      this.wDown = true;
+      this.dirY = -1;
+
+    }
+    else {
+      this.body.setVelocityY(0);
+      this.wDown = false;
+      this.sDown = false;
+    }
+    //eje X
+    if (this.cursors.right.isDown || this.d.isDown) {
+      if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+      this.body.setVelocityX(this.speed);
+      this.dDown = true;
+      this.dirX = 1;
+    }
+    else if (this.cursors.left.isDown || this.a.isDown) {
+      if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+      this.body.setVelocityX(-this.speed);
+      this.aDown = true;
+      this.dirX = -1;
+
+    }
+    else {
+      this.body.setVelocityX(0);
+      this.aDown = false;
+      this.dDown = false;
+    }
+  }
+  pruebaRestarBarra() {
+    if (this.p.isDown)
+      this.hp.decrease(10);
   }
 }
