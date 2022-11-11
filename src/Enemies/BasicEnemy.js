@@ -11,12 +11,15 @@ export default class BasicEnemy extends Enemy {
       constructor(scene, x, y, imgKey, player) {
       //constructor que invoca a la clase enemy con scene con tamaño posicion , con una velocidad determinada y con la foto star
       //falta poner el sprite que queramos
-          super(scene, x, y, 100, imgKey, player);
+
+      //el parametro 100 es la velocidad del basicEnemy y 2 es la vida del BasicEnemy
+          super(scene, x, y, 100, imgKey, player,2);
           //instancia para poder modificar clase player desde aqui
         
         //aplicar escala en X e Y en BasicEnemy 
         //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
         //sino pones nada mete el tamaño por defecto
+
       }
 
       //permite llamar a la clase padre para la herencia
