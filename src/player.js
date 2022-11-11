@@ -102,9 +102,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.timerDash += 1;
 
     if (!this.isDash) {
-      if(this.body.velocity.x === 0 && this.body.velocity.y === 0){
-        this.play('idleA',true);
-      }
+      this.animsPlayer();
+      // if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
+      //   this.play('idleA', true);
+      // }
       //else
       //eje Y
       if (this.cursors.down.isDown || this.s.isDown) {
@@ -112,14 +113,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityY(this.speed);
         this.sDown = true;
         this.dirY = 1;
-        this.play('bottom',true);
+        // this.play('bottom', true);
       }
       else if (this.cursors.up.isDown || this.w.isDown) {
         if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
-        this.play('top',true);
+        // this.play('top', true);
       }
       else {
         this.body.setVelocityY(0);
@@ -132,16 +133,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityX(this.speed);
         this.dDown = true;
         this.dirX = 1;
-        this.setFlip(false, false);
-        this.play('xAxis',true);
+        // this.setFlip(false, false);
+        // this.play('xAxis', true);
       }
       else if (this.cursors.left.isDown || this.a.isDown) {
         if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
-        this.setFlip(true, false);
-        this.play('xAxis',true);
+        // this.setFlip(true, false);
+        // this.play('xAxis', true);
 
       }
       else {
@@ -212,5 +213,27 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
       this.bottleTimer();
     }
+  }
+  animsPlayer() {
+    if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
+      if (this.dirY === -1) this.play('lastTop', true);
+      else if (this.dirY === 1) this.play('lastBottom', true);
+      else this.play('lastXAxis', true);
+    }
+    else {
+      if (this.cursors.down.isDown || this.s.isDown)
+        this.play('bottom', true);
+      else if (this.cursors.up.isDown || this.w.isDown)
+        this.play('top', true);
+      else if (this.cursors.left.isDown || this.a.isDown) {
+        this.setFlip(true, false);
+        this.play('xAxis', true);
+      }
+      else if (this.cursors.right.isDown || this.d.isDown) {
+        this.setFlip(false, false);
+        this.play('xAxis', true);
+      }
+    }
+
   }
 }
