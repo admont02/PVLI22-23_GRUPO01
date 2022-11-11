@@ -7,8 +7,12 @@ export default class Enemy extends Phaser.GameObjects.Sprite
      * @param {number} x coordenada x
      * @param {number} y coordenada y
      */
-     constructor(scene, x, y, speed, sprite, player,newPosX,newPosY){  {
+
+    //en el constructor tu creas una variable life , así en cada tipo de enemigo , con su super, tendrá en cuenta las variables
+    //con sus valores para enviarlas al constructor del padre
+     constructor(scene, x, y, speed, sprite, player,life){  {
           super(scene, x, y, sprite);
+          //posicion inicial
           this.newPosX= 200;
           this.newPosY = 200;
 
@@ -31,7 +35,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
           //this.body.setVelocity(speed, speed);
 
-          this.lives = 3;
+          this.lives = life;
         }
     }
 
@@ -73,8 +77,13 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         {
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.loseLive(1);
+
             this.player.updateLivesText();
             console.log(this.player.lives);
+
+            this.player. updateLivesText();
+            // console.log(this.player.lives);
+
             this.scene.QuitarEnemyVivo();
             this.scene.updateLivesEnemy();
             this.destroy();
@@ -114,6 +123,18 @@ export default class Enemy extends Phaser.GameObjects.Sprite
     
     takeDamage(damage)
     {
-        this.lives -= damage;
+       this.lives -= damage;
+
+       if(this.lives<=0)
+       {
+            this.EnemyDie();
+       }
+       
+        console.log(this.lives);
+    }
+
+    EnemyDie()
+    {
+        this.destroy();
     }
 }

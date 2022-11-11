@@ -42,10 +42,10 @@ export default class Level extends Phaser.Scene {
     //Grupo de enemigos
     this.enemy = this.add.group();
     
-    this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemy', this.player,500,100));
-    this.enemy.add( new SpeedEnemy(this,400 , 200,'speed' , this.player,700,100));
-    this.enemy.add(new StrongEnemy(this,400 , 300,'tank' , this.player,800,300));
-    this.enemy.add(new RangedEnemy(this,400 , 300,'ranged' , this.player,0));
+    this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemy', this.player,2));
+    this.enemy.add( new SpeedEnemy(this,400 , 200,'speed' , this.player,2));
+    this.enemy.add(new StrongEnemy(this,400 , 300,'tank' , this.player,4));
+    this.enemy.add(new RangedEnemy(this,400 , 300,'ranged' , this.player,2));
 
     //creamos objeto de level enemiesLEFT
     this.label = this.add.text(850, 10, "Enemies Left: "+this.numEnemigosVivos).setScrollFactor(0);
@@ -61,6 +61,7 @@ export default class Level extends Phaser.Scene {
 
   }
 
+
   
   //comprueba sinquedan enemigos
 update()
@@ -73,7 +74,25 @@ update()
 
 }
 
-  createTileMap() {
+
+  
+//comprueba sinquedan enemigos
+  update()
+  {
+    if(this.NumEnemigos()===0)
+    {
+      //this.scene.start
+      this.scene.start('menu')
+    }
+  }
+
+
+
+
+  
+  createTileMap() 
+  {
+
     this.map = this.make.tilemap({
       key: 'map1',
       tileWidth: 50,
