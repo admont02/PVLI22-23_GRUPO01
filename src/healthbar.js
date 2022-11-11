@@ -6,20 +6,22 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
 
         this.x = x;
         this.y = y;
-        this.value = 150;
+        this.value = this.maxValue=150;
         this.p = 3 / 3;
-        
+
         this.draw();
 
         scene.add.existing(this.bar);
     }
 
-    decrease(amount) {
-        this.value -= amount;
+    modify(amount) {
+        this.value += amount;
 
-        if (this.value < 0) {
+        if (this.value < 0) 
             this.value = 0;
-        }
+        
+        if (this.value > this.maxValue)
+            this.value = this.maxValue;
 
         this.draw();
 
@@ -38,7 +40,7 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
         this.bar.fillStyle(0xffffff);
         this.bar.fillRect(this.x + 2, this.y + 2, 150, 28);//-4,-4
 
-        if (this.value <= 75 && this.value>40) {
+        if (this.value <= 75 && this.value > 40) {
             this.bar.fillStyle(0xff8000);
         }
         else if (this.value <= 40) {
