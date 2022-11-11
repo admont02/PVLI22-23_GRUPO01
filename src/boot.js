@@ -113,6 +113,27 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+    //last
+    this.anims.create({
+      key: 'lastTop',
+      frames: this.anims.generateFrameNumbers('topA', { start: 0, end: 0 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'lastBottom',
+      frames: this.anims.generateFrameNumbers('bottomA', { start: 0, end: 0 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    
+    this.anims.create({
+      key: 'lastAxis',
+      frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 0 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
   }
   /**
    * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
