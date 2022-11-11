@@ -26,12 +26,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLivesText();
 
     this.canShoot = true;
-    this.timerCry = 0;
-    this.timerMaxCry = 30;
+
 
     this.timerDash = 0;
     this.timerMaxDash = 1000;
-
+    this.enableDashTimer = true;
     this.isDash = false;
     this.canDash = true;
     this.speedDash = 750;
@@ -59,6 +58,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //cursores
     this.cursors = this.scene.input.keyboard.createCursorKeys();
   }
+  dashTimer() {
+    this.enableDashTimer = false;
+    this.scene.time.addEvent({
+      delay: 8000,
+      callback: this.changeDashTimer,
+      callbackScope: this
+    });
+  }
   bottleTimer() {
     this.launched = true;
     this.scene.time.addEvent({
@@ -81,6 +88,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
   changeCryTimer() {
     this.cryLaunched = false;
   }
+  changeDashTimer() {
+    this.canDash = true;
+  }
   updateLivesText() {
     this.label.text = 'Lives ' + this.lives;
   }
@@ -99,7 +109,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    this.timerDash += 1;
+    
 
     if (!this.isDash) {
       this.animsPlayer();
@@ -165,13 +175,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.body.velocity.normalize().scale(this.speed);
 
-
-
-    if (this.timerDash == this.timerMaxDash) {
-      this.canDash = true;
-      this.timerDash = 0;
-    }
-
+    if (this.enableDashTimer) this.dashTimer();
     if (this.f.isDown && this.canDash) {
       this.startDash();
     }
@@ -207,6 +211,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   stopDash() {
     this.isDash = false;
     this.body.setVelocityX(0);
+    this.enableDashTimer = true;
   }
   shootBottle() {
     if (!this.launched && this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)) {
