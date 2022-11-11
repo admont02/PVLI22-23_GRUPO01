@@ -246,6 +246,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   pruebaRestarBarra() {
     if (this.p.isDown)
-      this.hp.decrease(10);
+      this.hp.modify(-10);
+  }
+  modifyValue(v){
+    this.hp.modify(v);
   }
 }

@@ -19,8 +19,8 @@ export default class LifePowerUp extends Phaser.GameObjects.Sprite {
             this.setActive(false);
             this.setVisible(false);
             this.destroy();
-            this.player.earnLive(1);
-
+            //this.player.earnLive(1);
+            this.player.modifyValue(25);
         }
     }
 }
