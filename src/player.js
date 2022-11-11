@@ -26,8 +26,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLivesText();
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, x - 45, y - 110, this);
-
+    this.hp = new HealthBar(scene, 10, 10, this);
+    this.hp.setScrollFactor(0);
     this.timerDash = 0;
     this.timerMaxDash = 1000;
     this.enableDashTimer = true;
@@ -108,7 +108,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-     this.hp.moveBar(this.x, this.y);
+    this.hp.moveBar(this.x, this.y);
     // console.log(this.hp.x);
 
 
