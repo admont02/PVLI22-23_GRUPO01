@@ -40,14 +40,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('heart', 'heart.png');
     this.load.image('transparente', 'transparente.png');
     this.load.image('player', 'player.png');
-    this.load.image('basicEnemy', 'basicEnemy.png');
+    this.load.image('basicEnemy', 'basicEnemyRojo.png');
     this.load.image('boss', 'jefe.png');
     this.load.image('bottle', 'bottleBlue.png');
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
     this.load.image('bossBullet', 'balaBoss.png');
 
-    this.load.setPath('assets/anims/');
+    this.load.setPath('assets/anims/AnimsPlayer');
     this.load.spritesheet('topA', 'anim1.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('bottomA', 'anim2.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('rightA', 'anim3.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
