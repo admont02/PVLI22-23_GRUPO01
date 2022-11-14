@@ -1,3 +1,5 @@
+import HealthBar from '../healthbar.js';
+
 //crear clase padre enemy de donde heredan todos
 export default class Enemy extends Phaser.GameObjects.Sprite 
 {
@@ -36,12 +38,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           //this.body.setVelocity(speed, speed);
 
           this.lives = life;
+
+          this.hp = new HealthBar(scene, 10, 10, this);
+
         }
     }
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-        
+        this.hp.bar.setX(this.x-this.scene.cameras.main._scrollX-this.width)
+        this.hp.bar.setY(this.y-this.height)
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this,this.newPosX,this.newPosY, this.speed);
         //console.log(this.x);
@@ -158,6 +164,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite
 
     EnemyDie()
     {
+        this.setVisible(false);
+        this.setActive(false);
+        this.hp.bar.destroy();
         this.destroy();
     }
 }

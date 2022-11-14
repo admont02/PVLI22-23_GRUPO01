@@ -13,7 +13,7 @@ export default class StrongEnemy extends Enemy {
       //falta poner el sprite que queramos
           super(scene, x, y, 50, imgKey, player,4);
           //instancia para poder modificar clase player desde aqui
-        
+         // this.hp = new HealthBar(scene, 10, 10, this);
         //aplicar escala en X e Y en BasicEnemy 
         //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
         //sino pones nada mete el tamaño por defecto
@@ -23,7 +23,8 @@ export default class StrongEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
+        // this.hp.bar.setX(this.x-this.scene.cameras.main._scrollX-this.width)
+        // this.hp.bar.setY(this.y-this.height)
         //hacer animaciones
         if(this!==undefined)
         {
