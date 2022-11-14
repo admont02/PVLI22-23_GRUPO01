@@ -38,10 +38,14 @@ export default class RangedEnemy extends Enemy {
           this.lastShot=t;
         }
 
-       // this.animsRangedEnemy();
-        //velocidad 50
-       // this.body.velocity.normalize().scale(50);
-
+        if(this!==undefined)
+        {
+          this.animsRangedEnemy();
+          //velocidad 50
+          this.body.velocity.normalize().scale(50);
+  
+        }
+       
   
       } 
     //disparar enemigo en x e y a la pos del player
@@ -52,45 +56,50 @@ export default class RangedEnemy extends Enemy {
     }
     animsRangedEnemy()
       {
-        //si esta quieto
-        if (this.body.velocity.x === 0 && this.body.velocity.y === 0) 
+
+        if(this!==undefined)
         {
-           this.play('RangedEnemyDer', true);
+                //si esta quieto
+            if (this.body.velocity.x === 0 && this.body.velocity.y === 0) 
+            {
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a la derecha (1,0)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) 
+            {
+              console.log("ha");
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a la izq (-1,0)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
+              this.play('RangedEnemyIzq', true);
+            }
+            //si va a la arriba (0,1)
+            else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a abajo (0,-1)
+            else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a la derecha arriba(1,1)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a la derecha abajo (1,-1)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+              this.play('RangedEnemyDer', true);
+            }
+            //si va a la izq abajo (-1,-1)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y <0) {
+              this.play('RangedEnemyIzq', true);
+            }
+            //si va a la izq arriba(-1,1)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
+              this.play('RangedEnemyIzq', true);
+            }
         }
-        //si va a la derecha (1,0)
-        else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) 
-        {
-          console.log("ha");
-          this.play('RangedEnemyDer', true);
-        }
-        //si va a la izq (-1,0)
-        else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
-          this.play('RangedEnemyIzq', true);
-        }
-        //si va a la arriba (0,1)
-        else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
-          this.play('RangedEnemyDer', true);
-        }
-        //si va a abajo (0,-1)
-        else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
-          this.play('RangedEnemyDer', true);
-        }
-        //si va a la derecha arriba(1,1)
-        else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-          this.play('RangedEnemyDer', true);
-        }
-        //si va a la derecha abajo (1,-1)
-        else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-          this.play('RangedEnemyDer', true);
-        }
-        //si va a la izq abajo (-1,-1)
-        else if (this.body.velocity.x < 0 && this.body.velocity.y <0) {
-          this.play('RangedEnemyIzq', true);
-        }
-        //si va a la izq arriba(-1,1)
-        else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
-          this.play('RangedEnemyIzq', true);
-        }
+       
       }
 
     

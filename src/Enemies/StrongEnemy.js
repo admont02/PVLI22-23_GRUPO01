@@ -25,17 +25,22 @@ export default class StrongEnemy extends Enemy {
         super.preUpdate(t, dt);
 
         //hacer animaciones
-       
-       // this.animsStrongEnemy();
-        //velocidad 50
-        //this.body.velocity.normalize().scale(50);
-        // console.log(this.body.velocity.x+","+this.body.velocity.y);
+        if(this!==undefined)
+        {
+          this.animsStrongEnemy();
+          //velocidad 50
+          this.body.velocity.normalize().scale(50);
+          // console.log(this.body.velocity.x+","+this.body.velocity.y);
+        }
+        
       }
 
 
       animsStrongEnemy()
       {
-        //si esta quieto
+        if(this!==undefined)
+        {
+             //si esta quieto
         if (this.body.velocity.x === 0 && this.body.velocity.y === 0) 
         {
            this.play('StrongEnemyWalk', true);
@@ -74,6 +79,8 @@ export default class StrongEnemy extends Enemy {
         else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
           this.play('StrongEnemyIzq', true);
         }
+        }
+       
       }
 
 
