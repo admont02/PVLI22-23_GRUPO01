@@ -120,7 +120,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.animsPlayer();
       this.movePlayer();
       //normalizar vel
-      this.body.velocity.normalize().scale(this.speed);
+      // this.body.velocity.normalize().scale(this.speed);
 
       this.createCry();
     }

@@ -129,7 +129,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
                 delay: 750,              
                 callback: () =>
                 {
-                this.divideStats();
+                    this.divideStats();
                 }
             });
         }

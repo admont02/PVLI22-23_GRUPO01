@@ -18,7 +18,8 @@ export default class SpeedEnemy extends Enemy {
         //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
         //sino pones nada mete el tamaño por defecto
 
-        this.livesSpeedEnemy =2;
+        // this.livesSpeedEnemy =2;
+        this.velocity=300;
       }
 
       //permite llamar a la clase padre para la herencia
