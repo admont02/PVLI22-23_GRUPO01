@@ -17,6 +17,7 @@ export default class StrongEnemy extends Enemy {
         //aplicar escala en X e Y en BasicEnemy 
         //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
         //sino pones nada mete el tamaño por defecto
+        this.setScale(1);
 
       }
 
