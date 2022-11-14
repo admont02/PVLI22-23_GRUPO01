@@ -20,6 +20,7 @@ export default class SpeedEnemy extends Enemy {
 
         // this.livesSpeedEnemy =2;
         this.velocity=300;
+        this.setScale(1);
       }
 
       //permite llamar a la clase padre para la herencia

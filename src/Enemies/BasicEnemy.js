@@ -27,5 +27,53 @@ export default class BasicEnemy extends Enemy {
         super.preUpdate(t, dt);
       }
 
+      animsRangedEnemy()
+      {
+
+        if(this!==undefined)
+        {
+                //si esta quieto
+            if (this.body.velocity.x === 0 && this.body.velocity.y === 0) 
+            {
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a la derecha (1,0)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) 
+            {
+              console.log("ha");
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a la izq (-1,0)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
+              this.play('basicEnemyRojoIzquierda', true);
+            }
+            //si va a la arriba (0,1)
+            else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a abajo (0,-1)
+            else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a la derecha arriba(1,1)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a la derecha abajo (1,-1)
+            else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+              this.play('basicEnemyRojoDerecha', true);
+            }
+            //si va a la izq abajo (-1,-1)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y <0) {
+              this.play('basicEnemyRojoIzquierda', true);
+            }
+            //si va a la izq arriba(-1,1)
+            else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
+              this.play('basicEnemyRojoIzquierda', true);
+            }
+        }
+       
+      }
+
 
   }
