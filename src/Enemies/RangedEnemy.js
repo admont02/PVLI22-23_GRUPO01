@@ -38,9 +38,9 @@ export default class RangedEnemy extends Enemy {
           this.lastShot=t;
         }
 
-        this.animsRangedEnemy();
+       // this.animsRangedEnemy();
         //velocidad 50
-        this.body.velocity.normalize().scale(50);
+       // this.body.velocity.normalize().scale(50);
 
   
       } 

@@ -25,8 +25,8 @@ export default class SpeedEnemy extends Enemy {
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
         // console.log("speed : "+this.x, this.y);
-        this.animsSpeedEnemy();
-        this.body.velocity.normalize().scale(300);
+        //this.animsSpeedEnemy();
+        //this.body.velocity.normalize().scale(300);
       }
 
       
