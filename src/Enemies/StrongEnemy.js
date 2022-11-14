@@ -23,6 +23,57 @@ export default class StrongEnemy extends Enemy {
       //permite llamar a la clase padre para la herencia
       preUpdate(t, dt) {
         super.preUpdate(t, dt);
+
+        //hacer animaciones
+       
+        this.animsStrongEnemy();
+        //velocidad 50
+        this.body.velocity.normalize().scale(50);
+        // console.log(this.body.velocity.x+","+this.body.velocity.y);
+      }
+
+
+      animsStrongEnemy()
+      {
+        //si esta quieto
+        if (this.body.velocity.x === 0 && this.body.velocity.y === 0) 
+        {
+           this.play('StrongEnemyWalk', true);
+        }
+        //si va a la derecha (1,0)
+        else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) 
+        {
+          console.log("ha");
+          this.play('StrongEnemyWalk', true);
+        }
+        //si va a la izq (-1,0)
+        else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
+          this.play('StrongEnemyIzq', true);
+        }
+        //si va a la arriba (0,1)
+        else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
+          this.play('StrongEnemyWalk', true);
+        }
+        //si va a abajo (0,-1)
+        else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
+          this.play('StrongEnemyWalk', true);
+        }
+        //si va a la derecha arriba(1,1)
+        else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+          this.play('StrongEnemyWalk', true);
+        }
+        //si va a la derecha abajo (1,-1)
+        else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
+          this.play('StrongEnemyWalk', true);
+        }
+        //si va a la izq abajo (-1,-1)
+        else if (this.body.velocity.x < 0 && this.body.velocity.y <0) {
+          this.play('StrongEnemyIzq', true);
+        }
+        //si va a la izq arriba(-1,1)
+        else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
+          this.play('StrongEnemyIzq', true);
+        }
       }
 
 

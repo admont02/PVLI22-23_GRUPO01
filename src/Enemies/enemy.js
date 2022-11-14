@@ -81,7 +81,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
             this.player.updateLivesText();
             console.log(this.player.lives);
 
-            this.player. updateLivesText();
+            this.player.updateLivesText();
             // console.log(this.player.lives);
 
             this.scene.QuitarEnemyVivo();
