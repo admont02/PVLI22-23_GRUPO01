@@ -14,7 +14,7 @@ export default class RangedEnemy extends Enemy {
       //falta poner el sprite que queramos
           super(scene, x, y, 200, imgKey, player,2);
           //instancia para poder modificar clase player desde aqui
-          this.setScale(0.8);
+          this.setScale(1.5);
           this.playerX = this.player.x;
           this.playerY = this.player.y;
           this.tiempoBala = 4000;

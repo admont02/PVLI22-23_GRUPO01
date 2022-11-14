@@ -46,6 +46,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('basicEnemyVerde', 'BasicEnemyVerde.png');
     this.load.image('boss', 'jefe.png');
     this.load.image('bottle', 'bottleBlue.png');
+    this.load.image('configuracion', 'Configuracion.png');
     
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
@@ -79,8 +80,8 @@ export default class Boot extends Phaser.Scene {
       //StrongEnemy
       this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
         //strongEnemy , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png',{ frameWidth: 51.5, frameHeight: 51.5, endFrame:8 });
-        this.load.spritesheet('StrongEnemyWalk', 'StrongEnemyWalk.png',{ frameWidth: 51.5, frameHeight: 51.5, endFrame: 8 });
+        this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png',{ frameWidth: 40, frameHeight: 40, endFrame:8 });
+        this.load.spritesheet('StrongEnemyWalk', 'StrongEnemyWalk.png',{ frameWidth: 40, frameHeight: 40, endFrame: 8 });
 
       //SpeedEnemy
       this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
@@ -129,6 +130,8 @@ export default class Boot extends Phaser.Scene {
 
 
   }
+
+
   createAnims() {
 
     //Enemy
@@ -144,7 +147,7 @@ export default class Boot extends Phaser.Scene {
         this.anims.create({
           key: 'StrongEnemyWalk',
           frames: this.anims.generateFrameNumbers('StrongEnemyWalk', { start: 0, end: 8 }),
-          frameRate: 8,
+          frameRate: 10,
           repeat: -1
         });
 

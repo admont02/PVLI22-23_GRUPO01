@@ -4,9 +4,9 @@ export default class Configuracion extends Phaser.Scene {
   }
   create() {
       
-      
-      this.playbutton = this.add.text(this.scale.width/2 - 140, this.scale.height/2 + 100, "Back").setInteractive();
- 
+      this.image =this.add.image(500, 250, 'configuracion');
+      this.playbutton = this.add.text(this.scale.width/2 - 40, this.scale.height/2 + 180, "Back").setInteractive();
+      this.image.setScale(1);
       this.playbutton.setScale(3);
 
     //conexion con escena level
