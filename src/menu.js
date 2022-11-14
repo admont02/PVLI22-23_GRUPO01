@@ -25,7 +25,7 @@ export default class Menu extends Phaser.Scene {
 
     //conexion con escena level4
       this.playbutton3.on("pointerdown",  () => {
-        this.scene.start('level4');
+        this.scene.start('configuracion');
       });
   }
 }

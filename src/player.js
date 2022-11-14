@@ -120,7 +120,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.animsPlayer();
       this.movePlayer();
       //normalizar vel
-      this.body.velocity.normalize().scale(this.speed);
+      // this.body.velocity.normalize().scale(this.speed);
 
       this.createCry();
     }
@@ -253,5 +253,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   modifyValue(v) {
     this.hp.modify(v);
+  }
+
+  //hace que durante 1 segundo rebote en diagonal
+  choque()
+  {
+      this.body.setVelocityX(-this.body.velocity.x*2);
+      this.body.setVelocityY(-this.body.velocity.y*2);
+      this.timer = this.scene.time.addEvent({
+          delay: 500,              
+          callback: () =>
+          {
+              this.sinchoque();
+          }
+      });
+  }
+
+  sinchoque()
+  {
+      this.body.setVelocityX(this.body.velocity.x);
+      this.body.setVelocityY(this.body.velocity.y);
+
   }
 }

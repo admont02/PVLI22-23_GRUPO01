@@ -83,10 +83,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite
 
             this.player.updateLivesText();
             // console.log(this.player.lives);
-
-            this.scene.QuitarEnemyVivo();
-            this.scene.updateLivesEnemy();
-            this.destroy();
+            //metodo que haga "rebote" para que no coincidan posiciones
+            this.player.choque();
+            
+            // this.destroy();
             
         }
 
@@ -94,6 +94,27 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         // {
         //     this.destroy();
         // }
+    }
+
+    //hace que durante 1 segundo rebote en diagonal
+    choque()
+    {
+        this.SetVelocityX(-this.body.velocity.x);
+        this.SetVelocityY(-this.body.velocity.y);
+        this.timer = this.scene.time.addEvent({
+            delay: 500,              
+            callback: () =>
+            {
+                this.sinchoque();
+            }
+        });
+    }
+
+    sinchoque()
+    {
+        this.SetVelocityX(this.body.velocity.x);
+        this.SetVelocityY(this.body.velocity.y);
+
     }
 
 
@@ -108,7 +129,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite
                 delay: 750,              
                 callback: () =>
                 {
-                this.divideStats();
+                    this.divideStats();
                 }
             });
         }
@@ -127,6 +148,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite
 
        if(this.lives<=0)
        {
+            this.scene.QuitarEnemyVivo();
+            this.scene.updateLivesEnemy();
             this.EnemyDie();
        }
        
