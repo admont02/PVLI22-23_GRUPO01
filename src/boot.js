@@ -41,17 +41,60 @@ export default class Boot extends Phaser.Scene {
     this.load.image('transparente', 'transparente.png');
     this.load.image('player', 'player.png');
     this.load.image('basicEnemy', 'basicEnemyRojo.png');
+    this.load.image('basicEnemyAmarillo', 'BasicEnemyAmarillo.png');
+    this.load.image('basicEnemyAzul', 'BasicEnemyAzul.png');
+    this.load.image('basicEnemyVerde', 'BasicEnemyVerde.png');
     this.load.image('boss', 'jefe.png');
     this.load.image('bottle', 'bottleBlue.png');
+    
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
     this.load.image('bossBullet', 'balaBoss.png');
 
+    //para animaciones de Player
     this.load.setPath('assets/anims/AnimsPlayer');
     this.load.spritesheet('topA', 'anim1.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('bottomA', 'anim2.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('rightA', 'anim3.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('idle', 'anim4.png',{ frameWidth: 34, frameHeight: 50, endFrame: 1 });
+
+
+    //para animaciones de enemy
+
+      //EnemyBasic
+      this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
+        //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
+        this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        this.load.spritesheet('basicEnemyAzulIzquierda', 'BasicEnemyAzulIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
+        this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        this.load.spritesheet('basicEnemyVerdeIzquierda', 'BasicEnemyVerdeIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
+        this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        this.load.spritesheet('basicEnemyRojoIzquierda', 'BasicEnemyRojoIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
+        this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+        this.load.spritesheet('basicEnemyAmarilloIzquierda', 'BasicEnemyAmarilloIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+
+      //StrongEnemy
+      this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
+        //strongEnemy , derecha(incluye arriba, abajo) e izquierda
+        this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png',{ frameWidth: 51.5, frameHeight: 51.5, endFrame:8 });
+        this.load.spritesheet('StrongEnemyWalk', 'StrongEnemyWalk.png',{ frameWidth: 51.5, frameHeight: 51.5, endFrame: 8 });
+
+      //SpeedEnemy
+      this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
+        //speedEnemy ,movimiento general , turbo abajo , arriba y lateral
+        this.load.spritesheet('MovimientoGeneralSpeedEnemy', 'MovimientoGeneralSpeedEnemy.png',{ frameWidth: 81, frameHeight: 46, endFrame:5 });
+        this.load.spritesheet('turboAbajoSpeedEnemy', 'turboAbajoSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
+        this.load.spritesheet('turboArribaSpeedEnemy', 'turboArribaSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
+        this.load.spritesheet('turboLateralSpeedEnemy', 'turboLateralSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 5 });
+
+      //RangedEnemy
+      this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');  
+        //rangedEnemy der , arrriba y abajo     y izq
+        this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png',{ frameWidth: 35, frameHeight:35, endFrame:5 });
+        this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
 
     //TILEMAP
     this.load.setPath('assets/tilemap/');
@@ -88,6 +131,72 @@ export default class Boot extends Phaser.Scene {
   }
   createAnims() {
 
+    //Enemy
+
+        //StrongEnemy
+        this.anims.create({
+          key: 'StrongEnemyIzq',
+          frames: this.anims.generateFrameNumbers('StrongEnemyIzq', { start: 0, end: 8 }),
+          frameRate: 10,
+          repeat: -1
+        });
+
+        this.anims.create({
+          key: 'StrongEnemyWalk',
+          frames: this.anims.generateFrameNumbers('StrongEnemyWalk', { start: 0, end: 8 }),
+          frameRate: 8,
+          repeat: -1
+        });
+
+        //RangedEnemy
+        this.anims.create({
+          key: 'RangedEnemyDer',
+          frames: this.anims.generateFrameNumbers('RangedEnemyDer', { start: 0, end: 5 }),
+          frameRate: 10,
+          repeat: -1
+        });
+
+        this.anims.create({
+          key: 'RangedEnemyIzq',
+          frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 0, end: 5 }),
+          frameRate: 10,
+          repeat: -1
+        });
+
+        //SpeedEnemy
+        this.anims.create({
+          key: 'MovimientoGeneralSpeedEnemy',
+          frames: this.anims.generateFrameNumbers('MovimientoGeneralSpeedEnemy', { start: 0, end: 5 }),
+          frameRate: 10,
+          repeat: -1
+        });
+
+        //BasicEnemy
+
+            //Red
+            this.anims.create({
+              key: 'basicEnemyRojoDerecha',
+              frames: this.anims.generateFrameNumbers('basicEnemyRojoDerecha', { start: 0, end: 16 }),
+              frameRate: 10,
+              repeat: -1
+            });
+
+            this.anims.create({
+              key: 'basicEnemyRojoIzquierda',
+              frames: this.anims.generateFrameNumbers('basicEnemyRojoIzquierda', { start: 0, end: 16 }),
+              frameRate: 10,
+              repeat: -1
+            });
+            
+
+        
+
+
+
+
+
+
+    //Player
     this.anims.create({
       key: 'top',
       frames: this.anims.generateFrameNumbers('topA', { start: 0, end: 2 }),
