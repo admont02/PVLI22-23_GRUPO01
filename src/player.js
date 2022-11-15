@@ -282,14 +282,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   sinchoque() {
     this.body.setVelocityX(this.body.velocity.x);
     this.body.setVelocityY(this.body.velocity.y);
-
-
-  sinchoque()
-  {
-      this.body.setVelocityX(this.body.velocity.x);
-      this.body.setVelocityY(this.body.velocity.y);
-
   }
+
   die() {
     if (this.hp.getValue() === 0) this.scene.scene.start('menu')
   }
