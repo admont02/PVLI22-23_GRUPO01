@@ -1,13 +1,11 @@
+import Bullet from "./bullet.js";
 
- export default class ghostBullet extends Phaser.GameObjects.Sprite {
+ export default class ghostBullet extends Bullet{
 
     constructor(scene, x, y, player) {
       super(scene, x, y, 'bossBullet');
   
       this.play('bulletBoss', true);
-      
-      this.scene.add.existing(this);
-      this.scene.physics.add.existing(this);
       this.speed = 250;
    
       this.followPlayer = true;

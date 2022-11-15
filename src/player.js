@@ -27,14 +27,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.canShoot = true;
     this.hp = new HealthBar(scene, 10, 10, this);
+
     // this.hp.setScrollFactor(0);
     //this.addChild(this.hp)
+
+
+    
+
+
     this.timerDash = 0;
     this.timerMaxDash = 1000;
     this.enableDashTimer = true;
     this.isDash = false;
     this.canDash = true;
-    this.speedDash = 750;
+    this.speedDash = 2000;
     this.aDown = this.sDown = this.wDown = this.dDown = false;
 
     this.bottleTime = 0;
@@ -210,43 +216,47 @@ export default class Player extends Phaser.GameObjects.Sprite {
 */
   movePlayer() {
     //eje Y
-    if (this.cursors.down.isDown || this.s.isDown) {
-      if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
-      this.body.setVelocityY(this.speed);
-      this.sDown = true;
-      this.dirY = 1;
+    if(!this.isDash)
+    {
+      if (this.cursors.down.isDown || this.s.isDown) {
+        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+        this.body.setVelocityY(this.speed);
+        this.sDown = true;
+        this.dirY = 1;
+      }
+      else if (this.cursors.up.isDown || this.w.isDown) {
+        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
+        this.body.setVelocityY(-this.speed);
+        this.wDown = true;
+        this.dirY = -1;
+  
+      }
+      else {
+        this.body.setVelocityY(0);
+        this.wDown = false;
+        this.sDown = false;
+      }
+      //eje X
+      if (this.cursors.right.isDown || this.d.isDown) {
+        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+        this.body.setVelocityX(this.speed);
+        this.dDown = true;
+        this.dirX = 1;
+      }
+      else if (this.cursors.left.isDown || this.a.isDown) {
+        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
+        this.body.setVelocityX(-this.speed);
+        this.aDown = true;
+        this.dirX = -1;
+  
+      }
+      else {
+        this.body.setVelocityX(0);
+        this.aDown = false;
+        this.dDown = false;
+      }
     }
-    else if (this.cursors.up.isDown || this.w.isDown) {
-      if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
-      this.body.setVelocityY(-this.speed);
-      this.wDown = true;
-      this.dirY = -1;
-
-    }
-    else {
-      this.body.setVelocityY(0);
-      this.wDown = false;
-      this.sDown = false;
-    }
-    //eje X
-    if (this.cursors.right.isDown || this.d.isDown) {
-      if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
-      this.body.setVelocityX(this.speed);
-      this.dDown = true;
-      this.dirX = 1;
-    }
-    else if (this.cursors.left.isDown || this.a.isDown) {
-      if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
-      this.body.setVelocityX(-this.speed);
-      this.aDown = true;
-      this.dirX = -1;
-
-    }
-    else {
-      this.body.setVelocityX(0);
-      this.aDown = false;
-      this.dDown = false;
-    }
+   
   }
   pruebaRestarBarra() {
     if (this.p.isDown)
@@ -268,9 +278,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     });
   }
 
+
   sinchoque() {
     this.body.setVelocityX(this.body.velocity.x);
     this.body.setVelocityY(this.body.velocity.y);
+
+
+  sinchoque()
+  {
+      this.body.setVelocityX(this.body.velocity.x);
+      this.body.setVelocityY(this.body.velocity.y);
 
   }
   die() {

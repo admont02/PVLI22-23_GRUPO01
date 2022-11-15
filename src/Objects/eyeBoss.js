@@ -1,14 +1,12 @@
 
 // Clase encargada de la vida del jefe
-
-
  export default class eyeBoss extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, x, y, player, enemies) {
+  constructor(scene, x, y, player) {
     super(scene, x, y, 'eyeOpen');
 
 
-    this.life = 4;
+    this.life = 50;
 
     this.setScale(0.15);
     this.scene.add.existing(this);
@@ -25,11 +23,11 @@
     super.preUpdate(t, dt);
   }
 
-  takeDamage()
+  takeDamage(damage)
   {
-    this.life--;
+    this.life -= damage;
 
-    if(this.life == 0)
+    if(this.life < 0)
     this.die();
   }
 

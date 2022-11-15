@@ -94,7 +94,7 @@ export default class Boot extends Phaser.Scene {
       //RangedEnemy
       this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');  
         //rangedEnemy der , arrriba y abajo     y izq
-        this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png',{ frameWidth: 35, frameHeight:35, endFrame:5 });
+        this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
         this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
 
 
