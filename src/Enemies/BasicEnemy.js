@@ -13,7 +13,7 @@ export default class BasicEnemy extends Enemy {
       //falta poner el sprite que queramos
 
       //el parametro 100 es la velocidad del basicEnemy y 2 es la vida del BasicEnemy
-          super(scene, x, y, 100, imgKey, player,2);
+          super(scene, x, y, 100, imgKey, player, 20);
           //instancia para poder modificar clase player desde aqui
         
         //aplicar escala en X e Y en BasicEnemy 
