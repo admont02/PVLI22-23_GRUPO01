@@ -1,5 +1,5 @@
 import Enemy from './enemy.js';
-import balaRangedEnemy from '../Objects/balaRangedEnemy.js';//para poder instanciar balas enemigas
+import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';//para poder instanciar balas enemigas
 
 export default class RangedEnemy extends Enemy {
     /**

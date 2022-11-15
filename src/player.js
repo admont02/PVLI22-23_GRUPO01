@@ -1,5 +1,5 @@
-import Cry from './Objects/cry.js';
-import Bottle from './Objects/bottle.js';
+import Cry from './Objects/Bullets/cry.js';
+import Bottle from './Objects/Bullets/bottle.js';
 import HealthBar from './healthbar.js'
 /**
  * Clase que representa el jugador del juego.
@@ -30,10 +30,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     // this.hp.setScrollFactor(0);
     //this.addChild(this.hp)
-
-
-    
-
 
     this.timerDash = 0;
     this.timerMaxDash = 1000;
@@ -262,6 +258,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.p.isDown)
       this.hp.modify(-10);
   }
+  
   modifyValue(v) {
     this.hp.modify(v);
   }
