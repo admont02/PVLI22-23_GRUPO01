@@ -4,6 +4,9 @@
     constructor(scene, x, y) {
       super(scene, x, y, 'cry');
   
+
+      this.damage = 0.1;
+
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
@@ -21,8 +24,9 @@
 
     preUpdate(t, dt) {
       super.preUpdate(t, dt);
-      
-      
+    
+      if(this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage);}));
+
     }
 
 

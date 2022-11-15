@@ -18,6 +18,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite
           this.newPosX= 200;
           this.newPosY = 200;
 
+
+          //Puntero
+          this.pointer = this.scene.input.activePointer;
+          this.setInteractive();
+
+          
+        this.on("pointerdown", () => {
+            this.startDrag();
+        });
+
           //Velocidad
           this.speed = speed;
           this.speedBolean = false;
@@ -169,4 +179,27 @@ export default class Enemy extends Phaser.GameObjects.Sprite
         this.hp.bar.destroy();
         this.destroy();
     }
+
+   
+    startDrag()
+    {
+        this.scene.input.on('pointermove',this.doDrag,this);
+        this.scene.input.on('pointerup',this.stopDrag,this);
+    }
+
+    doDrag()
+    {
+      this.x = this.pointer.x - this.scene.cameras.main.x;
+      this.y = this.pointer.y - this.scene.cameras.main.y;
+
+      console.log( this.scene.cameras.main.x);
+    }
+
+    stopDrag()
+   {
+    this.scene.input.off('pointermove',this.doDrag,this); 
+    
+   }
+
+
 }

@@ -26,7 +26,6 @@ import GhostObject from "./GhostObject.js";
 
   }
 
-
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
@@ -41,8 +40,10 @@ import GhostObject from "./GhostObject.js";
 
   doDrag()
   {
-      this.x = this.pointer.x;
-      this.y = this.pointer.y;
+      this.x = this.pointer.x - this.scene.cameras.main.x;
+      this.y = this.pointer.y - this.scene.cameras.main.y;
+
+      //console.log( this.scene.cameras.main.alphaTopLeft);
 
       this.ghost.destroy();
       this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);

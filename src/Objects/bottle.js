@@ -22,7 +22,7 @@
       this.setAngle(90 * dirY);
       //this.setAngle(Phaser.Math.RadToDeg(Math.atan2(dirY, dirX)));
 
-      this.damage = 1;
+      this.damage = 10;
     }
 
     preUpdate(t, dt) {

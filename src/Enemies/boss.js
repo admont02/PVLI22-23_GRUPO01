@@ -53,18 +53,17 @@ export default class Boss extends Phaser.GameObjects.Sprite
             this.player.updateLivesText();
             this.changePos();
         }
-
-        //Muerte del jefe
-        if(this.scene.NumEnemigos() == 0) 
-        this.destroy();
-
-        if(!this.isDash)
+        
+        if(!this.isDash && this!==undefined)
         {
             if(this.body.velocity.x < 0) this.play('walkBossI', true);
             else if(this.body.velocity.x > 0) this.play('walkBossD', true);
             else this.play('waitBoss', true);
         }
 
+        //Muerte del jefe
+        if(this.scene.NumEnemigos() == 0) 
+        this.destroy();
 
     }
     
@@ -72,25 +71,30 @@ export default class Boss extends Phaser.GameObjects.Sprite
     //Se elige la siguiente accion
     makeAc()
     {
-        this.stop();
-        this.timer = this.scene.time.addEvent({
-            delay: 1000,              
-            callback: () =>
-            {
-              this.random = Phaser.Math.Between(0, 2);
 
-              if(this.random == 0)
-              this.bossInvisible();
-              else if(this.random == 1)
-              this.shoot();
-              else if(this.random == 2)
-              {
-                this.dash();
-              }
-
-              this.startMoving();
-            }
-        });
+        if(this!==undefined)
+        {
+            this.stop();
+            this.timer = this.scene.time.addEvent({
+                delay: 1000,              
+                callback: () =>
+                {
+                  this.random = Phaser.Math.Between(0, 2);
+    
+                  if(this.random == 0)
+                  this.bossInvisible();
+                  else if(this.random == 1)
+                  this.shoot();
+                  else if(this.random == 2)
+                  {
+                    this.dash();
+                  }
+    
+                  this.startMoving();
+                }
+            });
+        }
+        
     }
 
     //Parar
@@ -135,17 +139,22 @@ export default class Boss extends Phaser.GameObjects.Sprite
     //Convertir al jefe en invisible
     bossInvisible()
     { 
-        this.setVisible(false);
-        this.speed = 50;
+        if(this!==undefined)
+        {
+            this.setVisible(false);
+            this.speed = 50;
+            
+            this.timer = this.scene.time.addEvent({
+                delay: 2000,              
+                callback: () =>
+                {
+                  this.bossVisible();
+                }
+            });
+    
+        }
         
-        this.timer = this.scene.time.addEvent({
-            delay: 2000,              
-            callback: () =>
-            {
-              this.bossVisible();
-            }
-        });
-
+      
     }
 
     //Hacet al jefe visible
