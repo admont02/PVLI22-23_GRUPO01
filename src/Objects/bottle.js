@@ -1,16 +1,15 @@
+import Bullet from "./bullet.js";
+
 /**
  * El jugador disparará biberones hacia la dirección a la que esté mirando en ese 
  * momento, infligiendo daño a los enemigos que encuentre por el camino.
  */
- export default class Bottle extends Phaser.GameObjects.Sprite {
+ export default class Bottle extends Bullet {
 
     constructor(scene, x, y, dirX, dirY) {
       //en el super pasas el nombre del sprite bottle
       super(scene, x, y, 'bottle');
   
-      this.scene.add.existing(this);
-      this.scene.physics.add.existing(this);
-      //this.body.setCircle(this.body.width / 2, this.body.height / 2);
       this.speed = 500;
       this.dirX = dirX;
       this.dirY = dirY;
