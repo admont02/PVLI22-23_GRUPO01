@@ -11,10 +11,14 @@ export default class Boss extends Phaser.GameObjects.Sprite
      constructor(scene, x, y, player){  {
           super(scene, x, y, 'boss');
 
+          this.play('walkBossD', true);
+
           this.isDash = false;
           this.doAction = false;
-          this.setScale(0.2);
+          this.setScale(2);
          
+         
+
           this.speed = 100;
 
           this.scene.add.existing(this)
@@ -22,6 +26,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
           this.scene.physics.add.existing(this);
           this.player =player;
           this.body.setCollideWorldBounds();
+
       
         }
     }
@@ -49,10 +54,16 @@ export default class Boss extends Phaser.GameObjects.Sprite
             this.changePos();
         }
 
-
         //Muerte del jefe
         if(this.scene.NumEnemigos() == 0) 
         this.destroy();
+
+        if(!this.isDash)
+        {
+            if(this.body.velocity.x < 0) this.play('walkBossI', true);
+            else if(this.body.velocity.x > 0) this.play('walkBossD', true);
+            else this.play('waitBoss', true);
+        }
 
 
     }
@@ -66,7 +77,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
             delay: 1000,              
             callback: () =>
             {
-              this.random = Phaser.Math.Between(0, 3);
+              this.random = Phaser.Math.Between(0, 2);
 
               if(this.random == 0)
               this.bossInvisible();
@@ -104,6 +115,8 @@ export default class Boss extends Phaser.GameObjects.Sprite
     dash()
     {
         this.isDash = true;
+
+        this.play('dashBoss', true);
 
         this.dx =  this.player.x;
         this.dy =  this.player.y;
@@ -153,6 +166,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
 
         this.bossInvisible();
     }
+
 
 
 }
