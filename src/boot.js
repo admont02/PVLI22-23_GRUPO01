@@ -81,7 +81,7 @@ export default class Boot extends Phaser.Scene {
       this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
         //strongEnemy , derecha(incluye arriba, abajo) e izquierda
         this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png',{ frameWidth: 40, frameHeight: 40, endFrame:8 });
-        this.load.spritesheet('StrongEnemyWalk', 'StrongEnemyWalk.png',{ frameWidth: 40, frameHeight: 40, endFrame: 8 });
+        this.load.spritesheet('StrongEnemyWalk', 'strongEnemyWalk.png',{ frameWidth: 40, frameHeight: 40, endFrame: 8 });
 
       //SpeedEnemy
       this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
