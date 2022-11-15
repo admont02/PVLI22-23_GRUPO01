@@ -38,12 +38,14 @@ import Bullet from "./bullet.js";
       if(this.followPlayer)
       this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
 
-      if(this.x)
+      //if(this.body.velocity.x < 0) this.setFlipX(-1);
+      //else  this.setFlipX(-1);
+
 
       if(this.scene.physics.overlap(this.player, this))
       {
-          this.player.loseLive(1);
-          this.player.updateLivesText();
+        this.player.modifyValue(-40);
+        this.player.updateLivesText(); 
           this.die();
       }
     }

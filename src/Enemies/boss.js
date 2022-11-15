@@ -1,4 +1,4 @@
-import GhostBullet from '../Objects/ghostBullet.js';
+import GhostBullet from '../Objects/Bullets/ghostBullet.js';
 
 export default class Boss extends Phaser.GameObjects.Sprite 
 {
@@ -49,8 +49,8 @@ export default class Boss extends Phaser.GameObjects.Sprite
         //Colision con el jugador
         if(this.scene.physics.overlap(this.player, this))
         {
-            this.player.loseLive(1);
-            this.player.updateLivesText();
+            this.player.modifyValue(-30);
+            this.player.updateLivesText(); 
             this.changePos();
         }
         
@@ -152,9 +152,7 @@ export default class Boss extends Phaser.GameObjects.Sprite
                 }
             });
     
-        }
-        
-      
+        }        
     }
 
     //Hacet al jefe visible
@@ -167,15 +165,13 @@ export default class Boss extends Phaser.GameObjects.Sprite
     //Cuando el jugador toca al jefe
     changePos()
     {
-        this.rx = Phaser.Math.Between(200, 300);
-        this.ry = Phaser.Math.Between(200, 300);
+        this.rx = Phaser.Math.Between(-300, 300);
+        this.ry = Phaser.Math.Between(-300, 300);
 
         this.x = this.player.x + this.rx;
         this.y = this.player.y + this.ry;
 
         this.bossInvisible();
     }
-
-
 
 }

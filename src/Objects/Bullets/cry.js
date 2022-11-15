@@ -1,15 +1,11 @@
+import Bullet from "./bullet.js";
 
- export default class Bottle extends Phaser.GameObjects.Sprite {
+ export default class Bottle extends Bullet {
 
     constructor(scene, x, y) {
       super(scene, x, y, 'cry');
   
-
       this.damage = 0.1;
-
-      this.scene.add.existing(this);
-      this.scene.physics.add.existing(this);
-      this.body.setCollideWorldBounds();
       this.setScale(0.1);
 
       this.timer = this.scene.time.addEvent({
@@ -26,7 +22,6 @@
       super.preUpdate(t, dt);
     
       if(this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage);}));
-
     }
 
 
