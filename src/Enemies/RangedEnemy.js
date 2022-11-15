@@ -12,7 +12,7 @@ export default class RangedEnemy extends Enemy {
       constructor(scene, x, y, imgKey, player,tiempoBala) {
       //constructor que invoca a la clase enemy con scene con tamaño posicion , con una velocidad determinada y con la foto star
       //falta poner el sprite que queramos
-          super(scene, x, y, 200, imgKey, player,20);
+          super(scene, x, y, 200, imgKey, player,20,150);
           //instancia para poder modificar clase player desde aqui
           this.setScale(1.5);
           this.playerX = this.player.x;

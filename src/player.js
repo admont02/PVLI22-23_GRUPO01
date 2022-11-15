@@ -26,7 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLivesText();
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, 10, 10, this);
+    this.hp = new HealthBar(scene, 10, 10,150);
 
     // this.hp.setScrollFactor(0);
     //this.addChild(this.hp)

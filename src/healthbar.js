@@ -1,12 +1,12 @@
 export default class HealthBar extends Phaser.GameObjects.Sprite {
 
-    constructor(scene, x, y, player) {
+    constructor(scene, x, y,initial) {
         super(scene, x, y);
         this.bar = new Phaser.GameObjects.Graphics(scene).setScrollFactor(0);
 
         this.x = x;
         this.y = y;
-        this.value = this.maxValue = 150;
+        this.value = this.maxValue = initial;
         this.p = 3 / 3;
 
         this.draw();
@@ -33,12 +33,12 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
 
         //  BG
         this.bar.fillStyle(0x000000);
-        this.bar.fillRect(this.x, this.y, 154, 32);
+        this.bar.fillRect(this.x, this.y, this.maxValue+4, 32);
 
         //  Health
 
         this.bar.fillStyle(0xffffff);
-        this.bar.fillRect(this.x + 2, this.y + 2, 150, 28);//-4,-4
+        this.bar.fillRect(this.x + 2, this.y + 2, this.maxValue, 28);//-4,-4
 
         if (this.value <= 75 && this.value > 40) {
             this.bar.fillStyle(0xff8000);
