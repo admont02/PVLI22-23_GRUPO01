@@ -28,7 +28,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.canShoot = true;
     this.hp = new HealthBar(scene, 10, 10, this);
 
+    // this.hp.setScrollFactor(0);
+    //this.addChild(this.hp)
+
+
     
+
 
     this.timerDash = 0;
     this.timerMaxDash = 1000;
@@ -111,11 +116,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
+    this.die();
     this.pruebaRestarBarra();
     // console.log(this.hp.x);
     // this.hp.bar.setX(this.x-this.scene.cameras.main._scrollX)
     // this.hp.bar.setY(this.y)
-    
+
 
     if (!this.isDash) {
       this.animsPlayer();
@@ -261,22 +267,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   //hace que durante 1 segundo rebote en diagonal
-  choque()
-  {
-      this.body.setVelocityX(-this.body.velocity.x*2);
-      this.body.setVelocityY(-this.body.velocity.y*2);
-      this.timer = this.scene.time.addEvent({
-          delay: 500,              
-          callback: () =>
-          {
-              this.sinchoque();
-          }
-      });
+  choque() {
+    this.body.setVelocityX(-this.body.velocity.x * 2);
+    this.body.setVelocityY(-this.body.velocity.y * 2);
+    this.timer = this.scene.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.sinchoque();
+      }
+    });
   }
+
+
+  sinchoque() {
+    this.body.setVelocityX(this.body.velocity.x);
+    this.body.setVelocityY(this.body.velocity.y);
+
 
   sinchoque()
   {
       this.body.setVelocityX(this.body.velocity.x);
       this.body.setVelocityY(this.body.velocity.y);
+
+  }
+  die() {
+    if (this.hp.getValue() === 0) this.scene.scene.start('menu')
   }
 }
