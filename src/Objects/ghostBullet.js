@@ -4,6 +4,8 @@
     constructor(scene, x, y, player) {
       super(scene, x, y, 'bossBullet');
   
+      this.play('bulletBoss', true);
+      
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.speed = 250;

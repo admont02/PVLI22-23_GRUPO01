@@ -97,6 +97,16 @@ export default class Boot extends Phaser.Scene {
         this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png',{ frameWidth: 35, frameHeight:35, endFrame:5 });
         this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
 
+
+    //Boss Animaciones
+    this.load.setPath('assets/anims/AnimsBoss');  
+        this.load.spritesheet('walkBossD', 'walkBossD.png',{ frameWidth: 55, frameHeight:54, endFrame:3 });
+        this.load.spritesheet('walkBossI', 'walkBossI.png',{ frameWidth: 54, frameHeight:54, endFrame:3 });
+        this.load.spritesheet('dashBoss', 'dashBoss.png',{ frameWidth: 52, frameHeight:89, endFrame:6 });
+        this.load.spritesheet('bulletBoss', 'bulletBoss.png',{ frameWidth: 28.75, frameHeight:23, endFrame:3 });
+        this.load.spritesheet('waitBoss', 'waitBoss.png',{ frameWidth: 53, frameHeight:56, endFrame:1});
+
+
     //TILEMAP
     this.load.setPath('assets/tilemap/');
     this.load.tilemapTiledJSON('map1', 'prueba.json');
@@ -191,14 +201,6 @@ export default class Boot extends Phaser.Scene {
               repeat: -1
             });
             
-
-        
-
-
-
-
-
-
     //Player
     this.anims.create({
       key: 'top',
@@ -245,6 +247,47 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+
+
+  //Boss 
+    this.anims.create({
+      key: 'walkBossD',
+      frames: this.anims.generateFrameNumbers('walkBossD', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'walkBossI',
+      frames: this.anims.generateFrameNumbers('walkBossI', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    
+    this.anims.create({
+      key: 'dashBoss',
+      frames: this.anims.generateFrameNumbers('dashBoss', { start: 0, end: 6 }),
+      frameRate: 10,
+      repeat: -1
+    });
+    
+    this.anims.create({
+      key: 'bulletBoss',
+      frames: this.anims.generateFrameNumbers('bulletBoss', { start: 0, end: 3}),
+      frameRate: 10,
+      repeat: -1
+    });
+
+      
+    this.anims.create({
+      key: 'waitBoss',
+      frames: this.anims.generateFrameNumbers('waitBoss', { start: 0, end: 1}),
+      frameRate: 10,
+      repeat: -1
+    });
+
+
+
 
   }
   /**

@@ -33,7 +33,6 @@ export default class SpeedEnemy extends Enemy {
            this.animsSpeedEnemy();
           //para que sea constante
            this.body.velocity.normalize().scale(300);
-          console.log("he");
         }
        
       }
