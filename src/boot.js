@@ -66,21 +66,21 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
     //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
-    this.load.spritesheet('basicEnemyAzulIzquierda', 'BasicEnemyAzulIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+   
     //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
-    this.load.spritesheet('basicEnemyVerdeIzquierda', 'BasicEnemyVerdeIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    
     //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
-    this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
-    this.load.spritesheet('basicEnemyRojoIzquierda', 'BasicEnemyRojoIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
+    
     //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
-    this.load.spritesheet('basicEnemyAmarilloIzquierda', 'BasicEnemyAmarilloIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    
 
     //StrongEnemy
     this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
     //strongEnemy , derecha(incluye arriba, abajo) e izquierda
-    this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png', { frameWidth: 50, frameHeight: 44, endFrame: 8 });
+   
     this.load.spritesheet('StrongEnemyWalk', 'strongEnemyWalk.png', { frameWidth: 50, frameHeight: 44, endFrame: 8 });
 
     //SpeedEnemy
@@ -95,7 +95,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');
     //rangedEnemy der , arrriba y abajo     y izq
     this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png', { frameWidth: 30, frameHeight: 32, endFrame: 5 });
-    this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png', { frameWidth: 33, frameHeight: 35, endFrame: 5 });
+    
 
 
     //Boss Animaciones

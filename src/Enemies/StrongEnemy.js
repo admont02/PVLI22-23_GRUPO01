@@ -43,44 +43,6 @@ export default class StrongEnemy extends Enemy {
     if (this !== undefined) {
       if (this.body.velocity.x >= 0) this.setFlipX(0);
       else this.setFlipX(1);
-
-      //si esta quieto
-      // if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a la derecha (1,0)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) {
-      //   console.log("ha");
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a la izq (-1,0)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
-      //   this.play('StrongEnemyIzq', true);
-      // }
-      // //si va a la arriba (0,1)
-      // else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a abajo (0,-1)
-      // else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a la derecha arriba(1,1)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a la derecha abajo (1,-1)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-      //   this.play('StrongEnemyWalk', true);
-      // }
-      // //si va a la izq abajo (-1,-1)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y < 0) {
-      //   this.play('StrongEnemyIzq', true);
-      // }
-      // //si va a la izq arriba(-1,1)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
-      //   this.play('StrongEnemyIzq', true);
-      // }
     }
 
   }
