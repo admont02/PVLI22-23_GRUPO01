@@ -1,170 +1,149 @@
 import GhostBullet from '../Objects/Bullets/ghostBullet.js';
 
-export default class Boss extends Phaser.GameObjects.Sprite 
-{
+export default class Boss extends Phaser.GameObjects.Sprite {
     /**
      * Constructor de Enemy
      * @param {Scene} scene Escena en la que aparece la estrella, el elevel
      * @param {number} x coordenada x
      * @param {number} y coordenada y
      */
-     constructor(scene, x, y, player){  {
-          super(scene, x, y, 'boss');
+    constructor(scene, x, y, player) {
+        super(scene, x, y, 'boss');
 
-          this.play('walkBossD', true);
+        this.play('walkBossD', true);
 
-          this.isDash = false;
-          this.doAction = false;
-          this.setScale(2);
-         
-         
+        this.isDash = false;
+        this.doAction = false;
+        this.setScale(2);
 
-          this.speed = 100;
 
-          this.scene.add.existing(this)
-          this.setOrigin(0,0);
-          this.scene.physics.add.existing(this);
-          this.player =player;
-          this.body.setCollideWorldBounds();
 
-      
-        }
+        this.speed = 100;
+
+        this.scene.add.existing(this)
+        this.setOrigin(0, 0);
+        this.scene.physics.add.existing(this);
+        this.player = player;
+        this.body.setCollideWorldBounds();
     }
 
-    preUpdate(t, dt){
+    preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
         //movemos enemy a la posicion del jugador con velocidad 100
-        if(!this.isDash)
-        {
-            this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
+        if (!this.isDash) {
+            this.scene.physics.moveTo(this, this.player.x, this.player.y, this.speed);
         }
-               
+
         //Los ataques se realizaran de manera aleatoria en un tiempo aleatorio
         this.value = Phaser.Math.Between(0, 1000);
 
         //Hacer accion
-        if(this.value == 0) this.makeAc();
+        if (this.value == 0) this.makeAc();
 
         //Colision con el jugador
-        if(this.scene.physics.overlap(this.player, this))
-        {
+        if (this.scene.physics.overlap(this.player, this)) {
             this.player.modifyValue(-30);
-            this.player.updateLivesText(); 
+            this.player.updateLivesText();
             this.changePos();
         }
-        
-        if(!this.isDash && this!==undefined)
-        {
-            if(this.body.velocity.x < 0) this.play('walkBossI', true);
-            else if(this.body.velocity.x > 0) this.play('walkBossD', true);
+
+        if (!this.isDash && this !== undefined) {
+            if (this.body.velocity.x < 0) this.play('walkBossI', true);
+            else if (this.body.velocity.x > 0) this.play('walkBossD', true);
             else this.play('waitBoss', true);
         }
 
         //Muerte del jefe
-        if(this.scene.NumEnemigos() == 0) 
-        this.destroy();
+        if (this.scene.NumEnemigos() == 0)
+            this.destroy();
 
     }
-    
+
 
     //Se elige la siguiente accion
-    makeAc()
-    {
+    makeAc() {
 
-        if(this!==undefined)
-        {
+        if (this !== undefined) {
             this.stop();
             this.timer = this.scene.time.addEvent({
-                delay: 1000,              
-                callback: () =>
-                {
-                  this.random = Phaser.Math.Between(0, 2);
-    
-                  if(this.random == 0)
-                  this.bossInvisible();
-                  else if(this.random == 1)
-                  this.shoot();
-                  else if(this.random == 2)
-                  {
-                    this.dash();
-                  }
-    
-                  this.startMoving();
+                delay: 1000,
+                callback: () => {
+                    this.random = Phaser.Math.Between(0, 2);
+
+                    if (this.random == 0)
+                        this.bossInvisible();
+                    else if (this.random == 1)
+                        this.shoot();
+                    else if (this.random == 2) {
+                        this.dash();
+                    }
+
+                    this.startMoving();
                 }
             });
         }
-        
+
     }
 
     //Parar
-    stop()
-    {
+    stop() {
         this.speed = 0;
     }
 
     //Reestablecer velocidad
-    startMoving()
-    {
+    startMoving() {
         this.speed = 100;
     }
 
     //Disparar fantasma
-    shoot()
-    {
+    shoot() {
         new GhostBullet(this.scene, this.x, this.y, this.player);
     }
-    
+
     //Dash hacia la posicion de ese momento del jugador
-    dash()
-    {
+    dash() {
         this.isDash = true;
 
         this.play('dashBoss', true);
 
-        this.dx =  this.player.x;
-        this.dy =  this.player.y;
+        this.dx = this.player.x;
+        this.dy = this.player.y;
 
         this.scene.physics.moveTo(this, this.dx, this.dy, 500);
 
         this.timer = this.scene.time.addEvent({
-            delay: 900,              
-            callback: () =>
-            {
+            delay: 900,
+            callback: () => {
                 this.isDash = false;
             }
         });
     }
 
     //Convertir al jefe en invisible
-    bossInvisible()
-    { 
-        if(this!==undefined)
-        {
+    bossInvisible() {
+        if (this !== undefined) {
             this.setVisible(false);
             this.speed = 50;
-            
+
             this.timer = this.scene.time.addEvent({
-                delay: 2000,              
-                callback: () =>
-                {
-                  this.bossVisible();
+                delay: 2000,
+                callback: () => {
+                    this.bossVisible();
                 }
             });
-    
-        }        
+
+        }
     }
 
     //Hacet al jefe visible
-    bossVisible()
-    {
+    bossVisible() {
         this.setVisible(true);
         this.startMoving();
     }
 
     //Cuando el jugador toca al jefe
-    changePos()
-    {
+    changePos() {
         this.rx = Phaser.Math.Between(-300, 300);
         this.ry = Phaser.Math.Between(-300, 300);
 

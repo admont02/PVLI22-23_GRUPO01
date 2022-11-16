@@ -22,7 +22,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.dirX = 0;
     this.dirY = 0;
     this.createInput();
-    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0);//factor de desplazamiento del gameObject
+    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0); //factor de desplazamiento del gameObject
     this.updateLivesText();
 
     this.canShoot = true;
@@ -225,7 +225,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
-  
+
       }
       else {
         this.body.setVelocityY(0);
@@ -244,7 +244,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
-  
+
       }
       else {
         this.body.setVelocityX(0);
@@ -252,13 +252,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.dDown = false;
       }
     }
-   
+
   }
   pruebaRestarBarra() {
     if (this.p.isDown)
       this.hp.modify(-10);
   }
-  
+
   modifyValue(v) {
     this.hp.modify(v);
   }

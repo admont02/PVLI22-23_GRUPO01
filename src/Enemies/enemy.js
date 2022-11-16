@@ -11,53 +11,54 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //en el constructor tu creas una variable life , así en cada tipo de enemigo , con su super, tendrá en cuenta las variables
     //con sus valores para enviarlas al constructor del padre
-    constructor(scene, x, y, speed, sprite, player, life,lifeValue) {
-        {
-            super(scene, x, y, sprite);
-            //posicion inicial
-            this.newPosX = 200;
-            this.newPosY = 200;
+    constructor(scene, x, y, speed, sprite, player, life, lifeValue) {
+        super(scene, x, y, sprite);
+        //posicion inicial
+        this.newPosX = 200;
+        this.newPosY = 200;
 
 
-            //Puntero
-            this.pointer = this.scene.input.activePointer;
-            this.setInteractive();
+        //Puntero
+        this.pointer = this.scene.input.activePointer;
+        this.setInteractive();
 
 
-            this.on("pointerdown", () => {
-                this.startDrag();
-            });
+        this.on("pointerdown", () => {
+            this.startDrag();
+        });
 
-            //Velocidad
-            this.speed = speed;
-            this.speedBolean = false;
-            //con this.scene conectas con todos los metodos
-            this.scene.AumentarEnemyVivo();
+        this.on("pointerup", () => {
+            this.takeDamage(1);
+        });
 
-            //ponemos que esta escena es la existente y es la que se va a renderizar
-            this.scene.add.existing(this)
-            //ponemos origen en 0,0
-            this.setOrigin(0, 0);
-            //decimos que escena tiene fisicas
-            this.scene.physics.add.existing(this);
-            //permite que en el ejeX  y ejeY se pueda hacer flip en su rotacion 
-            this.player = player;
-            // Queremos que el jugador no se salga de los límites del mundo o canvas
-            this.body.setCollideWorldBounds();
-            //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
-            //this.body.setVelocity(speed, speed);
+        //Velocidad
+        this.speed = speed;
+        this.speedBolean = false;
+        //con this.scene conectas con todos los metodos
+        this.scene.AumentarEnemyVivo();
 
-            this.lives = life;
-            this.v = lifeValue;
-            this.hp = new HealthBar(scene, 10, 10, this.v);
+        //ponemos que esta escena es la existente y es la que se va a renderizar
+        this.scene.add.existing(this)
+        //ponemos origen en 0,0
+        this.setOrigin(0, 0);
+        //decimos que escena tiene fisicas
+        this.scene.physics.add.existing(this);
+        //permite que en el ejeX  y ejeY se pueda hacer flip en su rotacion
+        this.player = player;
+        // Queremos que el jugador no se salga de los límites del mundo o canvas
+        this.body.setCollideWorldBounds();
+        //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
+        //this.body.setVelocity(speed, speed);
 
-        }
+        this.lives = life;
+        this.v = lifeValue;
+        //this.hp = new HealthBar(scene, 10, 10, this.v);
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.hp.bar.setX(this.x - this.scene.cameras.main._scrollX - this.width)
-        this.hp.bar.setY(this.y - this.height)
+        //this.hp.bar.setX(this.x - this.scene.cameras.main._scrollX - this.width)
+        //this.hp.bar.setY(this.y - this.height)
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
         //console.log(this.x);
@@ -67,7 +68,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         var distance = (this.x - this.newPosX) + (this.y - this.newPosY);
 
         // console.log(distance);
-        //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion , 
+        //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion ,
         //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
         if (distance < 30 && distance > -30) {
             // console.log(this.newPosX, this.newPosY);
@@ -90,7 +91,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         if (this.scene.physics.collide(this.player, this)) {
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.modifyValue(-2);
-            this.player.updateLivesText(); 
+            this.player.updateLivesText();
             //metodo que haga "rebote" para que no coincidan posiciones
             this.player.choque();
         }
@@ -137,6 +138,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     takeDamage(damage) {
         this.lives -= damage;
+        console.log(this.lives);
 
         if (this.lives <= 0) {
             this.scene.QuitarEnemyVivo();
@@ -148,29 +150,32 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     EnemyDie() {
-        this.setVisible(false);
-        this.setActive(false);
+        // this.setVisible(false);
+        // this.setActive(false);
         this.hp.bar.destroy();
         this.destroy();
     }
 
 
     startDrag() {
-        this.scene.input.on('pointermove', this.doDrag, this);
-        this.scene.input.on('pointerup', this.stopDrag, this);
+        if (this !== undefined) {
+            this.scene.input.on('pointermove', this.doDrag, this);
+            this.scene.input.on('pointerup', this.stopDrag, this);
+        }
     }
 
     doDrag() {
-        this.x = this.pointer.x - this.scene.cameras.main.x;
-        this.y = this.pointer.y - this.scene.cameras.main.y;
+        if (this !== undefined) {
+            this.x = this.pointer.x - this.scene.cameras.main.x;
+            this.y = this.pointer.y - this.scene.cameras.main.y;
 
-        console.log(this.scene.cameras.main.x);
+            console.log(this.scene.cameras.main.x);
+        }
     }
 
     stopDrag() {
-        this.scene.input.off('pointermove', this.doDrag, this);
-
+        if (this !== undefined) {
+            this.scene.input.off('pointermove', this.doDrag, this);
+        }
     }
-
-
 }

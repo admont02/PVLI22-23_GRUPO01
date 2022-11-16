@@ -47,64 +47,64 @@ export default class Boot extends Phaser.Scene {
     this.load.image('boss', 'jefe.png');
     this.load.image('bottle', 'bottleBlue.png');
     this.load.image('configuracion', 'Configuracion.png');
-    
+
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
     this.load.image('bossBullet', 'balaBoss.png');
 
     //para animaciones de Player
     this.load.setPath('assets/anims/AnimsPlayer');
-    this.load.spritesheet('topA', 'anim1.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
-    this.load.spritesheet('bottomA', 'anim2.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
-    this.load.spritesheet('rightA', 'anim3.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
-    this.load.spritesheet('idle', 'anim4.png',{ frameWidth: 34, frameHeight: 50, endFrame: 1 });
+    this.load.spritesheet('topA', 'anim1.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('bottomA', 'anim2.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('rightA', 'anim3.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('idle', 'anim4.png', { frameWidth: 34, frameHeight: 50, endFrame: 1 });
 
 
     //para animaciones de enemy
 
-      //EnemyBasic
-      this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
-        //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        this.load.spritesheet('basicEnemyAzulIzquierda', 'BasicEnemyAzulIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        this.load.spritesheet('basicEnemyVerdeIzquierda', 'BasicEnemyVerdeIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        this.load.spritesheet('basicEnemyRojoIzquierda', 'BasicEnemyRojoIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
-        this.load.spritesheet('basicEnemyAmarilloIzquierda', 'BasicEnemyAmarilloIzqGen.png',{ frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    //EnemyBasic
+    this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
+    //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
+    this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyAzulIzquierda', 'BasicEnemyAzulIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
+    this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyVerdeIzquierda', 'BasicEnemyVerdeIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
+    this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyRojoIzquierda', 'BasicEnemyRojoIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
+    this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyAmarilloIzquierda', 'BasicEnemyAmarilloIzqGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
 
-      //StrongEnemy
-      this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
-        //strongEnemy , derecha(incluye arriba, abajo) e izquierda
-        this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png',{ frameWidth: 40, frameHeight: 40, endFrame:8 });
-        this.load.spritesheet('StrongEnemyWalk', 'strongEnemyWalk.png',{ frameWidth: 40, frameHeight: 40, endFrame: 8 });
+    //StrongEnemy
+    this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
+    //strongEnemy , derecha(incluye arriba, abajo) e izquierda
+    this.load.spritesheet('StrongEnemyIzq', 'StrongEnemyIzq.png', { frameWidth: 50, frameHeight: 44, endFrame: 8 });
+    this.load.spritesheet('StrongEnemyWalk', 'strongEnemyWalk.png', { frameWidth: 50, frameHeight: 44, endFrame: 8 });
 
-      //SpeedEnemy
-      this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
-        //speedEnemy ,movimiento general , turbo abajo , arriba y lateral
-        this.load.spritesheet('MovimientoGeneralSpeedEnemy', 'MovimientoGeneralSpeedEnemy.png',{ frameWidth: 81, frameHeight: 46, endFrame:5 });
-        this.load.spritesheet('turboAbajoSpeedEnemy', 'turboAbajoSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
-        this.load.spritesheet('turboArribaSpeedEnemy', 'turboArribaSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 3 });
-        this.load.spritesheet('turboLateralSpeedEnemy', 'turboLateralSpeedEnemy.png',{ frameWidth: 34, frameHeight: 50, endFrame: 5 });
+    //SpeedEnemy
+    this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
+    //speedEnemy ,movimiento general , turbo abajo , arriba y lateral
+    this.load.spritesheet('MovimientoGeneralSpeedEnemy', 'MovimientoGeneralSpeedEnemy.png', { frameWidth: 81, frameHeight: 46, endFrame: 5 });
+    this.load.spritesheet('turboAbajoSpeedEnemy', 'turboAbajoSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('turboArribaSpeedEnemy', 'turboArribaSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('turboLateralSpeedEnemy', 'turboLateralSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 5 });
 
-      //RangedEnemy
-      this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');  
-        //rangedEnemy der , arrriba y abajo     y izq
-        this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
-        this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png',{ frameWidth: 35, frameHeight:35, endFrame: 5 });
+    //RangedEnemy
+    this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');
+    //rangedEnemy der , arrriba y abajo     y izq
+    this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png', { frameWidth: 30, frameHeight: 32, endFrame: 5 });
+    this.load.spritesheet('RangedEnemyIzq', 'RangedEnemyIzq.png', { frameWidth: 33, frameHeight: 35, endFrame: 5 });
 
 
     //Boss Animaciones
-    this.load.setPath('assets/anims/AnimsBoss');  
-        this.load.spritesheet('walkBossD', 'walkBossD.png',{ frameWidth: 55, frameHeight:54, endFrame:3 });
-        this.load.spritesheet('walkBossI', 'walkBossI.png',{ frameWidth: 54, frameHeight:54, endFrame:3 });
-        this.load.spritesheet('dashBoss', 'dashBoss.png',{ frameWidth: 52, frameHeight:89, endFrame:6 });
-        this.load.spritesheet('bulletBoss', 'bulletBoss.png',{ frameWidth: 28.75, frameHeight:23, endFrame:3 });
-        this.load.spritesheet('waitBoss', 'waitBoss.png',{ frameWidth: 53, frameHeight:56, endFrame:1});
+    this.load.setPath('assets/anims/AnimsBoss');
+    this.load.spritesheet('walkBossD', 'walkBossD.png', { frameWidth: 55, frameHeight: 54, endFrame: 3 });
+    this.load.spritesheet('walkBossI', 'walkBossI.png', { frameWidth: 54, frameHeight: 54, endFrame: 3 });
+    this.load.spritesheet('dashBoss', 'dashBoss.png', { frameWidth: 52, frameHeight: 89, endFrame: 6 });
+    this.load.spritesheet('bulletBoss', 'bulletBoss.png', { frameWidth: 28.75, frameHeight: 23, endFrame: 3 });
+    this.load.spritesheet('waitBoss', 'waitBoss.png', { frameWidth: 53, frameHeight: 56, endFrame: 1 });
 
 
     //TILEMAP
@@ -146,61 +146,61 @@ export default class Boot extends Phaser.Scene {
 
     //Enemy
 
-        //StrongEnemy
-        this.anims.create({
-          key: 'StrongEnemyIzq',
-          frames: this.anims.generateFrameNumbers('StrongEnemyIzq', { start: 0, end: 8 }),
-          frameRate: 10,
-          repeat: -1
-        });
+    //StrongEnemy
+    this.anims.create({
+      key: 'StrongEnemyIzq',
+      frames: this.anims.generateFrameNumbers('StrongEnemyIzq', { start: 0, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-        this.anims.create({
-          key: 'StrongEnemyWalk',
-          frames: this.anims.generateFrameNumbers('StrongEnemyWalk', { start: 0, end: 8 }),
-          frameRate: 10,
-          repeat: -1
-        });
+    this.anims.create({
+      key: 'StrongEnemyWalk',
+      frames: this.anims.generateFrameNumbers('StrongEnemyWalk', { start: 0, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-        //RangedEnemy
-        this.anims.create({
-          key: 'RangedEnemyDer',
-          frames: this.anims.generateFrameNumbers('RangedEnemyDer', { start: 0, end: 5 }),
-          frameRate: 10,
-          repeat: -1
-        });
+    //RangedEnemy
+    this.anims.create({
+      key: 'RangedEnemyDer',
+      frames: this.anims.generateFrameNumbers('RangedEnemyDer', { start: 0, end: 5 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-        this.anims.create({
-          key: 'RangedEnemyIzq',
-          frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 0, end: 5 }),
-          frameRate: 10,
-          repeat: -1
-        });
+    this.anims.create({
+      key: 'RangedEnemyIzq',
+      frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 0, end: 5 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-        //SpeedEnemy
-        this.anims.create({
-          key: 'MovimientoGeneralSpeedEnemy',
-          frames: this.anims.generateFrameNumbers('MovimientoGeneralSpeedEnemy', { start: 0, end: 5 }),
-          frameRate: 10,
-          repeat: -1
-        });
+    //SpeedEnemy
+    this.anims.create({
+      key: 'MovimientoGeneralSpeedEnemy',
+      frames: this.anims.generateFrameNumbers('MovimientoGeneralSpeedEnemy', { start: 0, end: 5 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-        //BasicEnemy
+    //BasicEnemy
 
-            //Red
-            this.anims.create({
-              key: 'basicEnemyRojoDerecha',
-              frames: this.anims.generateFrameNumbers('basicEnemyRojoDerecha', { start: 0, end: 16 }),
-              frameRate: 10,
-              repeat: -1
-            });
+    //Red
+    this.anims.create({
+      key: 'basicEnemyRojoDerecha',
+      frames: this.anims.generateFrameNumbers('basicEnemyRojoDerecha', { start: 0, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-            this.anims.create({
-              key: 'basicEnemyRojoIzquierda',
-              frames: this.anims.generateFrameNumbers('basicEnemyRojoIzquierda', { start: 0, end: 16 }),
-              frameRate: 10,
-              repeat: -1
-            });
-            
+    this.anims.create({
+      key: 'basicEnemyRojoIzquierda',
+      frames: this.anims.generateFrameNumbers('basicEnemyRojoIzquierda', { start: 0, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
     //Player
     this.anims.create({
       key: 'top',
@@ -214,7 +214,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-    
+
     this.anims.create({
       key: 'xAxis',
       frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 2 }),
@@ -240,7 +240,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-    
+
     this.anims.create({
       key: 'lastAxis',
       frames: this.anims.generateFrameNumbers('rightA', { start: 0, end: 0 }),
@@ -249,7 +249,7 @@ export default class Boot extends Phaser.Scene {
     });
 
 
-  //Boss 
+    //Boss
     this.anims.create({
       key: 'walkBossD',
       frames: this.anims.generateFrameNumbers('walkBossD', { start: 0, end: 3 }),
@@ -263,25 +263,25 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-    
+
     this.anims.create({
       key: 'dashBoss',
       frames: this.anims.generateFrameNumbers('dashBoss', { start: 0, end: 6 }),
       frameRate: 10,
       repeat: -1
     });
-    
+
     this.anims.create({
       key: 'bulletBoss',
-      frames: this.anims.generateFrameNumbers('bulletBoss', { start: 0, end: 3}),
+      frames: this.anims.generateFrameNumbers('bulletBoss', { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
     });
 
-      
+
     this.anims.create({
       key: 'waitBoss',
-      frames: this.anims.generateFrameNumbers('waitBoss', { start: 0, end: 1}),
+      frames: this.anims.generateFrameNumbers('waitBoss', { start: 0, end: 1 }),
       frameRate: 10,
       repeat: -1
     });
