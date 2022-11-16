@@ -212,6 +212,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 */
   movePlayer() {
     //eje Y
+
+
+   
     if(!this.isDash)
     {
       if (this.cursors.down.isDown || this.s.isDown) {

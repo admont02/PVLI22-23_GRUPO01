@@ -40,10 +40,10 @@ import GhostObject from "./GhostObject.js";
 
   doDrag()
   {
-      this.x = this.pointer.x - this.scene.cameras.main.x;
-      this.y = this.pointer.y - this.scene.cameras.main.y;
+      this.x = this.pointer.x + this.scene.cameras.main.midPoint.x - 500;
+      this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 250;
 
-      //console.log( this.scene.cameras.main.alphaTopLeft);
+    console.log(this.scene.cameras.main.midPoint.y);
 
       this.ghost.destroy();
       this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);

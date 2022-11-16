@@ -166,8 +166,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     doDrag() {
         if (this !== undefined) {
-            this.x = this.pointer.x - this.scene.cameras.main.x;
-            this.y = this.pointer.y - this.scene.cameras.main.y;
+            this.x = this.pointer.x + this.scene.cameras.main.midPoint.x - 500;
+            this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 250;
 
             console.log(this.scene.cameras.main.x);
         }
