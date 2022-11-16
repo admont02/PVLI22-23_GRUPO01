@@ -16,7 +16,7 @@ export default class SpeedEnemy extends Enemy {
     //aplicar escala en X e Y en BasicEnemy
     //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
     //sino pones nada mete el tamaño por defecto
-
+    this.play('MovimientoGeneralSpeedEnemy', true);
     // this.livesSpeedEnemy =2;
     this.velocity = 300;
     this.setScale(1);
@@ -36,44 +36,12 @@ export default class SpeedEnemy extends Enemy {
   }
 
   animsSpeedEnemy() {
-    if (this !== undefined) {
-      //si esta quieto
-      if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la derecha (1,0)
-      else if (this.body.velocity.x > 0 && this.body.velocity.y === 0) {
 
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la izq (-1,0)
-      else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la arriba (0,1)
-      else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a abajo (0,-1)
-      else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la derecha arriba(1,1)
-      else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la derecha abajo (1,-1)
-      else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la izq abajo (-1,-1)
-      else if (this.body.velocity.x < 0 && this.body.velocity.y < 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
-      //si va a la izq arriba(-1,1)
-      else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
-        this.play('MovimientoGeneralSpeedEnemy', true);
-      }
+    if (this !== undefined) 
+    {
+      //segun donde sea la x hacemos flip o no
+      if (this.body.velocity.x >= 0) this.setFlipX(0);
+      else this.setFlipX(1);
     }
 
   }

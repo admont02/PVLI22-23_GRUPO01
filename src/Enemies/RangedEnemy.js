@@ -19,7 +19,7 @@ export default class RangedEnemy extends Enemy {
     this.playerY = this.player.y;
     this.tiempoBala = 4000;
     this.lastShot = 0;
-
+    //haces la animacion siempre
     this.play('RangedEnemyDer', true);
     //aplicar escala en X e Y en BasicEnemy
     //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
@@ -54,51 +54,13 @@ export default class RangedEnemy extends Enemy {
     //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
     var BalaRangedEnemy = new balaRangedEnemy(this.scene, this.x, this.y, this.player.x - this.x, this.player.y - this.y, this.player);
   }
-  animsRangedEnemy() {
+  animsRangedEnemy() 
+  {
 
     if (this !== undefined) {
+      //segun donde sea la x hacemos flip o no
       if (this.body.velocity.x >= 0) this.setFlipX(0);
       else this.setFlipX(1);
-
-      //     //si esta quieto
-      // if (this.body.velocity.x === 0 && this.body.velocity.y === 0)
-      // {
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a la derecha (1,0)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y === 0)
-      // {
-      //   console.log("ha");
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a la izq (-1,0)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y === 0) {
-      //   this.play('RangedEnemyIzq', true);
-      // }
-      // //si va a la arriba (0,1)
-      // else if (this.body.velocity.x === 0 && this.body.velocity.y > 0) {
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a abajo (0,-1)
-      // else if (this.body.velocity.x === 0 && this.body.velocity.y < 0) {
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a la derecha arriba(1,1)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a la derecha abajo (1,-1)
-      // else if (this.body.velocity.x > 0 && this.body.velocity.y > 0) {
-      //   this.play('RangedEnemyDer', true);
-      // }
-      // //si va a la izq abajo (-1,-1)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y <0) {
-      //   this.play('RangedEnemyIzq', true);
-      // }
-      // //si va a la izq arriba(-1,1)
-      // else if (this.body.velocity.x < 0 && this.body.velocity.y > 0) {
-      //   this.play('RangedEnemyIzq', true);
-      // }
     }
   }
 }
