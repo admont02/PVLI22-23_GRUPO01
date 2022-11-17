@@ -1,5 +1,5 @@
 import area from "./Area.js";
-
+import HealthBar from "../healthbar.js";
 export default class eye extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
@@ -16,6 +16,10 @@ export default class eye extends Phaser.GameObjects.Sprite {
 
     this.open = false;
 
+    this.hp = new HealthBar(scene, 10, 10,150);
+    this.hp.bar.setScrollFactor(1)
+    this.hp.bar.setX(this.x-75)
+    this.hp.bar.setY(this.y+50)
   }
   eyeTimer() {
     this.scene.time.addEvent({
@@ -39,6 +43,7 @@ export default class eye extends Phaser.GameObjects.Sprite {
   }
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
+ 
 
     if (!this.open) {
       this.open = true;
