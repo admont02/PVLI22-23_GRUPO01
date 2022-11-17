@@ -18,7 +18,6 @@ export default class SpeedEnemy extends Enemy {
     //sino pones nada mete el tamaño por defecto
     this.play('MovimientoGeneralSpeedEnemy', true);
     // this.livesSpeedEnemy =2;
-    this.velocity = 300;
     this.setScale(1);
   }
 
@@ -29,8 +28,6 @@ export default class SpeedEnemy extends Enemy {
     //que haga animaciones si no esta destruido , esto es cuando toca al jugador
     if (this !== undefined) {
       this.animsSpeedEnemy();
-      //para que sea constante
-      this.body.velocity.normalize().scale(300);
     }
 
   }

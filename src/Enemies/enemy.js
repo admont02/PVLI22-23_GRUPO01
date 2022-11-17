@@ -61,7 +61,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.hp.bar.setY(this.y - this.height)
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
-        //console.log(this.x);
+
+        
+        //console.log(this.speed);
         //console.log(this.newPosX);
 
         //distcnai entre antigua posicion y nueva posicion
@@ -122,13 +124,12 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.speedBolean = true;
 
             this.timer = this.scene.time.addEvent({
-                delay: 750,
+                delay: 3000,
                 callback: () => {
                     this.divideStats();
                 }
             });
         }
-
     }
 
     divideStats() {

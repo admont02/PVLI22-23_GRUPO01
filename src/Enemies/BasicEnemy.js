@@ -29,8 +29,6 @@ export default class BasicEnemy extends Enemy {
     if (this !== undefined) {
       this.animsBasicEnemy();
       //velocidad 50
-      this.body.velocity.normalize().scale(50);
-
     }
   }
 
