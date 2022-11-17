@@ -32,8 +32,6 @@ export default class StrongEnemy extends Enemy {
     if (this !== undefined) {
       this.animsStrongEnemy();
       //velocidad 50
-      this.body.velocity.normalize().scale(50);
-      // console.log(this.body.velocity.x+","+this.body.velocity.y);
     }
 
   }

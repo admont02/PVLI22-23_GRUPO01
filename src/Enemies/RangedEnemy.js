@@ -41,8 +41,6 @@ export default class RangedEnemy extends Enemy {
     if (this !== undefined) {
       this.animsRangedEnemy();
       //velocidad 50
-      this.body.velocity.normalize().scale(50);
-
     }
 
 
