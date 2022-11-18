@@ -15,7 +15,8 @@ export default class BasicEnemy extends Enemy {
     //el parametro 100 es la velocidad del basicEnemy y 2 es la vida del BasicEnemy
     super(scene, x, y, 100, imgKey, player, 20, 150);
     //instancia para poder modificar clase player desde aqui
-    this.play('basicEnemyRojoDerecha', true);
+    // this.play('basicEnemyRojoDerecha', true);
+    this.play('basicEnemyVerdeDerecha', true);
     //aplicar escala en X e Y en BasicEnemy
     //  this.setScale(50,50);--> multiplicaba el tamaño que ya tiene por defecto x50
     //sino pones nada mete el tamaño por defecto

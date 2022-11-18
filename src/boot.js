@@ -68,7 +68,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
    
     //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
-    this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
     
     //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
@@ -197,6 +197,21 @@ export default class Boot extends Phaser.Scene {
     this.anims.create({
       key: 'basicEnemyRojoIzquierda',
       frames: this.anims.generateFrameNumbers('basicEnemyRojoIzquierda', { start: 0, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    //Verde
+    this.anims.create({
+      key: 'basicEnemyVerdeDerecha',
+      frames: this.anims.generateFrameNumbers('basicEnemyVerdeDerecha', { start: 0, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'basicEnemyVerdeIzquierda',
+      frames: this.anims.generateFrameNumbers('basicEnemyVerdeIzquierda', { start: 0, end: 16 }),
       frameRate: 10,
       repeat: -1
     });
