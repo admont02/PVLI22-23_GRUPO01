@@ -1,12 +1,7 @@
 import GhostBullet from '../Objects/Bullets/ghostBullet.js';
 
 export default class Boss extends Phaser.GameObjects.Sprite {
-    /**
-     * Constructor de Enemy
-     * @param {Scene} scene Escena en la que aparece la estrella, el elevel
-     * @param {number} x coordenada x
-     * @param {number} y coordenada y
-     */
+
     constructor(scene, x, y, player) {
         super(scene, x, y, 'boss');
 

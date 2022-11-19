@@ -2,12 +2,7 @@ import Enemy from './enemy.js';
 import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';//para poder instanciar balas enemigas
 
 export default class RangedEnemy extends Enemy {
-  /**
-   * Constructor de Goblin
-   * @param {Scene} scene Escena en la que aparece la estrella
-   * @param {number} x coordenada x
-   * @param {number} y coordenada y
-   */
+ 
 
   constructor(scene, x, y, imgKey, player, tiempoBala) {
     //constructor que invoca a la clase enemy con scene con tamaño posicion , con una velocidad determinada y con la foto star

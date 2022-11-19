@@ -2,12 +2,6 @@ import HealthBar from '../healthbar.js';
 
 //crear clase padre enemy de donde heredan todos
 export default class Enemy extends Phaser.GameObjects.Sprite {
-    /**
-     * Constructor de Enemy
-     * @param {Scene} scene Escena en la que aparece la estrella, el elevel
-     * @param {number} x coordenada x
-     * @param {number} y coordenada y
-     */
 
     //en el constructor tu creas una variable life , así en cada tipo de enemigo , con su super, tendrá en cuenta las variables
     //con sus valores para enviarlas al constructor del padre
