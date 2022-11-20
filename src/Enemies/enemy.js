@@ -133,7 +133,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Muerte de enemigo
     EnemyDie() {
-        this.hp.bar.destroy();
+        //this.hp.bar.destroy();
         this.destroy();
     }
 

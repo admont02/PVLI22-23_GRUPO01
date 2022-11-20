@@ -13,6 +13,15 @@
     preUpdate(t, dt) {
       super.preUpdate(t, dt);
       
+      this.bulletAnims();
+    }
+
+    bulletAnims()
+    {
+      if (this !== undefined) {
+        if (this.body.velocity.x >= 0) this.setFlipX(0);
+        else this.setFlipX(-1);
+      }
     }
 }
   
