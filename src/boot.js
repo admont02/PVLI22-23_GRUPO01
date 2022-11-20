@@ -65,7 +65,7 @@ export default class Boot extends Phaser.Scene {
     //EnemyBasic
     this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
     //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
-    this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
    
     //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
@@ -74,7 +74,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
     
     //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
-    this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 34, frameHeight: 50, endFrame: 16 });
+    this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
     
 
     //StrongEnemy
@@ -194,13 +194,6 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     });
 
-    this.anims.create({
-      key: 'basicEnemyRojoIzquierda',
-      frames: this.anims.generateFrameNumbers('basicEnemyRojoIzquierda', { start: 0, end: 16 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
     //Verde
     this.anims.create({
       key: 'basicEnemyVerdeDerecha',
@@ -209,12 +202,22 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     });
 
+    //Amarillo
     this.anims.create({
-      key: 'basicEnemyVerdeIzquierda',
-      frames: this.anims.generateFrameNumbers('basicEnemyVerdeIzquierda', { start: 0, end: 16 }),
+      key: 'basicEnemyAmarilloDerecha',
+      frames: this.anims.generateFrameNumbers('basicEnemyAmarilloDerecha', { start: 0, end: 16 }),
       frameRate: 10,
       repeat: -1
     });
+
+    //Azul
+    this.anims.create({
+      key: 'basicEnemyAzulDerecha',
+      frames: this.anims.generateFrameNumbers('basicEnemyAzulDerecha', { start: 0, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
 
     //Player
     this.anims.create({
