@@ -11,8 +11,6 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.doAction = false;
         this.setScale(2);
 
-
-
         this.speed = 100;
 
         this.scene.add.existing(this)
@@ -131,7 +129,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         }
     }
 
-    //Hacet al jefe visible
+    //Hacer al jefe visible
     bossVisible() {
         this.setVisible(true);
         this.startMoving();

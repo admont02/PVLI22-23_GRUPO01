@@ -1,22 +1,19 @@
 import HealthBar from '../healthbar.js';
 
-//crear clase padre enemy de donde heredan todos
 export default class Enemy extends Phaser.GameObjects.Sprite {
 
-    //en el constructor tu creas una variable life , así en cada tipo de enemigo , con su super, tendrá en cuenta las variables
-    //con sus valores para enviarlas al constructor del padre
     constructor(scene, x, y, speed, sprite, player, life, lifeValue) {
         super(scene, x, y, sprite);
+
         //posicion inicial
         this.newPosX = 200;
         this.newPosY = 200;
-
 
         //Puntero
         this.pointer = this.scene.input.activePointer;
         this.setInteractive();
 
-
+        //Arrastre de los enemigos
         this.on("pointerdown", () => {
             this.startDrag();
         });
@@ -28,22 +25,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //Velocidad
         this.speed = speed;
         this.speedBolean = false;
-        //con this.scene conectas con todos los metodos
         this.scene.AumentarEnemyVivo();
 
-        //ponemos que esta escena es la existente y es la que se va a renderizar
         this.scene.add.existing(this)
-        //ponemos origen en 0,0
         this.setOrigin(0, 0);
-        //decimos que escena tiene fisicas
         this.scene.physics.add.existing(this);
-        //permite que en el ejeX  y ejeY se pueda hacer flip en su rotacion
-        this.player = player;
-        // Queremos que el jugador no se salga de los límites del mundo o canvas
-        this.body.setCollideWorldBounds();
-        //ya definido en el propio phaser , permite tener velocidad en ejeX y ejeY
-        //this.body.setVelocity(speed, speed);
 
+        this.player = player;
+        this.body.setCollideWorldBounds();
+       
         this.lives = life;
         this.v = lifeValue;
         // this.hp = new HealthBar(scene, 10, 10, this.v);
@@ -53,24 +43,19 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         // this.hp.bar.setX(this.x - this.scene.cameras.main._scrollX - this.width)
         // this.hp.bar.setY(this.y - this.height)
+
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
 
-        
-        //console.log(this.speed);
-        //console.log(this.newPosX);
-
-        //distcnai entre antigua posicion y nueva posicion
+        //distancia entre antigua posicion y nueva posicion
         var distance = (this.x - this.newPosX) + (this.y - this.newPosY);
 
-        // console.log(distance);
         //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion ,
         //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
         if (distance < 30 && distance > -30) {
-            // console.log(this.newPosX, this.newPosY);
+           
             //llamamos a la funcion para cambiar valores
             //le asociamos x e y aleatorias
-
             this.newPosX = Phaser.Math.Between(0, this.scene.scale.width);
             this.newPosY = Phaser.Math.Between(0, this.scene.scale.height);
 
@@ -81,13 +66,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             }
         }
 
-        //permite que todos los hijos enemy puedan acceder al if este ya que es parte del update del enemy
+        if (this !== undefined) {
+            this.enemyAnimsFlip();
+          }
 
         //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
         if (this.scene.physics.collide(this.player, this)) {
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.modifyValue(-2);
             this.player.updateLivesText();
+
             //metodo que haga "rebote" para que no coincidan posiciones
             this.player.choque();
         }
@@ -105,13 +93,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         });
     }
 
+    //Devuelve al enemigo a su posicion original
     sinchoque() {
         this.SetVelocityX(this.body.velocity.x);
         this.SetVelocityY(this.body.velocity.y);
 
     }
 
-
+    //Duplica su velocidad se llama cuando el jugador entra en el area que crea un ojo
     duplicateStats() {
         if (!this.speedBolean) {
             this.speed *= 2;
@@ -126,32 +115,30 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
 
+    //Metodo que vuelve la velocidad multiplicada a la original
     divideStats() {
         this.speed = this.speed / 2;
         this.speedBolean = false;
     }
 
+    //Metodo para recibir daño
     takeDamage(damage) {
         this.lives -= damage;
-        console.log(this.lives);
-
         if (this.lives <= 0) {
             this.scene.QuitarEnemyVivo();
             this.scene.updateLivesEnemy();
             this.EnemyDie();
         }
-
-        console.log(this.lives);
     }
 
+    //Muerte de enemigo
     EnemyDie() {
-        // this.setVisible(false);
-        // this.setActive(false);
         this.hp.bar.destroy();
         this.destroy();
     }
 
 
+    //Metodos para el arrastre de los enemigos
     startDrag() {
         if (this !== undefined) {
             this.scene.input.on('pointermove', this.doDrag, this);
@@ -172,5 +159,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         if (this !== undefined) {
             this.scene.input.off('pointermove', this.doDrag, this);
         }
+    }
+
+
+    //Flip para las animaciones
+    enemyAnimsFlip() 
+    { 
+      if (this !== undefined) {
+        if (this.body.velocity.x >= 0) this.setFlipX(0);
+        else this.setFlipX(1);
+      }
     }
 }
