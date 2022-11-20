@@ -5,24 +5,23 @@
   constructor(scene, x, y, player) {
     super(scene, x, y, 'eyeOpen');
 
-
     this.life = 50;
 
-    this.setScale(0.15);
+    this.setScale(0.5);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 
     this.scene.physics.add.collider(this, player);
 
     this.player = player;
-   
-
+  
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
   }
 
+  //Metodo para recibir daño del jugador
   takeDamage(damage)
   {
     this.life -= damage;
@@ -31,6 +30,7 @@
     this.die();
   }
 
+  //Destruccion del ojo
   die()
   {
     this.scene.QuitarEnemyVivo();

@@ -1,5 +1,6 @@
 import Bullet from "./bullet.js";
 
+//Bala del jefe
  export default class ghostBullet extends Bullet{
 
     constructor(scene, x, y, player) {
@@ -12,6 +13,7 @@ import Bullet from "./bullet.js";
       this.setScale(1.5);
       this.player = player;
 
+      //Tiempo de vida
       this.timer = this.scene.time.addEvent({
         delay: 4000,              
         callback: () =>
@@ -20,7 +22,7 @@ import Bullet from "./bullet.js";
         }
     });
 
-    
+    //Tipo que sigue la posicion del jugador
     this.timer = this.scene.time.addEvent({
       delay: 3000,              
       callback: () =>
@@ -34,14 +36,8 @@ import Bullet from "./bullet.js";
     preUpdate(t, dt) {
       super.preUpdate(t, dt);
 
-
       if(this.followPlayer)
       this.scene.physics.moveTo(this, this.player.x , this.player.y, this.speed);
-
-      //if(this.body.velocity.x < 0) this.setFlipX(-1);
-      //else  this.setFlipX(-1);
-
-
       if(this.scene.physics.overlap(this.player, this))
       {
         this.player.modifyValue(-40);
@@ -50,6 +46,7 @@ import Bullet from "./bullet.js";
       }
     }
 
+    //Destruccion de la bala
     die()
     {
       this.destroy();

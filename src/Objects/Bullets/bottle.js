@@ -19,7 +19,6 @@ export default class Bottle extends Bullet {
     this.setFlipX(dirX < 0);
     this.setFlipY(dirY < 0);
     this.setAngle(90 * dirY);
-    //this.setAngle(Phaser.Math.RadToDeg(Math.atan2(dirY, dirX)));
 
     this.damage = 10;
   }

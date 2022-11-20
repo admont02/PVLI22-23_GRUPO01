@@ -1,6 +1,7 @@
 import Bullet from "./bullet.js";
 
- export default class Bottle extends Bullet {
+//Llanto ataque del jugador
+ export default class cry extends Bullet {
 
     constructor(scene, x, y) {
       super(scene, x, y, 'cry');

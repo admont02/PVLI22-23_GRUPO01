@@ -1,4 +1,5 @@
 
+//Clase que acompaña al movingObject para que el jugador no pueda mover a este último
  export default class GhostObject extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player) {

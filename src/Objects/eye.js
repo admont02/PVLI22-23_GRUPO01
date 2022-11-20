@@ -1,11 +1,13 @@
 import area from "./Area.js";
 import HealthBar from "../healthbar.js";
+
+//Ojo de agnan
 export default class eye extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
     super(scene, x, y, 'eyeClose');
 
-    this.setScale(0.1);
+    this.setScale(0.5);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 
@@ -28,22 +30,27 @@ export default class eye extends Phaser.GameObjects.Sprite {
       callbackScope: this
     });
   }
+
+  //Cambios de animaciones
   closeEye() {
     this.setTexture('eyeClose');
     this.area.destroy();
     this.open = false;
   }
+
+  //Abrir ojo crea un area
   openEye() {
     this.setTexture('eyeOpen');
     this.area = new area(this.scene, this.x, this.y, this.player, this.enemies);
     this.eyeTimer();
   }
+
   resetBoolean() {
     this.open = false;
   }
+
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
- 
 
     if (!this.open) {
       this.open = true;
