@@ -87,7 +87,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/anims/AnimsEnemy/SpeedEnemy');
     //speedEnemy ,movimiento general , turbo abajo , arriba y lateral
     this.load.spritesheet('MovimientoGeneralSpeedEnemy', 'MovimientoGeneralSpeedEnemy.png', { frameWidth: 81, frameHeight: 46, endFrame: 5 });
-    this.load.spritesheet('turboAbajoSpeedEnemy', 'turboAbajoSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
+    this.load.spritesheet('turboAbajoSpeedEnemy', 'turboAbajoSpeedEnemy.png', { frameWidth: 81, frameHeight: 46, endFrame: 3 });
     this.load.spritesheet('turboArribaSpeedEnemy', 'turboArribaSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('turboLateralSpeedEnemy', 'turboLateralSpeedEnemy.png', { frameWidth: 34, frameHeight: 50, endFrame: 5 });
 
@@ -183,6 +183,13 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+      //turbo
+      this.anims.create({
+        key: 'turboAbajoSpeedEnemy',
+        frames: this.anims.generateFrameNumbers('turboAbajoSpeedEnemy', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+      });
 
     //BasicEnemy
 
