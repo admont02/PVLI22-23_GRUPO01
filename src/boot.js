@@ -273,13 +273,6 @@ export default class Boot extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'walkBossI',
-      frames: this.anims.generateFrameNumbers('walkBossI', { start: 0, end: 3 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
       key: 'dashBoss',
       frames: this.anims.generateFrameNumbers('dashBoss', { start: 0, end: 6 }),
       frameRate: 10,

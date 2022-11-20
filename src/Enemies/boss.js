@@ -42,9 +42,10 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         }
 
         if (!this.isDash && this !== undefined) {
-            if (this.body.velocity.x < 0) this.play('walkBossI', true);
-            else if (this.body.velocity.x > 0) this.play('walkBossD', true);
-            else this.play('waitBoss', true);
+
+            this.BossAnimsFlip();
+            if (this.body.velocity.x != 0) this.play('walkBossD', true);
+            else if(this.body.velocity.x === 0) this.play('waitBoss', true);
         }
 
         //Muerte del jefe
@@ -145,5 +146,14 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
         this.bossInvisible();
     }
+
+     //Flip para las animaciones
+     BossAnimsFlip() 
+     { 
+       if (this !== undefined) {
+         if (this.body.velocity.x >= 0) this.setFlipX(0);
+         else this.setFlipX(-1);
+       }
+     }
 
 }
