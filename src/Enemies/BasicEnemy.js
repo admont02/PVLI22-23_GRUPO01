@@ -6,7 +6,9 @@ export default class BasicEnemy extends Enemy {
   constructor(scene, x, y, imgKey, player) {
    
     super(scene, x, y, 100, imgKey, player, 20, 150);
-    this.play('basicEnemyVerdeDerecha', true);
+    this.setScale(1.5);
+    //imgKey indica desde level el BasicEnemy que queremos
+    this.play(imgKey, true);
 
   }
 
