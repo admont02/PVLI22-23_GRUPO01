@@ -8,7 +8,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //posicion inicial
         this.newPosX = 200;
         this.newPosY = 200;
-
+        
+        
         //Puntero
         this.pointer = this.scene.input.activePointer;
         this.setInteractive();
@@ -123,7 +124,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Metodo para recibir daño
     takeDamage(damage) {
+        //despues de quitarle daño damos feedback
         this.lives -= damage;
+        //repetir el parpadeo 3 veces
+        this.EnemyInvisible();
+
         if (this.lives <= 0) {
             this.scene.QuitarEnemyVivo();
             this.scene.updateLivesEnemy();
@@ -131,6 +136,27 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
 
+    //Convertir al enemy en invisible 
+    EnemyInvisible() {
+        if (this !== undefined) 
+        {
+            this.setVisible(false);
+            this.timer = this.scene.time.addEvent({
+                delay: 250,
+                callback: () => 
+                {
+                    this.EnemyVisible(); 
+                }
+            });
+
+        }
+    }
+
+    //Hacer al enemy visible
+    EnemyVisible()
+    {
+        this.setVisible(true);
+    }
     //Muerte de enemigo
     EnemyDie() {
         //this.hp.bar.destroy();
