@@ -110,66 +110,90 @@ La dinámica principal es la de ir acabando con los enemigos para poder pasar de
 Por ello, será un juego frenético en el que el jugador deberá de hacer uso de los ataques (Mecánicas de jugador) para poder acabar con ellos.
 Además, también habrá un poco de exploración por el nivel para buscar contenedores de vida, recompensando así esta dinámica.
 
-//por aquí, controles
-4. **Controles**
+# 4.	Controles
+Los controles se corresponderá a los del teclado de ordenador, siendo estos:
 
--A,W,S,D : Para moverse hacia los lados -Shift: Para correr
+- “A” : movimiento en el eje X negativo del jugador.
+- “S” : movimiento en el eje Y negativo del jugador.
+- “D” : movimiento en el eje X positivo del jugador.
+- “W” : movimiento en el eje Y positivo del jugador.
+- “F” : dash del jugador en la dirección que se esté moviendo en ese momento.
+- “E” : creará un llanto en la posición del jugador.
+- SPACE: dispará un biberón hacia la posición a la que esté mirando el jugador en ese momento.
 
--E: LLorar
+# 5.	Cámara e interfaz.
+La vista de la cámara será top-down. El jugador siempre se encontrará en la parte central de la cámara.
+Respecto a la interfaz, estará formada por una barra horizontal en la parte superior izquierda de la pantalla que mostrará la vida actual del jugador. A su vez en la parte superior derecha se mostrarán el número de enemigos que quedan en el nivel. A su vez, para aclarar al jugador la vida que tienen los enemigos, estos tendrá una pequeña barra de vida, similar a la del jugador, encima de ellos que mostrarán la vida que le queda en cada momento. Esto pasará igual con los ojos de Agnan mostrando el tiempo que queda para cambiar de estado.
 
--F: Dash
+# 6.	Estética.
+En cuanto a la estética, esta es muy parecida a los juegos de aventura o de exploración top-down. Habrá elementos estéticos como cristales y rocas para dar un ambiente mágico pero a la vez peligroso. La spritesheet utilizada será la que se muestra a continuación ya que encaja tanto con los sprites de los diferentes elementos del juego y con el ambiente que se quiere conseguir.
 
--Barra espaciadora: lanzar biberones
+![image](https://user-images.githubusercontent.com/82326212/203033084-5fa8de95-8bf5-409a-9c43-7bc405db2fca.png)
 
-5. **Cámara**
+https://craftpix.net/product/green-dungeon-pixel-art-tileset/
 
-Good Nightmare Sweetie es un juego con vista top down, en el jugador que se controla se ve siempre en el centro de la pantalla.
+En cuanto a los enemigos estos tendrán un tono más infantil debido a que el mundo en el que el jugador se encuentra son las pesadillas de diferentes bebés. Los sprites de enemigos y jefe utilizados provienen del juego Kirby:¡Roedores al ataque!.
 
-Respecto a la vista que tenemos de la cámara la interfaz tendrá un aspecto en el cual aparecerán el número de vidas arriba a la izquierda , el tiempo del enemigo “Ojos” en forma de barra vertical arriba a la derecha indicará de alguna manera un timer visual para que el jugador sepa en todo momento cuánto tiempo queda para ser vigilado. Por último abajo izquierda aparecerá el nivel actual.
+![image](https://user-images.githubusercontent.com/82326212/203033902-4c555811-ddf7-4051-8a5a-f1ff585bc31f.png)
 
-2. **Dinámica**
+![image](https://user-images.githubusercontent.com/82326212/203033982-99f996a9-465a-4644-bec8-57bb8eb81324.png)
 
-En “Good Nightmare Sweetie” tendrás que cruzar los diferentes niveles matando a todos los enemigos que se crucen en tu camino desde ataques desbloqueables como ayudarte del ratón para desplazarlos, etc. En cada nivel desbloquearás una habilidad nueva.
+![image](https://user-images.githubusercontent.com/82326212/203034104-95446db3-44de-4c4e-b756-144a18bf96ab.png)
 
-Con la ayuda del ratón puedes hacer mucho más que derrotar diferentes pesadillas , también puedes descubrir zonas ocultas del mapa desplazando diferentes objetos.
+![image](https://user-images.githubusercontent.com/82326212/203034175-e5f84049-647c-4130-83a7-b3042b06a3f2.png)
 
-No te dejará salir de la sala hasta que no elimines a todos los enemigos,tendrás que tener en cuenta en cada nivel el ojo que te observa para poder ocultarse a tiempo de él , como final excepcional tendrás que derrotar al enemigo final.
+![image](https://user-images.githubusercontent.com/82326212/203034481-a576ccc9-af33-4fc1-bd71-8ccfde35aaa6.png)
 
-3. **Estética**
-1. **Gráficos**
+https://www.nintendo.es/Juegos/Nintendo-DS/Kirby-Roedores-al-ataque--271276.html
 
-El estilo utilizado en “Good Nightmare Sweetie” será Pixel Art. Se tratará de un entorno colorido, pero con un tono tétrico para inmiscuir al jugador.
+En cuanto al personaje principal se utilizará la siguiente spritesheet ya que corresponde a la línea estética que hemos seguido a lo largo del juego. 
 
-- **Mapa:** será delimitado por almohadas, juguetes de niños pequeños, etc. Esto impedirá al jugador salir de él. El resto será un poblado en la selva.
-- Los **enemigos**, **vecinos y protagonista** tendrán sprites de 100x100 pixeles (como máximo) en proporción al mapa.
-2. **Música y Sonido**
+![image](https://user-images.githubusercontent.com/82326212/203035352-fc101e0f-6da6-4165-9ec0-38d779519d38.png)
 
-   3. **Menús y modos de juego**
+https://www.pngfind.com/mpng/hmRbiwo_running-babys-pixel-art-base-sprite-hd-png/
 
-Menús:
+Para los demás elementos hemos usado elementos propios ya que era un arte muy específico y necesitábamos que casará bien con la estética del juego.
 
-- Menú principal con acceso a un apartado de opciones, donde se podrán observar los controles y ajustar el volumen mediante un slider. En el menú principal el jugador tiene las siguientes opciones:
-- Jugar
-- Opciones
-- Salir del juego
-- Menú de pausa con opciones de reanudar la partida, acceder al menú de opciones mencionado anteriormente y salir del juego
+![image](https://user-images.githubusercontent.com/82326212/203036415-de7edf2f-c949-401e-8c0e-22306e76a4a5.png)
 
-**3.1. Interfaz y control**
 
-![](Aspose.Words.e5a6dcf0-0bed-40cc-8d51-f04793ff0552.005.jpeg)
 
-4. **Contenido**
-1. **Historia**
+# 7.	Música y Sonido
 
-Una noche de frío invierno al llegar las 12 de la noche todos los bebés de la ciudad no podían conciliar el sueño. El mundo de los sueños ha sido invadido por Agnan, el gran líder de las pesadillas. Si nadie hacía algo todo el mundo se vería afectado. Pero gracias a Otis, un bebé capaz de adentrarse en el mundo onírico hará frente a todos los esbirros de Agna abriendo camino para poder enfrentarse directamente a él.
+Los sonidos que se utilizarán en el juego ayudarán al feedback del jugador permitiendo asi una mejor jugabilidad de este. Se utilizarán los necesarios para no abrumar al jugador con el uso de sonidos que no aportan información. 
 
-2. **Niveles**
-- Nivel 1:
-- Nivel 2:
-- Nivel 3:
+# 8.	Menús
+En la pantalla principal del juego encontraremos diferentes tipos de botones que nos permitirán movernos por las diferentes escenas.
 
-![](Aspose.Words.e5a6dcf0-0bed-40cc-8d51-f04793ff0552.006.jpeg)
+- PLAY: nos llevará al primer nivel del juego para empezar así la aventura.
 
-**Referencias**
+- BOSS: nos llevará al nivel del jefe (nivel 3) para enfrentarnos directamente a él tanto para practicar como para jugadores que ya hayan jugado al juego y quieran repetir esta etapa en específico.
 
-- The binding of Isaac
+- CONTROLS: nos llevará a una escena donde se mostrarán los controles del juego.
+
+# 9.	Niveles
+A continuación se exponen los diferentes esquemas de los niveles del juego.
+
+![image](https://user-images.githubusercontent.com/82326212/203037586-9b1121c5-140d-4246-a93e-a8c3836e1177.png)
+
+En el primer nivel se quiere conseguir que el jugador se familiarice con los controles y con los diferentes elementos del escenario. De ahí la poca cantidad de enemigos y la facilidad de estos mismos. También habrá una gran cantidad de objetos de vida para recompensar al jugador por la exploración del nivel.
+
+![image](https://user-images.githubusercontent.com/82326212/203037924-3049ea8c-49f1-492f-8e71-0410f3bb3a90.png)
+
+En cuanto al segundo nivel el mapa será más grande y con una mayor cantidad de enemigos. Aquí habrá mínimo un enemigo de cada tipo subiendo considerablemente la dificultad de este.
+
+![image](https://user-images.githubusercontent.com/82326212/203038207-50ca85ed-74c8-4d42-aea3-c9c64da726cf.png)
+
+En el último nivel se quiere  conseguir la sensación de agobio debido a lo pequeño que es el escenario. En este no habrá ningún objeto u obstáculo más allá de los ojos de Agnan (que en este caso representa la vida del jefe, mecánicas de jefe).
+
+![image](https://user-images.githubusercontent.com/82326212/203038505-87a4a421-41cb-4607-8cfb-1c9df27cb654.png)
+
+# 10.	Referencias
+En cuanto a las referencias, el título bebe mucho de juegos como:
+
+- “The binding of Isaac”, cogiendo de este la vista de la cámara y parte de la interfaz de esta. Además del ataque principal del jugador muy similar a las lágrimas que utiliza el personaje es ese juego o los contenedores de vida.
+
+- “Kirby:¡Roedores al ataque!”, como ya hemos visto la mayor parte de la estética del juego se basa en él.
+
+- Juegos del estilo “Samurai Warriors”, que toma la dinámica de acabar con un número específico de enemigos para poder superar el nivel.
+
