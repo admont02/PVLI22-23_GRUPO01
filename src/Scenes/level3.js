@@ -1,6 +1,6 @@
-import Player from './player.js';
-import Boss from './Enemies/boss.js';
-import eyeBoss from './Objects/eyeBoss.js';
+import Player from '../player.js';
+import Boss from '../Enemies/boss.js';
+import eyeBoss from '../Objects/eyeBoss.js';
 
 /**
  * Escena principal del juego. 

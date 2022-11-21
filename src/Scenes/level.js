@@ -1,14 +1,14 @@
-import Player from './player.js';
-import movingObject from './Objects/MovingObject.js';
+import Player from '../player.js'
+import movingObject from '../Objects/MovingObject.js';
 //traemos clase BasicEnemy
-import BasicEnemy from './Enemies/BasicEnemy.js';
-import RangedEnemy from './Enemies/RangedEnemy.js';
+import BasicEnemy from '../Enemies/BasicEnemy.js';
+import RangedEnemy from '../Enemies/RangedEnemy.js';
 //traemos clase StrongEnemy
-import SpeedEnemy from './Enemies/SpeedEnemy.js';
+import SpeedEnemy from '../Enemies/SpeedEnemy.js';
 //traemos clase SpeedEnemy
-import StrongEnemy from './Enemies/StrongEnemy.js';
-import LifePowerUp from './Objects/lifePowerUp.js';
-import eye from './Objects/eye.js';
+import StrongEnemy from '../Enemies/StrongEnemy.js';
+import LifePowerUp from '../Objects/lifePowerUp.js';
+import eye from '../Objects/eye.js';
 
 
 
@@ -32,7 +32,7 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
     this.createTileMap();
 
-    this.player = new Player(this, 700, 300);
+    this.player = new Player(this, 300, 600);
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
 
@@ -57,7 +57,7 @@ export default class Level extends Phaser.Scene {
     this.eye = new eye(this, 500, 300, this.player, this.enemy);
 
     // this.physics.world.setBounds(0, 0, large, height);
-    this.cameras.main.setBounds(0, 0, large, height);
+    //this.cameras.main.setBounds(0, 0, width, height);
     this.cameras.main.startFollow(this.player);
 
     new LifePowerUp(this,500,50,this.player);
@@ -98,14 +98,14 @@ update()
   {
 
     this.map = this.make.tilemap({
-      key: 'map1',
-      tileWidth: 50,
-      tileHeight: 50
+      key: 'mapLevel1',
+      
     });
-    const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
-    const tileset2 = this.map.addTilesetImage('tilesetForest', 'patronesLevel1');
-    this.backgroundLayer = this.map.createLayer('Suelo', tileset1);
-    this.boxLayer = this.map.createLayer('Capa de patrones 1', tileset2);
+   // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
+    const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon'); 
+    this.boxLayer = this.map.createLayer('paredes', tileset2);
+    this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+   
 
   }
 
