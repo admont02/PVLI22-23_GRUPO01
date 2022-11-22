@@ -2,9 +2,7 @@
  * Escena para la precarga de los assets que se usarán en el juego.
  */
 export default class Boot extends Phaser.Scene {
-  /**
-   * Constructor de la escena
-   */
+ 
   constructor() {
     super({ key: 'boot' });
   }
@@ -62,7 +60,6 @@ export default class Boot extends Phaser.Scene {
 
 
     //para animaciones de enemy
-
     //EnemyBasic
     this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
     //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda

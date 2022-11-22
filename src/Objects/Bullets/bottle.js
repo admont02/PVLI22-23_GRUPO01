@@ -21,6 +21,16 @@ export default class Bottle extends Bullet {
     this.setAngle(90 * dirY);
 
     this.damage = 10;
+        
+    this.timer = this.scene.time.addEvent({
+      delay: 1000,              
+      callback: () =>
+      {
+        this.destroy();
+      }
+      
+  });
+
   }
 
   preUpdate(t, dt) {
@@ -30,8 +40,5 @@ export default class Bottle extends Bullet {
     this.body.setVelocityY(this.speed * this.dirY);
 
     if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroy(); }));
-    else if (this.x > 1000 - this.body.width || this.x < 0 + this.body.width || this.y < 0 + this.body.height || this.y > 500 - this.body.height) {
-      this.destroy();
-    }
   }
 }

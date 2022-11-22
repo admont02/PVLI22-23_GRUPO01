@@ -19,8 +19,7 @@ export default class SpeedEnemy extends Enemy {
 
   }
 
-  
-
+//Animaciones del speed Enemy
   andarNormal()
   {
     this.play('MovimientoGeneralSpeedEnemy', true);

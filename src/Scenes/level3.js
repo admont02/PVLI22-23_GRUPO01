@@ -2,20 +2,14 @@ import Player from '../player.js';
 import Boss from '../Enemies/boss.js';
 import eyeBoss from '../Objects/eyeBoss.js';
 
-/**
- * Escena principal del juego. 
- */
-export default class Level extends Phaser.Scene {
-  /**
-   * Constructor de la escena
-   */
+//Escena del nivel 3
+export default class Level3 extends Phaser.Scene {
+  
   constructor() {
     super({ key: 'level3' });
   }
 
-  /**
-   * Creación de los elementos de la escena principal de juego
-   */
+  //Elementos de la escena
   create() {
     const width = this.scale.width;
     const height = this.scale.height;
@@ -37,15 +31,14 @@ export default class Level extends Phaser.Scene {
 
     this.boss = new Boss(this, 300, 300, this.player);
     
-    // this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
   }
-  //comprueba sinquedan enemigos
-update()
-{
-}
+
+  update()
+  {
+  }
 
   createTileMap() {
     this.map = this.make.tilemap({
@@ -60,6 +53,10 @@ update()
 
   }
 
+  updateLivesEnemy() {
+    this.label.text = 'Enemies Left: ' + this.NumEnemigos();
+  }
+
   AumentarEnemyVivo() {
     this.numEnemigosVivos++;
   }
@@ -71,5 +68,11 @@ update()
   NumEnemigos() {
     return this.numEnemigosVivos;
   }
+
+  changeLevel(newlevel)
+  {
+    this.scene.start(newlevel)
+  }
+
   
 }

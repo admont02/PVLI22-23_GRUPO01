@@ -18,7 +18,7 @@ import Bullet from "./bullet.js";
         delay: 4000,              
         callback: () =>
         {
-          this.die();
+          this.destroy();
         }
     });
 
@@ -42,14 +42,9 @@ import Bullet from "./bullet.js";
       {
         this.player.modifyValue(-40);
         this.player.updateLivesText(); 
-          this.die();
+          this.destroy();
       }
     }
 
-    //Destruccion de la bala
-    die()
-    {
-      this.destroy();
-    }
 }
   

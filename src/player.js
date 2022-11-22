@@ -14,8 +14,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    // Queremos que el jugador no se salga de los límites del mundo
-    //this.body.setCollideWorldBounds();
+ 
     this.speed = 300;
     this.lives = 3;
     this.maxLives = 5;
@@ -36,7 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.enableDashTimer = true;
     this.isDash = false;
     this.canDash = true;
-    this.speedDash = 2000;
+    this.speedDash = 600;
     this.aDown = this.sDown = this.wDown = this.dDown = false;
 
     this.bottleTime = 0;
@@ -99,43 +98,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.label.text = 'Lives ' + this.lives;
   }
 
-  loseLive(n) {
-    if (this.lives > 0)
-      this.lives -= n;
-  }
-
-  earnLive(n) {
-    if (this.lives < this.maxLives)
-      this.lives += n;
-    this.updateLivesText();
-  }
-
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.die();
     this.pruebaRestarBarra();
-    // console.log(this.hp.x);
-    // this.hp.bar.setX(this.x-this.scene.cameras.main._scrollX)
-    // this.hp.bar.setY(this.y)
 
 
     if (!this.isDash) {
       this.animsPlayer();
       this.movePlayer();
-      //normalizar vel
-      // this.body.velocity.normalize().scale(this.speed);
-
       this.createCry();
     }
 
-    // Crea un nuevo bottle cuando se pulsa la tecla espacio
-
     this.shootBottle();
-
-
-
-
-    this.body.velocity.normalize().scale(this.speed);
 
     if (this.enableDashTimer) this.dashTimer();
     if (this.f.isDown && this.canDash) {
@@ -268,14 +243,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   //hace que durante 1 segundo rebote en diagonal
   choque() {
-    this.body.setVelocityX(-this.body.velocity.x * 2);
-    this.body.setVelocityY(-this.body.velocity.y * 2);
-    this.timer = this.scene.time.addEvent({
-      delay: 500,
-      callback: () => {
-        this.sinchoque();
-      }
-    });
+
+    if(!this.isDash)
+    {
+      this.body.setVelocityX(-this.body.velocity.x * 2);
+      this.body.setVelocityY(-this.body.velocity.y * 2);
+      this.timer = this.scene.time.addEvent({
+        delay: 500,
+        callback: () => {
+          this.sinchoque();
+        }
+      });
+    }
+   
   }
 
 

@@ -11,7 +11,6 @@ import Bullet from "./bullet.js";
       //le pasas la escena , la x , la y y el sprite balaE
       super(scene, x, y, 'balaRanged');
   
-      this.body.setCollideWorldBounds();
       this.speed = 1;
       this.dirX = dirX;
       this.dirY = dirY;

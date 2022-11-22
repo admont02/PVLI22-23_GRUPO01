@@ -6,6 +6,8 @@ export default class StrongEnemy extends Enemy {
   constructor(scene, x, y, imgKey, player) {
     super(scene, x, y, 50, imgKey, player, 40, 150);
 
+    this.setScale(2);
+    
     this.play('StrongEnemyWalk', true);
   }
 

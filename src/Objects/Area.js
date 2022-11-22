@@ -33,11 +33,8 @@
         delay: 3000,
         callback: this.changeTimer,
       });
-
-
     }
   }
-
   
   changeTimer()
   {
