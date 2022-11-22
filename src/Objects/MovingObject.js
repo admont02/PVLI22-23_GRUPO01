@@ -10,7 +10,7 @@ import GhostObject from "./GhostObject.js";
     
     this.scene.physics.add.collider(this, player);
 
-    this.body.setCollideWorldBounds();
+    //this.body.setCollideWorldBounds();
 
 
     this.player = player;

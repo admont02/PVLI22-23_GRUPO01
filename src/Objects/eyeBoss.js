@@ -25,7 +25,7 @@
   takeDamage(damage)
   {
     this.life -= damage;
-
+    this.inivisible();
     if(this.life < 0)
     this.die();
   }
@@ -35,6 +35,18 @@
   {
     this.scene.QuitarEnemyVivo();
     this.destroy();
+  }
+
+  //Feedback para cuando inflingimos daño al enemigo
+  inivisible() {
+    this.setVisible(false);
+    this.timer = this.scene.time.addEvent({
+      delay: 250,
+      callback: () => 
+      {
+        this.setVisible(true);
+      }
+    });
   }
 
  

@@ -1,3 +1,5 @@
+
+//Clase para la barra de vida
 export default class HealthBar extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y,initial) {
@@ -14,6 +16,7 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
         scene.add.existing(this.bar);
     }
 
+    //Cambiar el valor de esta
     modify(amount) {
         this.value += amount;
 
@@ -28,6 +31,7 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
         return (this.value === 0);
     }
 
+    //Dibujar la informacion en ella
     draw() {
         this.bar.clear();
 
@@ -54,6 +58,8 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
 
         this.bar.fillRect(this.x + 2, this.y + 2, d, 28);
     }
+
+    //Obtener su valo actual
     getValue() {
         return this.value;
     }

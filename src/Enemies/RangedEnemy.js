@@ -1,8 +1,7 @@
 import Enemy from './enemy.js';
-import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';//para poder instanciar balas enemigas
+import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';
 
-
-//Clase para el enemigo rango
+//Clase para el Ranged Enemy
 export default class RangedEnemy extends Enemy {
  
   constructor(scene, x, y, imgKey, player, tiempoBala) {
@@ -14,13 +13,17 @@ export default class RangedEnemy extends Enemy {
     this.tiempoBala = 4000;
     this.lastShot = 0;
     this.play('RangedEnemyDer', true);
+
+
+    
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.delta = t - this.lastShot;// t es tiempo que ha pasado de partida en milisegundos
+    this.delta = t - this.lastShot;
 
-    if (this.delta > this.tiempoBala) { //disparas cada 4 segundos
+    //Las balas se disparan cada cuatro segundos
+    if (this.delta > this.tiempoBala) {
       this.enemyShoot();
       this.lastShot = t;
     }

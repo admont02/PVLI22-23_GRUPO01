@@ -6,10 +6,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super(scene, x, y, sprite);
 
         //posicion inicial
-        this.newPosX = 200;
-        this.newPosY = 200;
-        
-        
+        this.newPosX = x;
+        this.newPosY = y;
+
+        //Valores para impedir que se quede quieto en una posicion
+        this.posRepeX = x;
+        this.posRepeY = y;
+        this.repeCount = 60;
+        this.currentRep = 0;
+
         //Puntero
         this.pointer = this.scene.input.activePointer;
         this.setInteractive();
@@ -33,11 +38,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         this.player = player;
-        this.body.setCollideWorldBounds();
        
         this.lives = life;
         this.v = lifeValue;
         // this.hp = new HealthBar(scene, 10, 10, this.v);
+
     }
 
     preUpdate(t, dt) {
@@ -57,16 +62,18 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
            
             //llamamos a la funcion para cambiar valores
             //le asociamos x e y aleatorias
-            this.newPosX = Phaser.Math.Between(0, this.scene.scale.width);
-            this.newPosY = Phaser.Math.Between(0, this.scene.scale.height);
-
-            //si hay un valor fuera de el tamaño del canvas o un poco menos ponemos otro a proposito para que no llegue al exterior
-            if (this.newPosX > 900 || this.newPosY > 400) {
-                this.newPosX = 200
-                this.newPosY = 200
-            }
+            this.newPosX = Phaser.Math.Between( this.x - 200, this.x + 200);
+            this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
         }
 
+        //Comprobacion de si esta quieto
+        //Sumamos los frames
+        this.currentRep++;
+        if(this.currentRep == this.repeCount)
+        {
+            this.repeticiones();
+        }
+        
         if (this !== undefined) {
             this.enemyAnimsFlip();
           }
@@ -80,25 +87,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             //metodo que haga "rebote" para que no coincidan posiciones
             this.player.choque();
         }
-    }
-
-    //hace que durante 1 segundo rebote en diagonal
-    choque() {
-        this.SetVelocityX(-this.body.velocity.x);
-        this.SetVelocityY(-this.body.velocity.y);
-        this.timer = this.scene.time.addEvent({
-            delay: 500,
-            callback: () => {
-                this.sinchoque();
-            }
-        });
-    }
-
-    //Devuelve al enemigo a su posicion original
-    sinchoque() {
-        this.SetVelocityX(this.body.velocity.x);
-        this.SetVelocityY(this.body.velocity.y);
-
     }
 
     //Duplica su velocidad se llama cuando el jugador entra en el area que crea un ojo
@@ -196,4 +184,21 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         else this.setFlipX(1);
       }
     }
+
+
+    //Metodo para evitar que el enemigo se quede estancado en una posicion
+    repeticiones()
+    {
+        this.currentRep = 0;
+
+        if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1 ) {
+            this.newPosX = Phaser.Math.Between(this.x -300, this.x + 300);
+            this.newPosY = Phaser.Math.Between(this.y -300, this.y + 300);
+        }
+        
+        this.posRepeX = this.x; 
+        this.posRepeY = this.y;
+
+    }
+    
 }

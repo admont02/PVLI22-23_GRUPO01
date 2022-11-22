@@ -6,14 +6,14 @@ import Bullet from "./bullet.js";
     constructor(scene, x, y) {
       super(scene, x, y, 'cry');
   
-      this.damage = 0.1;
-      this.setScale(0.1);
+      this.damage = 0.2;
+      this.setScale(0.2);
 
       this.timer = this.scene.time.addEvent({
         delay: 1000,              
         callback: () =>
         {
-          this.destroyCry();
+          this.destroy();
         }
         
     });
@@ -26,9 +26,5 @@ import Bullet from "./bullet.js";
     }
 
 
-    destroyCry()
-    {
-      this.destroy();
-    }
 }
   
