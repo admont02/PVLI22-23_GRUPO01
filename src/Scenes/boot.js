@@ -47,6 +47,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('boss', 'jefe.png');
     this.load.image('bottle', 'bottleBlue.png');
     this.load.image('configuracion', 'Configuracion.png');
+    this.load.image('fondoMenu', 'fondoDefinitivo.png');
 
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');

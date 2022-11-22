@@ -3,10 +3,10 @@ export default class Menu extends Phaser.Scene {
       super({ key: 'menu' });
   }
   create() {
-      
-      this.playbutton = this.add.text(this.scale.width/2 - 20, this.scale.height/2 - 20, "PLAY").setInteractive();
-      this.playbutton2 = this.add.text(this.scale.width/2 - 20, this.scale.height/2 + 40, "BOSS").setInteractive();
-      this.playbutton3 = this.add.text(this.scale.width/2 - 140, this.scale.height/2 + 100, "CONFIGURACION").setInteractive();
+      this.image =this.add.image(500, 250, 'fondoMenu');
+      this.playbutton = this.add.text(this.scale.width/2 - 70, this.scale.height/5.6 - 20, "_____").setInteractive();
+      this.playbutton2 = this.add.text(this.scale.width/2 - 60, this.scale.height/2 + 120, "________").setInteractive();
+      this.playbutton3 = this.add.text(this.scale.width/2 - 180, this.scale.height/2-40, "____________").setInteractive();
 
     
       this.playbutton.setScale(3);
