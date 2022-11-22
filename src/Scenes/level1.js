@@ -41,10 +41,10 @@ export default class Level1 extends Phaser.Scene {
   
     this.enemy = this.add.group();
     this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player,2));
-    //this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player,2));
+    this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player,2));
     this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player,2));
-    //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player,2));
-    this.enemy.add( new SpeedEnemy(this,400 , 200,'MovimientoGeneralSpeedEnemy' , this.player,2));
+    this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player,2));
+    this.enemy.add( new SpeedEnemy(this,400 , 500,'MovimientoGeneralSpeedEnemy' , this.player,2));
     this.enemy.add(new StrongEnemy(this,400 , 300,'StrongEnemyIzq' , this.player,4));
     this.enemy.add(new RangedEnemy(this, 600 , 600,'RangedEnemyDer' , this.player,2));
 
