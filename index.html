@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="assets/sprites/player.png" type="image/png" />
+    <link rel="shortcut icon" href="assets/sprites/logo.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <link rel="stylesheet" href="css/game.css">
     <script src="./lib/phaser.min.js"></script>
 
-    <title>GOOD NIGHTMARE SWEETIE</title>
+    <title class="name">GOOD NIGHTMARE SWEETIE</title>
     <style>
         body {
             /* background-image: url("assets/sprites/1.jpg");
@@ -18,22 +18,22 @@
 </head>
 
 <body>
-    <header>
-
-        <div class="container">
-            <nav>
-                <!-- <img src = ""> -->
-                <ul id="session">
-                    <li><a href="https://twitter.com/dufruta?s=11&t=cYMcq
-                1XIetq8mHsaq4aE3Q" target="_blank">Twitter</a></li>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="brand">
+                    <img src = "assets/sprites/logo.png" width="200">
+                </div>
+                <ul class="session">
+                    <li><a class="active" href="index.html">JUEGO</a></li>
+                    <li><a href="descripcion.html">Descripcion</a></li>
+                    <li><a href="creditos.html">Creditos</a></li>
                     <li><a href="https://github.com/admont02/PVLI22-23_GRUPO01" target="_blank">GitHub</a></li>
-                    <li><a href="./descripcion.html" target="_blank">Descripción</a></li>
-                    <li class="juego"><a href="./index.html">JUEGO</a></li>
-                    <li><a href="./creditos.html" target="_blank">Créditos</a></li>
+                    <li><a href="https://twitter.com/dufruta?s=11&t=cYMcq1XIetq8mHsaq4aE3Q" target="_blank">Twitter</a></li>
                 </ul>
-        </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    </div>
     <h1>GOOD NIGHTMARE SWEETIE</h1>
     <script src="src/Scenes/game.js" type="module"></script>
 </body>
