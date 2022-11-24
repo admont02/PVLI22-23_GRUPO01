@@ -14,7 +14,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
- 
+
     this.speed = 300;
     this.lives = 3;
     this.maxLives = 5;
@@ -25,7 +25,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateLivesText();
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, 10, 10,150);
+    this.hp = new HealthBar(scene, 10, 10, 150);
 
     // this.hp.setScrollFactor(0);
     //this.addChild(this.hp)
@@ -122,6 +122,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
   createCry() {
     if (this.e.isDown && !this.cryLaunched) {
       new Cry(this.scene, this.x, this.y);
+
+      this.crySound = this.scene.sound.add('cry');
+      this.crySound.play();
+
       this.cryTimer();
     }
   }
@@ -189,9 +193,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //eje Y
 
 
-   
-    if(!this.isDash)
-    {
+
+    if (!this.isDash) {
       if (this.cursors.down.isDown || this.s.isDown) {
         if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(this.speed);
@@ -244,8 +247,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   //hace que durante 1 segundo rebote en diagonal
   choque() {
 
-    if(!this.isDash)
-    {
+    if (!this.isDash) {
       this.body.setVelocityX(-this.body.velocity.x * 2);
       this.body.setVelocityY(-this.body.velocity.y * 2);
       this.timer = this.scene.time.addEvent({
@@ -255,7 +257,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
       });
     }
-   
+
   }
 
 
@@ -265,6 +267,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   die() {
-    if (this.hp.getValue() === 0) this.scene.scene.start('menu')
+    if (this.hp.getValue() === 0) {
+      this.dieSound = this.scene.sound.add('death');
+      this.dieSound.play();
+
+      this.scene.scene.start('menu');
+    }
   }
 }

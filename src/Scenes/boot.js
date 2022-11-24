@@ -118,6 +118,7 @@ export default class Boot extends Phaser.Scene {
     //  this.load.image('patronesLevel2', 'tilesetbeach.png');
 
     // SONIDOS
+    this.load.setPath('assets/sounds');
     this.load.audio('booLaugh', 'booLaugh.mp3');
     this.load.audio('cry', 'cry.mp3');
     this.load.audio('death', 'death.mp3');
@@ -195,29 +196,29 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-      //turbo abajo
-      this.anims.create({
-        key: 'turboAbajoSpeedEnemy',
-        frames: this.anims.generateFrameNumbers('turboAbajoSpeedEnemy', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      });
+    //turbo abajo
+    this.anims.create({
+      key: 'turboAbajoSpeedEnemy',
+      frames: this.anims.generateFrameNumbers('turboAbajoSpeedEnemy', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-      //turbo arriba
-      this.anims.create({
-        key: 'turboArribaSpeedEnemy',
-        frames: this.anims.generateFrameNumbers('turboArribaSpeedEnemy', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      });
+    //turbo arriba
+    this.anims.create({
+      key: 'turboArribaSpeedEnemy',
+      frames: this.anims.generateFrameNumbers('turboArribaSpeedEnemy', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
-      //turbo lateral
-      this.anims.create({
-        key: 'turboLateralSpeedEnemy',
-        frames: this.anims.generateFrameNumbers('turboLateralSpeedEnemy', { start: 0, end: 5 }),
-        frameRate: 10,
-        repeat: -1
-      });
+    //turbo lateral
+    this.anims.create({
+      key: 'turboLateralSpeedEnemy',
+      frames: this.anims.generateFrameNumbers('turboLateralSpeedEnemy', { start: 0, end: 5 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
 
     //BasicEnemy
