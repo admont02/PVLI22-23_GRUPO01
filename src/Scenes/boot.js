@@ -2,7 +2,7 @@
  * Escena para la precarga de los assets que se usarán en el juego.
  */
 export default class Boot extends Phaser.Scene {
- 
+
   constructor() {
     super({ key: 'boot' });
   }
@@ -64,21 +64,21 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
     //EnemyBasicAzul , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAzulDerecha', 'BasicEnemyAzulDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
-   
+
     //EnemyBasicVerde , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyVerdeDerecha', 'BasicEnemyVerdeDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
-    
+
     //EnemyBasicRojo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyRojoDerecha', 'BasicEnemyRojoDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
-    
+
     //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
-    
+
 
     //StrongEnemy
     this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
     //strongEnemy , derecha(incluye arriba, abajo) e izquierda
-   
+
     this.load.spritesheet('StrongEnemyWalk', 'strongEnemyWalk.png', { frameWidth: 50, frameHeight: 44, endFrame: 8 });
 
     //SpeedEnemy
@@ -93,7 +93,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/anims/AnimsEnemy/RangedEnemy');
     //rangedEnemy der , arrriba y abajo     y izq
     this.load.spritesheet('RangedEnemyDer', 'RangedEnemyDer.png', { frameWidth: 30, frameHeight: 32, endFrame: 5 });
-    
+
 
 
     //Boss Animaciones
@@ -116,6 +116,16 @@ export default class Boot extends Phaser.Scene {
     this.load.image('suelo', 'suelo.png');
     //  this.load.tilemapTiledJSON('map2', 'level2.json');
     //  this.load.image('patronesLevel2', 'tilesetbeach.png');
+
+    // SONIDOS
+    this.load.audio('booLaugh', 'booLaugh.mp3');
+    this.load.audio('cry', 'cry.mp3');
+    this.load.audio('death', 'death.mp3');
+    this.load.audio('duckToySqueak', 'duckToySqueak.mp3');
+    this.load.audio('glass', 'glass.mp3');
+    this.load.audio('loseLive', 'loseLive.mp3');
+    this.load.audio('powerUp', 'powerUp.mp3');
+    this.load.audio('smash', 'smash.mp3');
 
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
