@@ -21,16 +21,16 @@ export default class Bottle extends Bullet {
     this.setAngle(90 * dirY);
 
     this.damage = 10;
-        
+
     this.timer = this.scene.time.addEvent({
-      delay: 1000,              
+      delay: 1000,
       callback: () =>
       {
-        this.destroy();
+        this.destroyBottle();
       }
-      
-  });
+    });
 
+    this.glassSound = this.scene.sound.add('glass');
   }
 
   preUpdate(t, dt) {
@@ -39,6 +39,17 @@ export default class Bottle extends Bullet {
     this.body.setVelocityX(this.speed * this.dirX);
     this.body.setVelocityY(this.speed * this.dirY);
 
-    if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroy(); }));
+    if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroyBottle(); }));
+  }
+
+  destroyBottle(){
+    if(this.timer != null){
+      this.timer.destroy();
+      this.timer = null;
+    }
+
+    this.glassSound.play();
+
+    this.destroy();
   }
 }

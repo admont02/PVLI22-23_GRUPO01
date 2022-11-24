@@ -38,7 +38,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         this.player = player;
-       
+
         this.lives = life;
         this.v = lifeValue;
         // this.hp = new HealthBar(scene, 10, 10, this.v);
@@ -59,24 +59,23 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion ,
         //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
         if (distance < 30 && distance > -30) {
-           
+
             //llamamos a la funcion para cambiar valores
             //le asociamos x e y aleatorias
-            this.newPosX = Phaser.Math.Between( this.x - 200, this.x + 200);
+            this.newPosX = Phaser.Math.Between(this.x - 200, this.x + 200);
             this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
         }
 
         //Comprobacion de si esta quieto
         //Sumamos los frames
         this.currentRep++;
-        if(this.currentRep == this.repeCount)
-        {
+        if (this.currentRep == this.repeCount) {
             this.repeticiones();
         }
-        
+
         if (this !== undefined) {
             this.enemyAnimsFlip();
-          }
+        }
 
         //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
         if (this.scene.physics.collide(this.player, this)) {
@@ -112,28 +111,34 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Metodo para recibir daño
     takeDamage(damage) {
-        //despues de quitarle daño damos feedback
-        this.lives -= damage;
-        //repetir el parpadeo 3 veces
-        this.EnemyInvisible();
+        if (this.lives > 0) {
+            this.damageSound = this.scene.sound.add('loseLive');
+            this.damageSound.play();
 
-        if (this.lives <= 0) {
+            //despues de quitarle daño damos feedback
+            this.lives -= damage;
+
+            //repetir el parpadeo 3 veces
+            this.EnemyInvisible();
+        }
+        else {
+            this.dieSound = this.scene.sound.add('death');
+            this.dieSound.play();
+
             this.scene.QuitarEnemyVivo();
             this.scene.updateLivesEnemy();
             this.EnemyDie();
         }
     }
 
-    //Convertir al enemy en invisible 
+    //Convertir al enemy en invisible
     EnemyInvisible() {
-        if (this !== undefined) 
-        {
+        if (this !== undefined) {
             this.setVisible(false);
             this.timer = this.scene.time.addEvent({
                 delay: 250,
-                callback: () => 
-                {
-                    this.EnemyVisible(); 
+                callback: () => {
+                    this.EnemyVisible();
                 }
             });
 
@@ -141,8 +146,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     //Hacer al enemy visible
-    EnemyVisible()
-    {
+    EnemyVisible() {
         this.setVisible(true);
     }
     //Muerte de enemigo
@@ -177,28 +181,26 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
 
     //Flip para las animaciones
-    enemyAnimsFlip() 
-    { 
-      if (this !== undefined) {
-        if (this.body.velocity.x >= 0) this.setFlipX(0);
-        else this.setFlipX(1);
-      }
+    enemyAnimsFlip() {
+        if (this !== undefined) {
+            if (this.body.velocity.x >= 0) this.setFlipX(0);
+            else this.setFlipX(1);
+        }
     }
 
 
     //Metodo para evitar que el enemigo se quede estancado en una posicion
-    repeticiones()
-    {
+    repeticiones() {
         this.currentRep = 0;
 
-        if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1 ) {
-            this.newPosX = Phaser.Math.Between(this.x -300, this.x + 300);
-            this.newPosY = Phaser.Math.Between(this.y -300, this.y + 300);
+        if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1) {
+            this.newPosX = Phaser.Math.Between(this.x - 300, this.x + 300);
+            this.newPosY = Phaser.Math.Between(this.y - 300, this.y + 300);
         }
-        
-        this.posRepeX = this.x; 
+
+        this.posRepeX = this.x;
         this.posRepeY = this.y;
 
     }
-    
+
 }

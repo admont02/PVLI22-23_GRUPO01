@@ -45,7 +45,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
             this.BossAnimsFlip();
             if (this.body.velocity.x != 0) this.play('walkBossD', true);
-            else if(this.body.velocity.x === 0) this.play('waitBoss', true);
+            else if (this.body.velocity.x === 0) this.play('waitBoss', true);
         }
 
         //Muerte del jefe
@@ -59,7 +59,12 @@ export default class Boss extends Phaser.GameObjects.Sprite {
     makeAc() {
 
         if (this !== undefined) {
+
+            this.laughSound = this.scene.sound.add('booLaugh');
+            this.laughSound.play();
+
             this.stop();
+
             this.timer = this.scene.time.addEvent({
                 delay: 1000,
                 callback: () => {
@@ -147,13 +152,12 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.bossInvisible();
     }
 
-     //Flip para las animaciones
-     BossAnimsFlip() 
-     { 
-       if (this !== undefined) {
-         if (this.body.velocity.x >= 0) this.setFlipX(0);
-         else this.setFlipX(-1);
-       }
-     }
+    //Flip para las animaciones
+    BossAnimsFlip() {
+        if (this !== undefined) {
+            if (this.body.velocity.x >= 0) this.setFlipX(0);
+            else this.setFlipX(-1);
+        }
+    }
 
 }
