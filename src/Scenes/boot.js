@@ -51,6 +51,8 @@ export default class Boot extends Phaser.Scene {
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
     this.load.image('bossBullet', 'balaBoss.png');
+    //creditos cargar imagen
+    this.load.image('creditos', 'creditos.png');
 
     //para animaciones de Player
     this.load.setPath('assets/anims/AnimsPlayer');
@@ -75,6 +77,7 @@ export default class Boot extends Phaser.Scene {
     //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
 
+    
 
     //StrongEnemy
     this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
@@ -128,7 +131,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('loseLive', 'loseLive.mp3');
     this.load.audio('powerUp', 'powerUp.mp3');
     this.load.audio('smash', 'smash.mp3');
-
+    //musica menu
+    this.load.audio('menusong' ,'creepymenu.mp3' );
+    this.load.audio('juegosong' , 'creepyjuego.mp3' );
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
     var loadingText = this.make.text({
