@@ -45,7 +45,7 @@ export default class Level1 extends Phaser.Scene {
     this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player,2));
     this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player,2));
     this.enemy.add( new SpeedEnemy(this,400 , 500,'MovimientoGeneralSpeedEnemy' , this.player,2));
-    this.enemy.add(new StrongEnemy(this,400 , 300,'StrongEnemyIzq' , this.player,4));
+    this.enemy.add(new StrongEnemy(this,400 , 300,'StrongEnemyWalk' , this.player,4));
     this.enemy.add(new RangedEnemy(this, 600 , 600,'RangedEnemyDer' , this.player,2));
 
     //creamos objeto de level enemiesLEFT
