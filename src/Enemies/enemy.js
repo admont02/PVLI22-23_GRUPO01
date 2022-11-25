@@ -139,7 +139,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //Convertir al enemy en invisible
     EnemyInvisible() {
         if (this !== undefined) {
-            this.setVisible(false);
+            //this.setVisible(false);
+            this.setTint(0xff0000)
             this.timer = this.scene.time.addEvent({
                 delay: 250,
                 callback: () => {
@@ -152,7 +153,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Hacer al enemy visible
     EnemyVisible() {
-        this.setVisible(true);
+        //this.setVisible(true);
+        this.clearTint()
     }
     //Muerte de enemigo
     EnemyDie() {

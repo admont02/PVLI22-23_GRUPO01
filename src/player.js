@@ -229,6 +229,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   }
   modifyValue(v) {
+    if(v<0)
+    this.setTint(0xff0000);
+    this.scene.time.addEvent({
+      delay: 250,
+      callback: () => {
+          this.clearTint();
+      }
+  });
     this.hp.modify(v);
   }
 
