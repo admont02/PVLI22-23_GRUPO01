@@ -41,6 +41,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.bottleTime = 0;
     this.launched = false;
     this.cryLaunched = false;
+    this.dieSound = this.scene.sound.add('death');
   }
 
   /**
@@ -258,7 +259,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   die() {
     if (this.hp.getValue() === 0) {
-      this.dieSound = this.scene.sound.add('death');
+      
       this.dieSound.play();
 
       this.scene.scene.start('menu');
