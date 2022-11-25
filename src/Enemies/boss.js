@@ -18,6 +18,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
         this.player = player;
         this.body.setCollideWorldBounds();
+
+        this.laughSound = this.scene.sound.add('booLaugh');
     }
 
     preUpdate(t, dt) {
@@ -59,7 +61,6 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
         if (this !== undefined) {
 
-            this.laughSound = this.scene.sound.add('booLaugh');
             this.laughSound.play();
 
             this.stop();
