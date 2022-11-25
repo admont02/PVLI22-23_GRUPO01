@@ -40,6 +40,7 @@ export default class Bottle extends Bullet {
     this.body.setVelocityY(this.speed * this.dirY);
 
     if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroyBottle(); }));
+    else if(this.scene.physics.collide(this.scene.boxLayer, this)) this.destroy();
   }
 
   destroyBottle(){

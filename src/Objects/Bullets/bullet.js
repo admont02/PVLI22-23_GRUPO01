@@ -13,7 +13,7 @@
 
     preUpdate(t, dt) {
       super.preUpdate(t, dt);
-      
+   
       this.bulletAnims();
     }
 
