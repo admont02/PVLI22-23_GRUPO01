@@ -101,8 +101,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.die();
-    this.pruebaRestarBarra();
-
 
     if (!this.isDash) {
       this.animsPlayer();
@@ -191,9 +189,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 */
   movePlayer() {
     //eje Y
-
-
-
     if (!this.isDash) {
       if (this.cursors.down.isDown || this.s.isDown) {
         if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
@@ -235,11 +230,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
   }
-  pruebaRestarBarra() {
-    if (this.p.isDown)
-      this.hp.modify(-10);
-  }
-
   modifyValue(v) {
     this.hp.modify(v);
   }

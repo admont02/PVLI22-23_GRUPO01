@@ -42,13 +42,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.lives = life;
         this.v = lifeValue;
         this.hp = new HealthBar(scene, 10, 10, this.v);
+        this.hp.setScale(0.35);
+
+        this.hp.bar.setScale(0.35);
 
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.hp.bar.setX(this.x - this.width)
-        this.hp.bar.setY(this.y - this.height)
+        this.hp.bar.setX(this.x - this.width/2)
+        this.hp.bar.setY(this.y - this.height*1.2)
 
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);

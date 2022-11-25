@@ -5,18 +5,21 @@ import Enemy from './enemy.js';
 export default class SpeedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 300, imgKey, player, 20, 100);
+    super(scene, x, y, 300, imgKey, player, 20,150);
     
    
     this.speed = 300;
     this.setScale(1);
+    this.hp.setScale(0.7);
+
+    this.hp.bar.setScale(0.7);
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
     this.animSpeedEnemy();
-
+    this.hp.bar.setX(this.x - this.width/4)
   }
 
 //Animaciones del speed Enemy

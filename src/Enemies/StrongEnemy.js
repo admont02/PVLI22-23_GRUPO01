@@ -7,7 +7,9 @@ export default class StrongEnemy extends Enemy {
     super(scene, x, y, 50, imgKey, player, 40, 150);
 
     this.setScale(2);
-    
+    this.hp.setScale(0.75);
+
+    this.hp.bar.setScale(0.75);
     this.play('StrongEnemyWalk', true);
   }
 
