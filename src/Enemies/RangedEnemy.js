@@ -8,6 +8,9 @@ export default class RangedEnemy extends Enemy {
       super(scene, x, y, 200, imgKey, player, 20, 150);
 
     this.setScale(1.5);
+    // this.hp.setScale(0.5);
+
+    // this.hp.bar.setScale(0.5);
     this.playerX = this.player.x;
     this.playerY = this.player.y;
     this.tiempoBala = 4000;
