@@ -4,7 +4,7 @@ export default class HealthBar extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y,initial) {
         super(scene, x, y);
-        this.bar = new Phaser.GameObjects.Graphics(scene).setScrollFactor(0);
+        this.bar = new Phaser.GameObjects.Graphics(scene);
 
         this.x = x;
         this.y = y;
