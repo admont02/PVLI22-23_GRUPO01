@@ -40,8 +40,7 @@ import Bullet from "./bullet.js";
         this.destroyBala();
        // this.player.loseLive(1);
        this.player.modifyValue(-10);
-        //se actualiza texto de vida
-        this.player.updateLivesText(); 
+        
       }
     }
 

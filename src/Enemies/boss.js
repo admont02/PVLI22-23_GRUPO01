@@ -37,7 +37,6 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         //Colision con el jugador
         if (this.scene.physics.overlap(this.player, this)) {
             this.player.modifyValue(-30);
-            this.player.updateLivesText();
             this.changePos();
         }
 

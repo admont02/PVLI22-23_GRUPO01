@@ -21,12 +21,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.dirX = 0;
     this.dirY = 0;
     this.createInput();
-    this.label = this.scene.add.text(10, 10, "").setScrollFactor(0); //factor de desplazamiento del gameObject
-    this.updateLivesText();
+    
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, 10, 10, 150);
+    this.hp = new HealthBar(scene, 56, 20, 150);
     this.hp.bar.setScrollFactor(0)
+    this.scene.add.image(30,30,'cara').setScrollFactor(0).setScale(2)
+
     // this.hp.setScrollFactor(0);
     //this.addChild(this.hp)
 
@@ -95,10 +96,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   changeDashTimer() {
     this.canDash = true;
   }
-  updateLivesText() {
-    this.label.text = 'Lives ' + this.lives;
-  }
-
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.die();
