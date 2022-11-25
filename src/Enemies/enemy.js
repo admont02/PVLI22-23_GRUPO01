@@ -87,7 +87,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         if (this.scene.physics.collide(this.player, this)) {
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.modifyValue(-2);
-            this.player.updateLivesText();
 
             //metodo que haga "rebote" para que no coincidan posiciones
             this.player.choque();
@@ -158,6 +157,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //Muerte de enemigo
     EnemyDie() {
         this.hp.bar.destroy();
+        this.setActive(false)
         this.destroy();
     }
 

@@ -41,7 +41,7 @@ import Bullet from "./bullet.js";
       if(this.scene.physics.overlap(this.player, this))
       {
         this.player.modifyValue(-40);
-        this.player.updateLivesText(); 
+      
           this.destroy();
       }
     }
