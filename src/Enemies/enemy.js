@@ -46,6 +46,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.hp.bar.setScale(0.35);
 
+        this.dieSound = this.scene.sound.add('death');
+        this.damageSound = this.scene.sound.add('loseLive');
+
     }
 
     preUpdate(t, dt) {
@@ -115,17 +118,17 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //Metodo para recibir daño
     takeDamage(damage) {
         if (this.lives > 0) {
-            this.damageSound = this.scene.sound.add('loseLive');
+           
             this.damageSound.play();
 
             //despues de quitarle daño damos feedback
             this.lives -= damage;
-
+            this.hp.modify(-damage);
             //repetir el parpadeo 3 veces
             this.EnemyInvisible();
         }
         else {
-            this.dieSound = this.scene.sound.add('death');
+            
             this.dieSound.play();
 
             this.scene.QuitarEnemyVivo();
@@ -154,7 +157,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
     //Muerte de enemigo
     EnemyDie() {
-        //this.hp.bar.destroy();
+        this.hp.bar.destroy();
         this.destroy();
     }
 
