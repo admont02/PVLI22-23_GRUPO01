@@ -12,7 +12,7 @@ html
   margin-top: 10vh;
   height: 0.5vh;
   width: 80%;
-  background-color: rgb(71, 71, 71);
+  background-color: rgb(244, 45, 188);
 }
 
 .atg
@@ -86,7 +86,7 @@ h1
   padding-top: 1.5%;
   width: 100%;
   text-align : center;
-  color: black;
+  color: rgb(121, 15, 15);
 }
 
 .session
@@ -106,14 +106,14 @@ header
   height: 140px;;
   position:fixed;
   z-index:101;
-  background: #3a3a3a;
-  border-bottom: 8px solid #b9b8b3;
+  background:rgb(147, 65, 110);
+  border-bottom: 4px solid #ffffff;
 }
 
 body
 {
   margin: 0px;
-  background-color: rgb(143, 143, 143);
+  background-color: rgb(42, 34, 62);
   font-weight: 500;
 }
 
@@ -150,7 +150,7 @@ nav li
 
 nav a
 {
-  color:#c4c4c4;
+  color:#ffffff;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 110%;
@@ -158,7 +158,7 @@ nav a
 
 nav a:hover
 {
-  color:#dddddd;
+  color:#ffffff;
 }
 
 nav li::before
@@ -167,7 +167,7 @@ nav li::before
   display: block;
   height: 50%;
   width: 0%;
-  background: linear-gradient(180deg, #3a3a3a  , #616161,  #b9b8b3);
+  background: linear-gradient(180deg, #ffffff , #ffffff,  #b9b8b3);
   position: absolute;
   top:90%;
   transition: all ease-in-out 150ms;
@@ -188,7 +188,7 @@ nav li:hover::before
 canvas
 {
   position: relative;
-  border-color:#c4c4c4;
+  border-color:#ffffff;
   border-width:1vh;
   border-style: solid;
   border-radius: 0px;
