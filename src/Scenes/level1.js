@@ -81,7 +81,11 @@ export default class Level1 extends Phaser.Scene {
     this.gamesong = this.sound.add('juegosong', config);
     this.gamesong.play();
   }
-
+  
+  quitarSonido()
+  {
+    this.gamesong.destroy();
+  }
 
   //Creacion del tilemap
   createTileMap() 

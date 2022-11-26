@@ -266,7 +266,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.hp.getValue() === 0) {
       
       this.dieSound.play();
-
+      this.scene.quitarSonido();
       this.scene.scene.start('menu');
     }
   }

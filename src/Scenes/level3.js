@@ -53,6 +53,11 @@ export default class Level3 extends Phaser.Scene {
     this.gamesong.play();
   }
 
+  quitarSonido()
+  {
+    this.gamesong.destroy();
+  }
+
   update()
   {
   }
