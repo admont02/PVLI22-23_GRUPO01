@@ -23,21 +23,30 @@ export default class Menu extends Phaser.Scene {
 
     //conexion con escena level
       this.playbutton.on("pointerdown", () => {
+        //paramos musica 
+        this.menusong.pause();
+        this.menusong.stop();
           this.scene.start('level1');
       });
 
     //conexion con escena level3
       this.playbutton2.on("pointerdown", () => {
+        //paramos musica 
+        this.menusong.pause();
+        this.menusong.stop();
         this.scene.start('level3');
     });
 
-    //conexion con escena level4
+    //conexion con escena configuracion
       this.playbutton3.on("pointerdown",  () => {
         this.scene.start('configuracion');
       });
 
-    //conexion con escena level4
+    //conexion con escena creditos
     this.playbutton4.on("pointerdown",  () => {
+      //paramos musica 
+      this.menusong.pause();
+      this.menusong.stop();
       this.scene.start('Creditos');
     });
 
