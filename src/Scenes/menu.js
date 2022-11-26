@@ -24,29 +24,31 @@ export default class Menu extends Phaser.Scene {
     //conexion con escena level
       this.playbutton.on("pointerdown", () => {
         //paramos musica 
-        this.menusong.pause();
-        this.menusong.stop();
+        
+          this.menusong.destroy();
           this.scene.start('level1');
       });
 
     //conexion con escena level3
       this.playbutton2.on("pointerdown", () => {
         //paramos musica 
-        this.menusong.pause();
-        this.menusong.stop();
+        
+        this.menusong.destroy();
         this.scene.start('level3');
     });
 
     //conexion con escena configuracion
       this.playbutton3.on("pointerdown",  () => {
+       
+        this.menusong.destroy();
         this.scene.start('configuracion');
       });
 
     //conexion con escena creditos
     this.playbutton4.on("pointerdown",  () => {
       //paramos musica 
-      this.menusong.pause();
-      this.menusong.stop();
+      
+      this.menusong.destroy();
       this.scene.start('Creditos');
     });
 
@@ -63,7 +65,7 @@ export default class Menu extends Phaser.Scene {
       loop: true,
       delay: 0
     };
-    this.menusong = this.sound.add('menusong', config);
+    this.menusong = this.sound.add('menusong');
     this.menusong.play();
   }
 }

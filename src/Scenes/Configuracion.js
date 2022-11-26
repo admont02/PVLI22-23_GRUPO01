@@ -12,8 +12,7 @@ export default class Configuracion extends Phaser.Scene {
 
     //conexion con escena level
       this.playbutton.on("pointerdown", () => {
-          this.menusong.pause();
-          this.menusong.stop();
+          this.menusong.destroy();
           this.scene.start('menu');
       });
   }
