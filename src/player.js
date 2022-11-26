@@ -14,32 +14,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-
+    this.initialSpeed = 300;
     this.speed = 300;
-    this.lives = 3;
-    this.maxLives = 5;
+
     this.dirX = 0;
     this.dirY = 0;
     this.createInput();
-    
+
 
     this.canShoot = true;
     this.hp = new HealthBar(scene, 56, 20, 150);
     this.hp.bar.setScrollFactor(0)
-    this.scene.add.image(30,30,'cara').setScrollFactor(0).setScale(2)
+    this.scene.add.image(30, 30, 'cara').setScrollFactor(0).setScale(2);
+    this.lento = this.scene.add.image(this.x, this.y, 'lento').setScale(2).setVisible(false);
 
-    // this.hp.setScrollFactor(0);
-    //this.addChild(this.hp)
-
-    this.timerDash = 0;
-    this.timerMaxDash = 1000;
+    this.isSlow = false;
     this.enableDashTimer = true;
     this.isDash = false;
     this.canDash = true;
     this.speedDash = 600;
     this.aDown = this.sDown = this.wDown = this.dDown = false;
 
-    this.bottleTime = 0;
+
     this.launched = false;
     this.cryLaunched = false;
     this.dieSound = this.scene.sound.add('death');
@@ -99,7 +95,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.die();
-
+    if (this.isSlow)
+      this.lento.setPosition(this.x, this.y - this.height);
     if (!this.isDash) {
       this.animsPlayer();
       this.movePlayer();
@@ -229,14 +226,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   }
   modifyValue(v) {
-    if(v<0)
-    this.setTint(0xff0000);
+    if (v < 0)
+      this.setTint(0xff0000);
+    else this.setTint(0x00ff00);
     this.scene.time.addEvent({
       delay: 250,
       callback: () => {
-          this.clearTint();
+        this.clearTint();
       }
-  });
+    });
     this.hp.modify(v);
   }
 
@@ -264,10 +262,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   die() {
     if (this.hp.getValue() === 0) {
-      
+
       this.dieSound.play();
       this.scene.quitarSonido();
       this.scene.scene.start('menu');
     }
+  }
+  /**
+* Método que se llama al chocar con StrongEnemy, nos ralentiza durante 5 segundos y aparece un icono
+*/
+  slowDown() {
+    this.speed = this.speed/2;
+    this.isSlow = true;
+    this.lento.setVisible(true);
+    this.scene.time.addEvent({
+      delay: 4000,
+      callback: this.resetDefaultSpeed,
+      callbackScope: this
+    });
+  }
+  /**
+* Método en el que se resetea la velocidad una vez acabado el ralentizamiento del método slowDown
+*/
+  resetDefaultSpeed() {
+    this.speed = this.initialSpeed;
+    this.isSlow = false;
+    this.lento.setVisible(false);
   }
 }

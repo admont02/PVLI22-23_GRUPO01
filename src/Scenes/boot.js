@@ -53,6 +53,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bossBullet', 'balaBoss.png');
     //creditos cargar imagen
     this.load.image('creditos', 'creditos.png');
+    this.load.image('lento',"UI_speedDebuff.png");
 
     //para animaciones de Player
     this.load.setPath('assets/anims/AnimsPlayer');
