@@ -34,6 +34,23 @@ export default class Level3 extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
+    this.sonidoGame();
+
+  }
+
+  sonidoGame()
+  {
+    const config = {
+      mute: false,
+      volume: 1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0
+    };
+    this.gamesong = this.sound.add('juegosong', config);
+    this.gamesong.play();
   }
 
   update()
