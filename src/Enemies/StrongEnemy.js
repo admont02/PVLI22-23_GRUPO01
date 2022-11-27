@@ -8,16 +8,16 @@ export default class StrongEnemy extends Enemy {
 
     this.setScale(2);
     this.hp.setScale(0.75);
-    this.player = player;
+    // this.player = player;
     this.hp.bar.setScale(0.75);
     this.play('StrongEnemyWalk', true);
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    if (this.scene.physics.collide(this.player, this))
-      this.scene.player.slowDown();
   }
-
+  effectToPlayer() {
+    this.player.slowDown();
+  }
 
 }

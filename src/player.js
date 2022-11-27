@@ -147,6 +147,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setVelocityX(0);
     this.enableDashTimer = true;
   }
+  /**
+* Método en el que se realiza el disparo de los biberones
+*/
   shootBottle() {
     if (!this.launched && this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)) {
       this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY);
@@ -225,17 +228,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
   }
+  /**
+* Método en el que el jugador pierde/gana vida
+*/
   modifyValue(v) {
-    if (v < 0)
-      this.setTint(0xff0000);
-    else this.setTint(0x00ff00);
+    if (v < 0) // si pierde vida
+      this.setTint(0xff0000); //feedback rojo
+    else this.setTint(0x00ff00); //si gana vida, feedback verde
     this.scene.time.addEvent({
       delay: 250,
       callback: () => {
-        this.clearTint();
+        this.clearTint(); //quitar color
       }
     });
-    this.hp.modify(v);
+    this.hp.modify(v); //disminuir barra
   }
 
   //hace que durante 1 segundo rebote en diagonal
@@ -259,7 +265,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setVelocityX(this.body.velocity.x);
     this.body.setVelocityY(this.body.velocity.y);
   }
-
+  /**
+ * Método en el que el jugador muere
+ */
   die() {
     if (this.hp.getValue() === 0) {
 
@@ -272,7 +280,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 * Método que se llama al chocar con StrongEnemy, nos ralentiza durante 5 segundos y aparece un icono
 */
   slowDown() {
-    this.speed = this.speed/2;
+    this.speed = this.speed / 2;
     this.isSlow = true;
     this.lento.setVisible(true);
     this.scene.time.addEvent({
