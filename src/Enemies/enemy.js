@@ -53,8 +53,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.hp.bar.setX(this.x - this.width/2)
-        this.hp.bar.setY(this.y - this.height*1.2)
+        this.hp.bar.setX(this.x - this.width / 2)
+        this.hp.bar.setY(this.y - this.height * 1.2)
 
         //movemos enemy a esa posicion con velocidad 100
         this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
@@ -85,11 +85,13 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
         if (this.scene.physics.collide(this.player, this)) {
+            this.effectToPlayer()
             //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
             this.player.modifyValue(-2);
 
             //metodo que haga "rebote" para que no coincidan posiciones
             this.player.choque();
+
         }
     }
 
@@ -117,7 +119,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //Metodo para recibir daño
     takeDamage(damage) {
         if (this.lives > 0) {
-           
+
             this.damageSound.play();
 
             //despues de quitarle daño damos feedback
@@ -127,7 +129,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.EnemyInvisible();
         }
         else {
-            
+
             this.dieSound.play();
 
             this.scene.QuitarEnemyVivo();
@@ -208,6 +210,12 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.posRepeX = this.x;
         this.posRepeY = this.y;
+
+    }
+    /**
+* Método virtual que sobreescriben los enemigos que tienen algún efecto al chocar con el jugador
+*/
+    effectToPlayer() {
 
     }
 
