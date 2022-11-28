@@ -94,6 +94,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
+    if(!this.scene.isScenePlaying()) return;
     this.die();
     if (this.isSlow)
       this.lento.setPosition(this.x, this.y - this.height);
