@@ -37,6 +37,8 @@ export default class RangedEnemy extends Enemy {
     if(this.active)
     new balaRangedEnemy(this.scene, this.x, this.y, this.player.x - this.x, this.player.y - this.y, this.player);
   }
-
+  pauseAnim(){
+    this.play('RangedEnemyDer', false);
+  }
 
 }
