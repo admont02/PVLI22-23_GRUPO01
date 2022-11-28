@@ -123,21 +123,35 @@ export default class Level1 extends Phaser.Scene {
   changeLevel(newlevel) {
     this.scene.start(newlevel)
   }
+  /**
+* Método en el que se crean los diversos elementos de la pausa,
+  además, se definen los eventos pointerdown para cada botón
+*/
   createPause() {
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.resume = this.add.text(this.scale.width / 2 - 70, this.scale.height / 2 - 20, "RESUME").setInteractive().setScrollFactor(0).setVisible(false).setScale(4);
+    //boton de pausa
     this.pause.on("pointerdown", () => {
-      this.pauseEnemies();
+      this.pauseEnemies(false);
       this.playing = false;
       this.physics.pause();
 
     })
+    //boton de resume
+    this.resume.on("pointerdown", () => {
+      this.pauseEnemies(true);
+      this.physics.resume();
+      this.playing = true;
+    })
   }
-  pauseEnemies() {
+  /**
+* Método en el que se pausan/reanudan los elementos de la escena 
+*/
+  pauseEnemies(isAct) {
     for (let i = 0; i < this.enemy.getLength(); i++) {
-      this.enemy.getChildren()[i].setActive(false);
+      this.enemy.getChildren()[i].setActive(isAct);
     }
-    this.resume.setVisible(true);
+    this.resume.setVisible(!isAct);
 
   }
 
