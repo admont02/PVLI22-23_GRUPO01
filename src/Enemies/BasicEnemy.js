@@ -18,7 +18,10 @@ export default class BasicEnemy extends Enemy {
     super.preUpdate(t, dt);
 
   }
-
+  pauseAnim(){
+   //this.play(imgKey,false); 
+   this.setActive(false);    
+  }
 
 
 

@@ -25,6 +25,7 @@ export default class Boot extends Phaser.Scene {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     this.load.image('cara', 'cara.png');
+    this.load.image('pause', 'pause.png');
     this.load.image('platform', 'platform.png');
     this.load.image('base', 'base.png');
     this.load.image('star', 'star.png');
@@ -53,7 +54,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bossBullet', 'balaBoss.png');
     //creditos cargar imagen
     this.load.image('creditos', 'creditos.png');
-    this.load.image('lento',"UI_speedDebuff.png");
+    this.load.image('lento', "UI_speedDebuff.png");
 
     //para animaciones de Player
     this.load.setPath('assets/anims/AnimsPlayer');
@@ -78,7 +79,7 @@ export default class Boot extends Phaser.Scene {
     //EnemyBasicAmarillo , derecha(incluye arriba, abajo) e izquierda
     this.load.spritesheet('basicEnemyAmarilloDerecha', 'BasicEnemyAmarilloDerGen.png', { frameWidth: 24, frameHeight: 18, endFrame: 16 });
 
-    
+
 
     //StrongEnemy
     this.load.setPath('assets/anims/AnimsEnemy/StrongEnemy');
@@ -133,8 +134,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('powerUp', 'powerUp.mp3');
     this.load.audio('smash', 'smash.mp3');
     //musica menu
-    this.load.audio('menusong' ,'creepymenu.mp3' );
-    this.load.audio('juegosong' , 'creepyjuego.mp3' );
+    this.load.audio('menusong', 'creepymenu.mp3');
+    this.load.audio('juegosong', 'creepyjuego.mp3');
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
     var loadingText = this.make.text({

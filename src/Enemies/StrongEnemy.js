@@ -10,6 +10,7 @@ export default class StrongEnemy extends Enemy {
     this.hp.setScale(0.75);
     // this.player = player;
     this.hp.bar.setScale(0.75);
+    
     this.play('StrongEnemyWalk', true);
   }
 
@@ -19,5 +20,7 @@ export default class StrongEnemy extends Enemy {
   effectToPlayer() {
     this.player.slowDown();
   }
-
+  pauseAnim(){
+    this.play('StrongEnemyWalk', false);
+  }
 }

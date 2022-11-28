@@ -53,46 +53,49 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.hp.bar.setX(this.x - this.width / 2)
-        this.hp.bar.setY(this.y - this.height * 1.2)
+        if (this.scene.isScenePlaying()) {
+            this.hp.bar.setX(this.x - this.width / 2)
+            this.hp.bar.setY(this.y - this.height * 1.2)
 
-        //movemos enemy a esa posicion con velocidad 100
-        this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
+            //movemos enemy a esa posicion con velocidad 100
+            this.scene.physics.moveTo(this, this.newPosX, this.newPosY, this.speed);
 
-        //distancia entre antigua posicion y nueva posicion
-        var distance = (this.x - this.newPosX) + (this.y - this.newPosY);
+            //distancia entre antigua posicion y nueva posicion
+            var distance = (this.x - this.newPosX) + (this.y - this.newPosY);
 
-        //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion ,
-        //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
-        if (distance < 30 && distance > -30) {
+            //overlap es para dos objetos con fisica , mietras que la distancia sea entre -30 y 30, hacemos un gran radio de accion ,
+            //tambien ponemos limites en x e y, cuidado estamos pidiendo info de la escena antes de hacerse , asi ponemos sus valores en vez de scene.width y height
+            if (distance < 30 && distance > -30) {
 
-            //llamamos a la funcion para cambiar valores
-            //le asociamos x e y aleatorias
-            this.newPosX = Phaser.Math.Between(this.x - 200, this.x + 200);
-            this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
+                //llamamos a la funcion para cambiar valores
+                //le asociamos x e y aleatorias
+                this.newPosX = Phaser.Math.Between(this.x - 200, this.x + 200);
+                this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
+            }
+
+            //Comprobacion de si esta quieto
+            //Sumamos los frames
+            this.currentRep++;
+            if (this.currentRep == this.repeCount) {
+                this.repeticiones();
+            }
+
+            if (this !== undefined) {
+                this.enemyAnimsFlip();
+            }
+
+            //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
+            if (this.scene.physics.collide(this.player, this)) {
+                this.effectToPlayer()
+                //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
+                this.player.modifyValue(-2);
+
+                //metodo que haga "rebote" para que no coincidan posiciones
+                this.player.choque();
+
+            }
         }
 
-        //Comprobacion de si esta quieto
-        //Sumamos los frames
-        this.currentRep++;
-        if (this.currentRep == this.repeCount) {
-            this.repeticiones();
-        }
-
-        if (this !== undefined) {
-            this.enemyAnimsFlip();
-        }
-
-        //permite que todos lo hijos enemy puedan acceder al if este ya que es parte del update del enemy
-        if (this.scene.physics.collide(this.player, this)) {
-            this.effectToPlayer()
-            //si coincide pos de enemy y jugador pierde vida y lo actualiza por pantalla
-            this.player.modifyValue(-2);
-
-            //metodo que haga "rebote" para que no coincidan posiciones
-            this.player.choque();
-
-        }
     }
 
     //Duplica su velocidad se llama cuando el jugador entra en el area que crea un ojo
@@ -217,6 +220,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 */
     effectToPlayer() {
 
+    }
+    pauseAnim(){
+        this.setActive(false);  
     }
 
 }

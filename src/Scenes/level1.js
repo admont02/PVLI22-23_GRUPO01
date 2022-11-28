@@ -30,7 +30,7 @@ export default class Level1 extends Phaser.Scene {
     const height = this.scale.height;
     const large = width * 10;
     this.createTileMap();
-
+    this.playing = true;
     this.player = new Player(this, 300, 600);
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
@@ -38,15 +38,15 @@ export default class Level1 extends Phaser.Scene {
     this.numEnemigosVivos = 0
 
     this.movingObject1 = new movingObject(this, 500, 500, this.player);
-  
+
     this.enemy = this.add.group();
-    this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player,2));
-    this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player,2));
-    this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player,2));
-    this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player,2));
-    this.enemy.add( new SpeedEnemy(this,400 , 500,'MovimientoGeneralSpeedEnemy' , this.player,2));
-    this.enemy.add(new StrongEnemy(this,400 , 300,'StrongEnemyWalk' , this.player,4));
-    this.enemy.add(new RangedEnemy(this, 600 , 600,'RangedEnemyDer' , this.player,2));
+    this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player, 2));
+    this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player, 2));
+    this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player, 2));
+    this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player, 2));
+    this.enemy.add(new SpeedEnemy(this, 400, 500, 'MovimientoGeneralSpeedEnemy', this.player, 2));
+    this.enemy.add(new StrongEnemy(this, 400, 300, 'StrongEnemyWalk', this.player, 4));
+    this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
 
     //creamos objeto de level enemiesLEFT
     this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
@@ -60,15 +60,18 @@ export default class Level1 extends Phaser.Scene {
     //this.cameras.main.setBounds(0, 0, width, height);
     this.cameras.main.startFollow(this.player);
 
-    new LifePowerUp(this,500,900,this.player);
+    new LifePowerUp(this, 500, 900, this.player);
 
     this.physics.add.collider(this.enemy, this.boxLayer);
 
     this.sonidoGame();
-  }
 
-  sonidoGame()
-  {
+    this.createPause();
+  }
+  isScenePlaying() {
+    return this.playing;
+  }
+  sonidoGame() {
     const config = {
       mute: false,
       volume: 1,
@@ -81,27 +84,24 @@ export default class Level1 extends Phaser.Scene {
     this.gamesong = this.sound.add('juegosong', config);
     this.gamesong.play();
   }
-  
-  quitarSonido()
-  {
+
+  quitarSonido() {
     this.gamesong.destroy();
   }
 
   //Creacion del tilemap
-  createTileMap() 
-  {
+  createTileMap() {
     this.map = this.make.tilemap({
       key: 'mapLevel1',
-      
+
     });
-   // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
-    const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon'); 
+    // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
+    const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
     this.boxLayer = this.map.createLayer('paredes', tileset2);
     this.backgroundLayer = this.map.createLayer('suelo', tileset2);
   }
 
-  update()
-  {
+  update() {
   }
 
   updateLivesEnemy() {
@@ -120,10 +120,25 @@ export default class Level1 extends Phaser.Scene {
     return this.numEnemigosVivos;
   }
 
-  changeLevel(newlevel)
-  {
+  changeLevel(newlevel) {
     this.scene.start(newlevel)
   }
+  createPause() {
+    this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
+    this.resume = this.add.text(this.scale.width / 2 - 70, this.scale.height / 2 - 20, "RESUME").setInteractive().setScrollFactor(0).setVisible(false).setScale(4);
+    this.pause.on("pointerdown", () => {
+      this.pauseEnemies();
+      this.playing = false;
+      this.physics.pause();
 
+    })
+  }
+  pauseEnemies() {
+    for (let i = 0; i < this.enemy.getLength(); i++) {
+      this.enemy.getChildren()[i].setActive(false);
+    }
+    this.resume.setVisible(true);
+
+  }
 
 }
