@@ -12,8 +12,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //Valores para impedir que se quede quieto en una posicion
         this.posRepeX = x;
         this.posRepeY = y;
-        this.repeCount = 60;
-        this.currentRep = 0;
+
+        this.range = 300;
 
         //Puntero
         this.pointer = this.scene.input.activePointer;
@@ -49,6 +49,13 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.dieSound = this.scene.sound.add('death');
         this.damageSound = this.scene.sound.add('loseLive');
 
+        this.timer=this.scene.time.addEvent({
+            delay: 60,
+            callback: this.repeticiones,
+            callbackScope: this,
+            loop: true
+        });
+
     }
 
     preUpdate(t, dt) {
@@ -69,15 +76,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
                 //llamamos a la funcion para cambiar valores
                 //le asociamos x e y aleatorias
-                this.newPosX = Phaser.Math.Between(this.x - 200, this.x + 200);
-                this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
-            }
-
-            //Comprobacion de si esta quieto
-            //Sumamos los frames
-            this.currentRep++;
-            if (this.currentRep == this.repeCount) {
-                this.repeticiones();
+                this.newPosX = Phaser.Math.Between(this.x -  this.range, this.x +  this.range);
+                this.newPosY = Phaser.Math.Between(this.y -  this.range, this.y +  this.range);
             }
 
             if (this !== undefined) {
@@ -204,16 +204,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Metodo para evitar que el enemigo se quede estancado en una posicion
     repeticiones() {
-        this.currentRep = 0;
-
-        if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1) {
-            this.newPosX = Phaser.Math.Between(this.x - 300, this.x + 300);
-            this.newPosY = Phaser.Math.Between(this.y - 300, this.y + 300);
+        if(this.active)
+        {
+            if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1) {
+                this.newPosX = Phaser.Math.Between(this.x -  this.range, this.x +  this.range);
+                this.newPosY = Phaser.Math.Between(this.y -  this.range, this.y +  this.range);
+            }
+            this.posRepeX = this.x;
+            this.posRepeY = this.y;
         }
-
-        this.posRepeX = this.x;
-        this.posRepeY = this.y;
-
     }
     /**
 * Método virtual que sobreescriben los enemigos que tienen algún efecto al chocar con el jugador
