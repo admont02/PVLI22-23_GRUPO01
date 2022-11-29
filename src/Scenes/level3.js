@@ -14,6 +14,7 @@ export default class Level3 extends Phaser.Scene {
     const width = this.scale.width;
     const height = this.scale.height;
     const large = width * 10;
+    this.playing = true;
     this.createTileMap();
 
     this.player = new Player(this, 700, 300);
@@ -37,6 +38,12 @@ export default class Level3 extends Phaser.Scene {
     this.sonidoGame();
 
   }
+
+  
+  isScenePlaying() {
+    return this.playing;
+  }
+  
 
   sonidoGame()
   {

@@ -12,6 +12,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, 'topA');
 
+    this.scene = scene;
+
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.initialSpeed = 300;
@@ -274,7 +276,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
       this.dieSound.play();
       this.scene.quitarSonido();
-      this.scene.scene.start('menu');
+      //this.scene.scene.start('final', 'Has perdido');
+
+      this.scene.scene.start('final', {text : 'Has perdido'});
     }
   }
   /**

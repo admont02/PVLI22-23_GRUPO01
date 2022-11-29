@@ -51,7 +51,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
         //Muerte del jefe
         if (this.scene.NumEnemigos() == 0)
-            this.destroy();
+            this.dieBoss();
 
     }
 
@@ -158,6 +158,21 @@ export default class Boss extends Phaser.GameObjects.Sprite {
             if (this.body.velocity.x >= 0) this.setFlipX(0);
             else this.setFlipX(-1);
         }
+    }
+
+    dieBoss()
+    {
+
+        this.setVisible(false);
+        this.timer = this.scene.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                this.scene.scene.start('final', {text : 'Has ganado'});
+                this.destroy();
+            }
+        });
+
+       
     }
 
 }
