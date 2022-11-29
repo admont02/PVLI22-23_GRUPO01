@@ -3,15 +3,13 @@ import GhostObject from "./GhostObject.js";
 export default class MovingObject extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player) {
-    super(scene, x, y, 'star');
+    super(scene, x, y, 'movinObject');
 
+    this.setScale(0.1);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
 
     this.scene.physics.add.collider(this, player);
-
-    //this.body.setCollideWorldBounds();
-
 
     this.player = player;
     this.pointer = this.scene.input.activePointer;

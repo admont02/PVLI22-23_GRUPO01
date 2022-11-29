@@ -33,6 +33,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cry', 'cry.png');
     this.load.image('eyeOpen', 'eyeOpen.png');
     this.load.image('eyeClose', 'eyeClose.png');
+    this.load.image('doorOpen', 'doorOpen.png');
+    this.load.image('doorClosed', 'doorClosed.png');
     this.load.image('area', 'area.png');
     this.load.image('ranged', 'ranged.png');
     this.load.image('tank', 'tank.png');
@@ -48,6 +50,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bottle', 'bottleBlue.png');
     this.load.image('configuracion', 'Configuracion.png');
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
+    this.load.image('morado', 'morado.jpg');
+    this.load.image('movinObject', 'cojin.png');
+
+
 
     //cargamos imagen de bala enemiga ranged
     this.load.image('balaRanged', 'balaE.png');
@@ -118,14 +124,10 @@ export default class Boot extends Phaser.Scene {
 
     this.load.tilemapTiledJSON('map3', 'level3.json');
 
-
-
     this.load.image('patronesLevel1', 'tilesetForest.png');
     this.load.image('dungeon', 'dungeon_.png');
 
     this.load.image('suelo', 'suelo.png');
-    //  this.load.tilemapTiledJSON('map2', 'level2.json');
-    //  this.load.image('patronesLevel2', 'tilesetbeach.png');
 
     // SONIDOS
     this.load.setPath('assets/sounds');
