@@ -32,7 +32,7 @@ export default class Level3 extends Phaser.Scene {
 
     this.boss = new Boss(this, 300, 300, this.player);
     
-    this.cameras.main.setBounds(0, 0, large, height);
+    //this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
     this.sonidoGame();
@@ -71,15 +71,12 @@ export default class Level3 extends Phaser.Scene {
 
   createTileMap() {
     this.map = this.make.tilemap({
-      key: 'map1',
-      tileWidth: 50,
-      tileHeight: 50
+      key: 'map3',
     });
-    const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
-    const tileset2 = this.map.addTilesetImage('tilesetForest', 'patronesLevel1');
-    this.backgroundLayer = this.map.createLayer('Suelo', tileset1);
-    this.boxLayer = this.map.createLayer('Capa de patrones 1', tileset2);
-
+    
+    const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');
+    this.boxLayer = this.map.createLayer('paredes', tileset2);
+    this.backgroundLayer = this.map.createLayer('suelo', tileset2);
   }
 
   updateLivesEnemy() {
