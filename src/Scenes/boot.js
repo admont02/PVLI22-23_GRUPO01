@@ -140,9 +140,11 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('powerUp', 'powerUp.mp3');
     this.load.audio('smash', 'smash.mp3');
     this.load.audio('dash', 'dash.mp3');
+    this.load.audio('door', 'door.mp3');
     //musica menu
     this.load.audio('menusong', 'creepymenu.mp3');
     this.load.audio('juegosong', 'creepyjuego.mp3');
+
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
     var loadingText = this.make.text({
