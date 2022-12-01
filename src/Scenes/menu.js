@@ -2,12 +2,12 @@ export default class Menu extends Phaser.Scene {
   constructor() {
       super({ key: 'menu' });
 
-      
-      
+
+
   }
-  create() 
+  create()
   {
-    
+
       this.sonidoMenu();
 
       this.image =this.add.image(500, 250, 'fondoMenu');
@@ -15,7 +15,7 @@ export default class Menu extends Phaser.Scene {
       this.playbutton2 = this.add.text(this.scale.width/2 - 60, this.scale.height/2 + 120, "________").setInteractive();
       this.playbutton3 = this.add.text(this.scale.width/2 - 180, this.scale.height/2-40, "____________").setInteractive();
       this.playbutton4 = this.add.text(this.scale.width/2 + 340, this.scale.height/2+175, "______").setInteractive();
-    
+
       this.playbutton.setScale(3);
       this.playbutton2.setScale(3);
       this.playbutton3.setScale(3);
@@ -23,31 +23,31 @@ export default class Menu extends Phaser.Scene {
 
     //conexion con escena level
       this.playbutton.on("pointerdown", () => {
-        //paramos musica 
-        
+        //paramos musica
+
           this.menusong.destroy();
           this.scene.start('level1');
       });
 
     //conexion con escena level3
       this.playbutton2.on("pointerdown", () => {
-        //paramos musica 
-        
+        //paramos musica
+
         this.menusong.destroy();
         this.scene.start('level3');
     });
 
     //conexion con escena configuracion
       this.playbutton3.on("pointerdown",  () => {
-       
+
         this.menusong.destroy();
         this.scene.start('configuracion');
       });
 
     //conexion con escena creditos
     this.playbutton4.on("pointerdown",  () => {
-      //paramos musica 
-      
+      //paramos musica
+
       this.menusong.destroy();
       this.scene.start('Creditos');
     });

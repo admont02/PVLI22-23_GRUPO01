@@ -5,7 +5,7 @@ import Menu from './menu.js';
 import Configuracion from './Configuracion.js'
 import Creditos from './creditos.js'
 import Final from './final.js';
-
+import MiddleScene from './middleScene.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -16,16 +16,16 @@ let config = {
     width:  1000,
     height: 500,
     scale: {
-        // mode: Phaser.Scale.FIT,  
+        // mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Menu, Level1, Level3, Configuracion,Creditos, Final],
-    physics: { 
-        default: 'arcade', 
-        arcade: {  
-            debug: true 
-        } 
+    scene: [Boot, Menu, Level1, MiddleScene, Level3, Configuracion,Creditos, Final],
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true
+        }
     }
 };
 
