@@ -51,7 +51,7 @@ export default class Level1 extends Phaser.Scene {
 
     this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
-    this.door = new Door(this, 300, 400, this.player, 'level3');
+    this.door = new Door(this, 300, 400, this.player, 'middleScene');
 
 
     // this.physics.world.setBounds(0, 0, large, height);
