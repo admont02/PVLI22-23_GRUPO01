@@ -43,6 +43,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.dieSound = this.scene.sound.add('death');
     this.dashSound = this.scene.sound.add('dash');
+    this.loseLiveSound = this.scene.sound.add('loseLive');
   }
 
   /**
@@ -238,9 +239,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   /**
 * Método en el que el jugador pierde/gana vida
 */
-  modifyValue(v) {
-    if (v < 0) // si pierde vida
+  modifyValue(v) { // si pierde vida
+    if (v < 0) {
+      this.loseLiveSound.play();
       this.setTint(0xff0000); //feedback rojo
+    }
     else this.setTint(0x00ff00); //si gana vida, feedback verde
     this.scene.time.addEvent({
       delay: 250,
