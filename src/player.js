@@ -40,7 +40,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.launched = false;
     this.cryLaunched = false;
+
     this.dieSound = this.scene.sound.add('death');
+    this.dashSound = this.scene.sound.add('dash');
   }
 
   /**
@@ -96,7 +98,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    if(!this.scene.isScenePlaying()) return;
+    if (!this.scene.isScenePlaying()) return;
     this.die();
     if (this.isSlow)
       this.lento.setPosition(this.x, this.y - this.height);
@@ -136,6 +138,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     else if (this.sDown) this.body.setVelocityY(this.speedDash);
     else if (this.dDown) this.body.setVelocityX(this.speedDash);
     else this.body.setVelocityX(this.speedDash);
+
+    this.dashSound.play();
 
     this.timer = this.scene.time.addEvent({
       delay: 1000,
@@ -278,7 +282,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.quitarSonido();
       //this.scene.scene.start('final', 'Has perdido');
 
-      this.scene.scene.start('final', {text : 'Has perdido'});
+      this.scene.scene.start('final', { text: 'Has perdido' });
     }
   }
   /**
