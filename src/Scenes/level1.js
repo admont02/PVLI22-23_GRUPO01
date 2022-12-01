@@ -70,7 +70,7 @@ export default class Level1 extends Phaser.Scene {
   isScenePlaying() {
     return this.playing;
   }
-  
+
   sonidoGame() {
     const config = {
       mute: false,
@@ -145,7 +145,7 @@ export default class Level1 extends Phaser.Scene {
     })
   }
   /**
-* Método en el que se pausan/reanudan los elementos de la escena 
+* Método en el que se pausan/reanudan los elementos de la escena
 */
   pauseEnemies(isAct) {
     for (let i = 0; i < this.enemy.getLength(); i++) {
