@@ -26,9 +26,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, 56, 20, 150);
-    this.hp.bar.setScrollFactor(0)
-    this.scene.add.image(30, 30, 'cara').setScrollFactor(0).setScale(2);
     this.lento = this.scene.add.image(this.x, this.y, 'lento').setScale(2).setVisible(false);
 
     this.isSlow = false;
@@ -312,5 +309,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = this.initialSpeed;
     this.isSlow = false;
     this.lento.setVisible(false);
+  }
+
+  createHPBar() {
+    this.hp = new HealthBar(this.scene, 56, 20, 150);
+    this.hp.bar.setScrollFactor(0);
+    this.scene.add.image(30, 30, 'cara').setScrollFactor(0).setScale(2);
   }
 }
