@@ -27,21 +27,23 @@ export default class Level1 extends Phaser.Scene {
 
   //Elementos del nivel 1
   create() {
+    this.createTileMap();
+    this.enemy = this.add.group();
+
+    const width = this.scale.width;
+    const height = this.scale.height;
+    const large = width * 10;
+    this.playing = true;
+
     if (this.mapName === 'mapLevel1') {
-      const width = this.scale.width;
-      const height = this.scale.height;
-      const large = width * 10;
-      this.createTileMap();
-      this.playing = true;
+
       this.player = new Player(this, 300, 600);
-      this.physics.add.collider(this.player, this.boxLayer);
-      this.boxLayer.setCollisionBetween(0, 999);
+     
 
       this.numEnemigosVivos = 0
 
       this.movingObject1 = new movingObject(this, 500, 500, this.player);
 
-      this.enemy = this.add.group();
       this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player, 2));
       this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player, 2));
       //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player, 2));
@@ -60,29 +62,18 @@ export default class Level1 extends Phaser.Scene {
 
       // this.physics.world.setBounds(0, 0, large, height);
       //this.cameras.main.setBounds(0, 0, width, height);
-      this.cameras.main.startFollow(this.player);
 
       new LifePowerUp(this, 500, 900, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
-
-      this.sonidoGame();
-
     }
     else {
-      const width = this.scale.width;
-      const height = this.scale.height;
-      const large = width * 10;
-      this.playing = true;
-      this.createTileMap();
-
+      
       this.player = new Player(this, 700, 300);
-      this.physics.add.collider(this.player, this.boxLayer);
-      this.boxLayer.setCollisionBetween(0, 999);
+      
 
       this.numEnemigosVivos = 4;
 
-      this.enemy = this.add.group();
 
       this.enemy.add(new eyeBoss(this, 100, 100, this.player));
       this.enemy.add(new eyeBoss(this, 200, 100, this.player));
@@ -92,12 +83,15 @@ export default class Level1 extends Phaser.Scene {
       this.boss = new Boss(this, 300, 300, this.player);
 
       //this.cameras.main.setBounds(0, 0, large, height);
-      this.cameras.main.startFollow(this.player);
 
-      this.sonidoGame();
+    
     }
-
+    this.physics.add.collider(this.player, this.boxLayer);
+    this.boxLayer.setCollisionBetween(0, 999);
+    this.cameras.main.startFollow(this.player);
     this.createPause();
+    this.sonidoGame();
+
   }
 
   isScenePlaying() {
@@ -130,7 +124,6 @@ export default class Level1 extends Phaser.Scene {
     });
     // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
     if (this.mapName === 'mapLevel1') {
-
 
       const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
       this.boxLayer = this.map.createLayer('paredes', tileset2);
