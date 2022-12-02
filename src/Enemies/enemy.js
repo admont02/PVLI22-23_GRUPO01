@@ -12,8 +12,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //Valores para impedir que se quede quieto en una posicion
         this.posRepeX = x;
         this.posRepeY = y;
-
-        this.range = 300;
+        this.repeCount = 60;
+        this.currentRep = 0;
 
         //Puntero
         this.pointer = this.scene.input.activePointer;
@@ -38,7 +38,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         this.player = player;
-
+        this.enemyFactorDamage=0;
         this.lives = life;
         this.v = lifeValue;
         this.hp = new HealthBar(scene, 10, 10, this.v);
@@ -48,13 +48,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.dieSound = this.scene.sound.add('death');
         this.damageSound = this.scene.sound.add('loseLive');
-
-        this.timer=this.scene.time.addEvent({
-            delay: 60,
-            callback: this.repeticiones,
-            callbackScope: this,
-            loop: true
-        });
 
     }
 
@@ -76,8 +69,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
                 //llamamos a la funcion para cambiar valores
                 //le asociamos x e y aleatorias
-                this.newPosX = Phaser.Math.Between(this.x -  this.range, this.x +  this.range);
-                this.newPosY = Phaser.Math.Between(this.y -  this.range, this.y +  this.range);
+                this.newPosX = Phaser.Math.Between(this.x - 200, this.x + 200);
+                this.newPosY = Phaser.Math.Between(this.y - 200, this.y + 200);
+            }
+
+            //Comprobacion de si esta quieto
+            //Sumamos los frames
+            this.currentRep++;
+            if (this.currentRep == this.repeCount) {
+                this.repeticiones();
             }
 
             if (this !== undefined) {
@@ -127,7 +127,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
             //despues de quitarle daño damos feedback
             this.lives -= damage;
-            this.hp.modify(-damage);
+            this.hp.modify(-damage*this.enemyFactorDamage);
             //repetir el parpadeo 3 veces
             this.EnemyInvisible();
         }
@@ -204,15 +204,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Metodo para evitar que el enemigo se quede estancado en una posicion
     repeticiones() {
-        if(this.active)
-        {
-            if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1) {
-                this.newPosX = Phaser.Math.Between(this.x -  this.range, this.x +  this.range);
-                this.newPosY = Phaser.Math.Between(this.y -  this.range, this.y +  this.range);
-            }
-            this.posRepeX = this.x;
-            this.posRepeY = this.y;
+        this.currentRep = 0;
+
+        if (Math.abs(this.posRepeX - this.x) < 1 && Math.abs(this.posRepeY - this.y) < 1) {
+            this.newPosX = Phaser.Math.Between(this.x - 300, this.x + 300);
+            this.newPosY = Phaser.Math.Between(this.y - 300, this.y + 300);
         }
+
+        this.posRepeX = this.x;
+        this.posRepeY = this.y;
+
     }
     /**
 * Método virtual que sobreescriben los enemigos que tienen algún efecto al chocar con el jugador
@@ -220,8 +221,4 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     effectToPlayer() {
 
     }
-    pauseAnim(){
-        this.setActive(false);  
-    }
-
 }
