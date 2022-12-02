@@ -13,6 +13,8 @@ import LifePowerUp from '../Objects/lifePowerUp.js';
 import eye from '../Objects/eye.js';
 //Puerta final de nivel
 import Door from '../Objects/door.js';
+import eyeBoss from '../Objects/eyeBoss.js';
+import Boss from '../Enemies/boss.js';
 
 //Escena del nivel 1
 export default class Level1 extends Phaser.Scene {
@@ -25,46 +27,75 @@ export default class Level1 extends Phaser.Scene {
 
   //Elementos del nivel 1
   create() {
+    if (this.mapName === 'mapLevel1') {
+      const width = this.scale.width;
+      const height = this.scale.height;
+      const large = width * 10;
+      this.createTileMap();
+      this.playing = true;
+      this.player = new Player(this, 300, 600);
+      this.physics.add.collider(this.player, this.boxLayer);
+      this.boxLayer.setCollisionBetween(0, 999);
 
-    const width = this.scale.width;
-    const height = this.scale.height;
-    const large = width * 10;
-    this.createTileMap();
-    this.playing = true;
-    this.player = new Player(this, 300, 600);
-    this.physics.add.collider(this.player, this.boxLayer);
-    this.boxLayer.setCollisionBetween(0, 999);
+      this.numEnemigosVivos = 0
 
-    this.numEnemigosVivos = 0
+      this.movingObject1 = new movingObject(this, 500, 500, this.player);
 
-    this.movingObject1 = new movingObject(this, 500, 500, this.player);
+      this.enemy = this.add.group();
+      this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player, 2));
+      this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player, 2));
+      //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player, 2));
+      //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player, 2));
+      //this.enemy.add(new SpeedEnemy(this, 400, 500, 'MovimientoGeneralSpeedEnemy', this.player, 2));
+      //this.enemy.add(new StrongEnemy(this, 400, 300, 'StrongEnemyWalk', this.player, 4));
+      //this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
 
-    this.enemy = this.add.group();
-    this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player, 2));
-    this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player, 2));
-    //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player, 2));
-    //this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player, 2));
-    //this.enemy.add(new SpeedEnemy(this, 400, 500, 'MovimientoGeneralSpeedEnemy', this.player, 2));
-    //this.enemy.add(new StrongEnemy(this, 400, 300, 'StrongEnemyWalk', this.player, 4));
-    //this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
+      //creamos objeto de level enemiesLEFT
+      this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
-    //creamos objeto de level enemiesLEFT
-    this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+      this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
-    this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
-
-    this.door = new Door(this, 300, 400, this.player, 'middleScene');
+      this.door = new Door(this, 300, 400, this.player, 'middleScene');
 
 
-    // this.physics.world.setBounds(0, 0, large, height);
-    //this.cameras.main.setBounds(0, 0, width, height);
-    this.cameras.main.startFollow(this.player);
+      // this.physics.world.setBounds(0, 0, large, height);
+      //this.cameras.main.setBounds(0, 0, width, height);
+      this.cameras.main.startFollow(this.player);
 
-    new LifePowerUp(this, 500, 900, this.player);
+      new LifePowerUp(this, 500, 900, this.player);
 
-    this.physics.add.collider(this.enemy, this.boxLayer);
+      this.physics.add.collider(this.enemy, this.boxLayer);
 
-    this.sonidoGame();
+      this.sonidoGame();
+
+    }
+    else {
+      const width = this.scale.width;
+      const height = this.scale.height;
+      const large = width * 10;
+      this.playing = true;
+      this.createTileMap();
+
+      this.player = new Player(this, 700, 300);
+      this.physics.add.collider(this.player, this.boxLayer);
+      this.boxLayer.setCollisionBetween(0, 999);
+
+      this.numEnemigosVivos = 4;
+
+      this.enemy = this.add.group();
+
+      this.enemy.add(new eyeBoss(this, 100, 100, this.player));
+      this.enemy.add(new eyeBoss(this, 200, 100, this.player));
+      this.enemy.add(new eyeBoss(this, 300, 100, this.player));
+      this.enemy.add(new eyeBoss(this, 400, 100, this.player));
+
+      this.boss = new Boss(this, 300, 300, this.player);
+
+      //this.cameras.main.setBounds(0, 0, large, height);
+      this.cameras.main.startFollow(this.player);
+
+      this.sonidoGame();
+    }
 
     this.createPause();
   }
@@ -98,9 +129,18 @@ export default class Level1 extends Phaser.Scene {
 
     });
     // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
-    const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
-    this.boxLayer = this.map.createLayer('paredes', tileset2);
-    this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    if (this.mapName === 'mapLevel1') {
+
+
+      const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
+      this.boxLayer = this.map.createLayer('paredes', tileset2);
+      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    }
+    else {
+      const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');
+      this.boxLayer = this.map.createLayer('paredes', tileset2);
+      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    }
   }
 
   update() {
