@@ -29,12 +29,13 @@ export default class Level1 extends Phaser.Scene {
   create() {
     this.createTileMap();
     this.enemy = this.add.group();
-
+    console.log(this.mapName);
     const width = this.scale.width;
     const height = this.scale.height;
     const large = width * 10;
     this.playing = true;
-
+    
+    //map1
     if (this.mapName === 'mapLevel1') {
 
       this.player = new Player(this, 300, 600,false);
@@ -57,7 +58,8 @@ export default class Level1 extends Phaser.Scene {
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
-      this.door = new Door(this, 300, 400, this.player, 'middleScene');
+      //envias parametro de a que escena quieres ir y que nivel te has pasado
+      this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
 
 
       // this.physics.world.setBounds(0, 0, large, height);
@@ -67,6 +69,42 @@ export default class Level1 extends Phaser.Scene {
 
       this.physics.add.collider(this.enemy, this.boxLayer);
     }
+
+    //map2
+    else if (this.mapName === 'map2') {
+
+      this.player = new Player(this, 600, 1200,false);
+     
+      
+      this.numEnemigosVivos = 0;
+
+      this.movingObject1 = new movingObject(this, 1000, 1200, this.player);
+
+      this.enemy.add(new BasicEnemy(this, 1200, 1200, 'basicEnemyVerdeDerecha', this.player, 2));
+      this.enemy.add(new BasicEnemy(this, 1400, 1200, 'basicEnemyRojoDerecha', this.player, 2));
+      this.enemy.add(new BasicEnemy(this, 1400, 1500, 'basicEnemyAmarilloDerecha', this.player, 2));
+      this.enemy.add(new BasicEnemy(this, 1400, 1600, 'basicEnemyAzulDerecha', this.player, 2));
+      this.enemy.add(new SpeedEnemy(this,  1400, 1800, 'MovimientoGeneralSpeedEnemy', this.player, 2));
+      this.enemy.add(new StrongEnemy(this,  1600, 2000, 'StrongEnemyWalk', this.player, 4));
+      this.enemy.add(new RangedEnemy(this,  1800, 2200, 'RangedEnemyDer', this.player, 2));
+
+      // //creamos objeto de level enemiesLEFT
+      // this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+
+      this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
+
+      this.door = new Door(this,600, 1300, this.player, 'middleScene','map2');
+
+
+      // this.physics.world.setBounds(0, 0, large, height);
+      //this.cameras.main.setBounds(0, 0, width, height);
+
+      new LifePowerUp(this, 500, 900, this.player);
+
+      this.physics.add.collider(this.enemy, this.boxLayer);
+    }
+
+    //map3
     else {
       
       this.player = new Player(this, 700, 300,true);
@@ -134,6 +172,12 @@ export default class Level1 extends Phaser.Scene {
       this.boxLayer = this.map.createLayer('paredes', tileset2);
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     }
+    else if(this.mapName==='map2')
+    {
+      const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
+      this.boxLayer = this.map.createLayer('paredes', tileset2);
+      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    }
     else{
       const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
       this.boxLayer = this.map.createLayer('paredes', tileset2);
@@ -165,8 +209,9 @@ export default class Level1 extends Phaser.Scene {
     return this.numEnemigosVivos;
   }
 
-  changeLevel(newlevel) {
-    this.scene.start(newlevel);
+  changeLevel(newlevel,dataMap) {
+    //pasamos de escena y cambiamos su dataMap
+    this.scene.start(newlevel ,{mapName:dataMap} );   
   }
   /**
 * Método en el que se crean los diversos elementos de la pausa,
