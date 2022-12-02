@@ -9,10 +9,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   /**
    * Constructor del jugador
    */
-  constructor(scene, x, y) {
+  constructor(scene, x, y,available) {
     super(scene, x, y, 'topA');
 
     this.scene = scene;
+    this.dashAvailable=available;
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
@@ -112,7 +113,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.shootBottle();
 
     if (this.enableDashTimer) this.dashTimer();
-    if (this.f.isDown && this.canDash) {
+    if (this.f.isDown && this.canDash && this.dashAvailable) {
       this.startDash();
     }
   }

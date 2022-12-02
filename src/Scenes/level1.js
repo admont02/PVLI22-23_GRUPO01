@@ -37,7 +37,7 @@ export default class Level1 extends Phaser.Scene {
 
     if (this.mapName === 'mapLevel1') {
 
-      this.player = new Player(this, 300, 600);
+      this.player = new Player(this, 300, 600,false);
      
 
       this.numEnemigosVivos = 0
@@ -69,7 +69,7 @@ export default class Level1 extends Phaser.Scene {
     }
     else {
       
-      this.player = new Player(this, 700, 300);
+      this.player = new Player(this, 700, 300,true);
       
 
       this.numEnemigosVivos = 4;
