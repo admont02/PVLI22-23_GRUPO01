@@ -37,7 +37,8 @@ export default class Level1 extends Phaser.Scene {
 
     if (this.mapName === 'mapLevel1') {
 
-      this.player = new Player(this, 300, 600, false);
+      this.player = new Player(this, 300, 600,false);
+     
 
       this.numEnemigosVivos = 0;
 
@@ -52,7 +53,7 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
 
       //creamos objeto de level enemiesLEFT
-      //this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+      this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
@@ -67,9 +68,9 @@ export default class Level1 extends Phaser.Scene {
       this.physics.add.collider(this.enemy, this.boxLayer);
     }
     else {
-
-      this.player = new Player(this, 700, 300, true);
-
+      
+      this.player = new Player(this, 700, 300,true);
+      
 
       this.numEnemigosVivos = 4;
 
@@ -82,6 +83,8 @@ export default class Level1 extends Phaser.Scene {
       this.boss = new Boss(this, 300, 300, this.player);
 
       //this.cameras.main.setBounds(0, 0, large, height);
+
+    
     }
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
@@ -89,7 +92,6 @@ export default class Level1 extends Phaser.Scene {
     this.createPause();
     this.sonidoGame();
 
-    this.player.createHPBar();
   }
 
   isScenePlaying() {
@@ -127,12 +129,12 @@ export default class Level1 extends Phaser.Scene {
     //   this.boxLayer = this.map.createLayer('paredes', tileset2);
     //   this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     // }
-    if (this.mapName === 'map3') {
+     if(this.mapName==='map3'){
       const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');//la barra _
       this.boxLayer = this.map.createLayer('paredes', tileset2);
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     }
-    else {
+    else{
       const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
       this.boxLayer = this.map.createLayer('paredes', tileset2);
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
