@@ -1,6 +1,7 @@
 import Player from '../player.js';
 import Boss from '../Enemies/boss.js';
 import eyeBoss from '../Objects/eyeBoss.js';
+import Level1 from './level1.js';
 
 //Escena del nivel 3
 export default class Level3 extends Phaser.Scene {
@@ -38,7 +39,9 @@ export default class Level3 extends Phaser.Scene {
     this.sonidoGame();
 
   }
-
+  init(data) {
+    this.mapName = data.mapName;
+  }
   
   isScenePlaying() {
     return this.playing;
@@ -71,7 +74,7 @@ export default class Level3 extends Phaser.Scene {
 
   createTileMap() {
     this.map = this.make.tilemap({
-      key: 'map3',
+      key: this.mapName,
     });
     
     const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');

@@ -19,7 +19,9 @@ export default class Level1 extends Phaser.Scene {
   constructor() {
     super({ key: 'level1' });
   }
-
+  init(data) {
+    this.mapName = data.mapName;
+  }
 
   //Elementos del nivel 1
   create() {
@@ -92,7 +94,7 @@ export default class Level1 extends Phaser.Scene {
   //Creacion del tilemap
   createTileMap() {
     this.map = this.make.tilemap({
-      key: 'mapLevel1',
+      key: this.mapName,
 
     });
     // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
@@ -121,7 +123,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   changeLevel(newlevel) {
-    this.scene.start(newlevel)
+    this.scene.start(newlevel);
   }
   /**
 * Método en el que se crean los diversos elementos de la pausa,

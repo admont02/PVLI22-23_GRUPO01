@@ -15,7 +15,7 @@ export default class MiddleScene extends Phaser.Scene {
         this.playButton = this.add.text(this.scale.width / 2 - 150, this.scale.height / 2 + 100, 'Next level').setInteractive();
         this.playButton.setScale(3);
         this.playButton.on("pointerdown", () => {
-            this.scene.start('level3');
+            this.scene.start('level3','map3');
         });
     }
 }
