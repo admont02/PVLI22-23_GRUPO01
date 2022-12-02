@@ -292,14 +292,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
 * Método que se llama al chocar con StrongEnemy, nos ralentiza durante 5 segundos y aparece un icono
 */
   slowDown() {
-    this.speed = this.speed / 2;
-    this.isSlow = true;
-    this.lento.setVisible(true);
-    this.scene.time.addEvent({
-      delay: 4000,
-      callback: this.resetDefaultSpeed,
-      callbackScope: this
-    });
+    if (!this.isSlow) {
+      this.speed = this.speed / 2;
+      this.isSlow = true;
+      this.lento.setVisible(true);
+      this.scene.time.addEvent({
+        delay: 4000,
+        callback: this.resetDefaultSpeed,
+        callbackScope: this
+      });
+    }
+
   }
   /**
 * Método en el que se resetea la velocidad una vez acabado el ralentizamiento del método slowDown

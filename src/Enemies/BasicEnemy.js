@@ -8,6 +8,7 @@ export default class BasicEnemy extends Enemy {
     super(scene, x, y, 100, imgKey, player, 20, 150);
     this.setScale(1.5);
     // this.hp.setScale(0.35);
+    this.enemyFactorDamage=5;
 
     // this.hp.bar.setScale(0.35);
     //imgKey indica desde level el BasicEnemy que queremos

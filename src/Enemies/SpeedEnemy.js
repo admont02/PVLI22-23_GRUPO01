@@ -5,8 +5,9 @@ import Enemy from './enemy.js';
 export default class SpeedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 300, imgKey, player, 20,150);
+    super(scene, x, y, 300, imgKey, player, 30,150);
     
+    this.enemyFactorDamage=3.75;
    
     this.speed = 300;
     this.setScale(1);

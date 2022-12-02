@@ -9,6 +9,7 @@ export default class RangedEnemy extends Enemy {
 
     this.setScale(1.5);
     // this.hp.setScale(0.5);
+    this.enemyFactorDamage = 5;
 
     // this.hp.bar.setScale(0.5);
     this.playerX = this.player.x;
@@ -16,7 +17,7 @@ export default class RangedEnemy extends Enemy {
 
     this.play('RangedEnemyDer', true);
     //Las balas se disparan cada cuatro segundos
-    this.timer=this.scene.time.addEvent({
+    this.timer = this.scene.time.addEvent({
       delay: 4000,
       callback: this.enemyShoot,
       callbackScope: this,
@@ -36,10 +37,10 @@ export default class RangedEnemy extends Enemy {
     this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.player.x, this.player.y);
 
     //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
-    if(this.active)
-    new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle);
+    if (this.active)
+      new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle);
   }
-  pauseAnim(){
+  pauseAnim() {
     this.play('RangedEnemyDer', false);
   }
 
