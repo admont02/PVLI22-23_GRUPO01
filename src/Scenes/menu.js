@@ -14,11 +14,15 @@ export default class Menu extends Phaser.Scene {
     this.playbutton2 = this.add.text(this.scale.width / 2 - 60, this.scale.height / 2 + 120, "________").setInteractive();
     this.playbutton3 = this.add.text(this.scale.width / 2 - 180, this.scale.height / 2 - 40, "____________").setInteractive();
     this.playbutton4 = this.add.text(this.scale.width / 2 + 340, this.scale.height / 2 + 175, "______").setInteractive();
+    this.playbutton5 = this.add.text(this.scale.width / 2 + 390, this.scale.height / 2 + 175, "PENE2").setInteractive();
+
 
     this.playbutton.setScale(3);
     this.playbutton2.setScale(3);
     this.playbutton3.setScale(3);
     this.playbutton4.setScale(3);
+    this.playbutton5.setScale(3);
+
 
     //conexion con escena level
     this.playbutton.on("pointerdown", () => {
@@ -33,7 +37,8 @@ export default class Menu extends Phaser.Scene {
       //paramos musica
 
       this.menusong.destroy();
-      this.scene.start('level1',{ mapName: 'map3' });
+      //this.scene.start('level1',{ mapName: 'map3' }); ESTO ES LO CORRECTO
+      this.scene.start('level1',{ mapName: 'map3' })
     });
 
     //conexion con escena configuracion
@@ -51,6 +56,14 @@ export default class Menu extends Phaser.Scene {
       this.scene.start('Creditos');
     });
 
+    //level2
+    this.playbutton5.on("pointerdown", () => {
+      //paramos musica
+
+      this.menusong.destroy();
+      //this.scene.start('level1',{ mapName: 'map3' }); ESTO ES LO CORRECTO
+      this.scene.start('level1',{ mapName: 'map2' })
+    });
   }
 
   sonidoMenu() {

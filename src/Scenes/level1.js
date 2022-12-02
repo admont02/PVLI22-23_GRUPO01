@@ -40,7 +40,7 @@ export default class Level1 extends Phaser.Scene {
       this.player = new Player(this, 300, 600,false);
      
 
-      this.numEnemigosVivos = 0
+      this.numEnemigosVivos = 0;
 
       this.movingObject1 = new movingObject(this, 500, 500, this.player);
 
@@ -123,17 +123,27 @@ export default class Level1 extends Phaser.Scene {
 
     });
     // const tileset1=this.map.addTilesetImage('suelo', 'suelo');;
-    if (this.mapName === 'mapLevel1') {
+    // if (this.mapName === 'mapLevel1') {
 
+    //   const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
+    //   this.boxLayer = this.map.createLayer('paredes', tileset2);
+    //   this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    // }
+     if(this.mapName==='map3'){
+      const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');//la barra _
+      this.boxLayer = this.map.createLayer('paredes', tileset2);
+      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    }
+    else{
       const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
       this.boxLayer = this.map.createLayer('paredes', tileset2);
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     }
-    else {
-      const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');
-      this.boxLayer = this.map.createLayer('paredes', tileset2);
-      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
-    }
+    // else {
+    //   const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');//la barra _
+    //   this.boxLayer = this.map.createLayer('paredes', tileset2);
+    //   this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+    // }
   }
 
   update() {
