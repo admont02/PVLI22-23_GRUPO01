@@ -52,6 +52,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
     this.load.image('morado', 'morado.jpg');
     this.load.image('movinObject', 'cojin.png');
+    //cargamos powerUps
+
+    //velocidad
+    this.load.image('fast', 'fastt.png');
+
+     //animaciones de damage
+     this.load.setPath('assets/sprites');
+     this.load.spritesheet('damage', 'dañooo.png', { frameWidth: 310, frameHeight: 225, endFrame: 3 });
 
 
 
@@ -69,6 +77,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('rightA', 'anim3.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('idle', 'anim4.png', { frameWidth: 34, frameHeight: 50, endFrame: 1 });
 
+   
 
     //para animaciones de enemy
     //EnemyBasic
@@ -348,6 +357,14 @@ export default class Boot extends Phaser.Scene {
     this.anims.create({
       key: 'waitBoss',
       frames: this.anims.generateFrameNumbers('waitBoss', { start: 0, end: 1 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    //animaciones powerUps
+    this.anims.create({
+      key: 'damage',
+      frames: this.anims.generateFrameNumbers('damage', { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
     });
