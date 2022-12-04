@@ -8,13 +8,14 @@ import RangedEnemy from '../Enemies/RangedEnemy.js';
 import SpeedEnemy from '../Enemies/SpeedEnemy.js';
 import StrongEnemy from '../Enemies/StrongEnemy.js';
 //PowerUp vida
-import LifePowerUp from '../Objects/lifePowerUp.js';
+import LifePowerUp from '../PowerUps/lifePowerUp.js';
 //Eye
 import eye from '../Objects/eye.js';
 //Puerta final de nivel
 import Door from '../Objects/door.js';
 import eyeBoss from '../Objects/eyeBoss.js';
 import Boss from '../Enemies/boss.js';
+import damagePowerUp from '../PowerUps/damagePowerUp.js';
 
 //Escena del nivel 1
 export default class Level1 extends Phaser.Scene {
@@ -65,7 +66,11 @@ export default class Level1 extends Phaser.Scene {
       // this.physics.world.setBounds(0, 0, large, height);
       //this.cameras.main.setBounds(0, 0, width, height);
 
+      //lifepowerUp
       new LifePowerUp(this, 500, 900, this.player);
+
+      //damagepowerUp
+      new damagePowerUp(this,700, 900,this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
     }
