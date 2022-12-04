@@ -322,4 +322,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
   {
     this.damageBottle = damages;
   }
+
+  speedChange(speedynew)
+  {
+    this.speed = speedynew;
+  }
 }
