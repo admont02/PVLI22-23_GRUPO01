@@ -164,6 +164,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   shootBottle() {
     if (!this.launched && this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)) {
       this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY,this.damageBottle);
+      console.log(this.damageBottle);
       this.bottleTimer();
     }
   }
@@ -320,6 +321,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
   DamageChange( damages)
   {
     this.damageBottle = damages;
-    console.log( this.damageBottle);
   }
 }

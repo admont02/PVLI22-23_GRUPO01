@@ -20,14 +20,18 @@ export default class damagePowerUp extends Phaser.GameObjects.Sprite {
         if (this.scene.physics.overlap(this, this.player)) {
             //lo hacemos invisible
             this.setVisible(false);
-            this.player.DamageChange(20);
-             //aumentamos daño que hace el jugador en clase bottle durante 5 segundos
+            this.player.DamageChange(100);
+             //aumentamos daño que hace el jugador en clase bottle durante 10 segundos
              this.timer = this.scene.time.addEvent({
-                delay: 5000,
+                delay: 10000,
+                 //ponemos otra vez daño normal en clase bottle
+                callback: () => {
+                    this.player.DamageChange(10);
+                }
               });
 
-            //ponemos otra vez daño normal en clase bottle
-            this.player.DamageChange(30)
+           
+           
             //desactivamos
             this.setActive(false);
             //destruimos

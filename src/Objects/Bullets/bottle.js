@@ -6,7 +6,7 @@ import Bullet from "./bullet.js";
  */
 export default class Bottle extends Bullet {
 
-  constructor(scene, x, y, dirX, dirY,damage) {
+  constructor(scene, x, y, dirX, dirY,damageBottle) {
     //en el super pasas el nombre del sprite bottle
     super(scene, x, y, 'bottle');
 
@@ -20,7 +20,7 @@ export default class Bottle extends Bullet {
     this.setFlipY(dirY < 0);
     this.setAngle(90 * dirY);
 
-    this.damage = damage;
+    this.damageBottle = damageBottle;
 
     this.timer = this.scene.time.addEvent({
       delay: 1000,
@@ -39,7 +39,7 @@ export default class Bottle extends Bullet {
     this.body.setVelocityX(this.speed * this.dirX);
     this.body.setVelocityY(this.speed * this.dirY);
 
-    if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damage); o2.destroyBottle(); }));
+    if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damageBottle); o2.destroyBottle(); }));
     else if(this.scene.physics.collide(this.scene.boxLayer, this)) this.destroy();
   }
 
@@ -54,9 +54,5 @@ export default class Bottle extends Bullet {
     this.destroy();
   }
 
-  //cambia el daño que hace el bottle
-  DamageChange( damages)
-  {
-    this.damage = damages;
-  }
+  
 }
