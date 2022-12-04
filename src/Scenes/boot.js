@@ -54,12 +54,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('movinObject', 'cojin.png');
     //cargamos powerUps
 
-    //velocidad
-    this.load.image('fast', 'fastt.png');
+    
 
      //animaciones de damage
      this.load.setPath('assets/sprites');
      this.load.spritesheet('damage', 'dañooo.png', { frameWidth: 310, frameHeight: 225, endFrame: 3 });
+    //velocidad
+    this.load.spritesheet('speedyPower', 'speedd.png', { frameWidth: 120, frameHeight: 60, endFrame: 9 });
 
 
 
@@ -366,6 +367,13 @@ export default class Boot extends Phaser.Scene {
       key: 'damage',
       frames: this.anims.generateFrameNumbers('damage', { start: 0, end: 3 }),
       frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'speedyPower',
+      frames: this.anims.generateFrameNumbers('speedyPower', { start: 0, end: 9 }),
+      frameRate: 8,
       repeat: -1
     });
 
