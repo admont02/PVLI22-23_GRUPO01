@@ -7,10 +7,14 @@ export default class LifePowerUp extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, player) {
         super(scene, x, y, 'heart');
 
-        this.setScale(0.1);
+        this.setScale(0.05);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
-        this.player = player;
+
+        this.player = player; 
+       
+
+       
     }
 
     preUpdate(t, dt) {

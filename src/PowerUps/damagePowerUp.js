@@ -8,10 +8,14 @@ export default class damagePowerUp extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'damage');
 
         this.play('damage', true);
-        this.setScale(0.35);
+        this.setScale(0.15);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
         this.player = player;
+
+        
+       
+
     }
 
     preUpdate(t, dt) {

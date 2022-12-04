@@ -17,6 +17,8 @@ import eye from '../Objects/eye.js';
 import Door from '../Objects/door.js';
 import eyeBoss from '../Objects/eyeBoss.js';
 import Boss from '../Enemies/boss.js';
+//cofres
+import cofre from '../Objects/cofre.js';
 
 
 //Escena del nivel 1
@@ -68,14 +70,23 @@ export default class Level1 extends Phaser.Scene {
       // this.physics.world.setBounds(0, 0, large, height);
       //this.cameras.main.setBounds(0, 0, width, height);
 
-      //lifepowerUp
-      new LifePowerUp(this, 500, 900, this.player);
+      // lifepowerUp
+      // new LifePowerUp(this, 500, 900, this.player);
 
-      //damagepowerUp
-      new damagePowerUp(this,700, 900,this.player);
+      // //damagepowerUp
+      // new damagePowerUp(this,700, 900,this.player);
 
-      //speedpowerUp
-       new speedPowerUp(this, 900, 900, this.player);
+      // //speedpowerUp
+      // new speedPowerUp(this, 900, 900, this.player);
+
+      //cofre
+      new cofre(this, 1400, 1300, this.player);
+
+      //cofre
+      new cofre(this, 1600, 1300, this.player);
+
+      //cofre
+      new cofre(this, 1800, 1300, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
     }

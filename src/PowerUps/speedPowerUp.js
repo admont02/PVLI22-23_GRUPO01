@@ -7,10 +7,13 @@ export default class speedPowerUp extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, player) {
         super(scene, x, y, 'speedyPower');
 
-        this.setScale(0.7);
+        //con 2 argumentos cambias x e y
+        this.setScale(0.6 , 0.6);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
         this.player = player;
+
+        
         this.play('speedyPower', true);
     }
 

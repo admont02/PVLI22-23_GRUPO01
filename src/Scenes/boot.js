@@ -52,16 +52,20 @@ export default class Boot extends Phaser.Scene {
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
     this.load.image('morado', 'morado.jpg');
     this.load.image('movinObject', 'cojin.png');
+   
     //cargamos powerUps
-
-    
-
      //animaciones de damage
      this.load.setPath('assets/sprites');
      this.load.spritesheet('damage', 'dañooo.png', { frameWidth: 310, frameHeight: 225, endFrame: 3 });
     //velocidad
     this.load.spritesheet('speedyPower', 'speedd.png', { frameWidth: 120, frameHeight: 60, endFrame: 9 });
 
+    //imagen cofre cerrado , abierto
+    this.load.image('cofreAbierto', 'cofreAbierto.png');
+    this.load.image('cofreCerrado', 'cofreCerrado.png');
+
+    //animacion cofre abriendose
+    this.load.spritesheet('animacionCofre', 'animacionCofre.png', { frameWidth: 400, frameHeight: 535, endFrame: 3 });
 
 
     //cargamos imagen de bala enemiga ranged
@@ -377,6 +381,14 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     });
 
+    //animacion cofre
+    this.anims.create({
+      key: 'animacionCofre',
+      frames: this.anims.generateFrameNumbers('animacionCofre', { start: 0, end: 3 }),
+      frameRate: 10,
+      //numero de veces que queremos repetir la animacion, -1 es infinito
+      repeat: 0
+    });
 
 
 
