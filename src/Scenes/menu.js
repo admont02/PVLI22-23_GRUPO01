@@ -27,7 +27,7 @@ export default class Menu extends Phaser.Scene {
       //paramos musica
 
       this.menusong.destroy();
-      this.scene.start('level1',{ mapName: 'mapLevel1' });
+      this.scene.start('level1',{ mapName: 'map2' });
     });
 
     //conexion con escena level3
