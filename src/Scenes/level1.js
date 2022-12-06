@@ -82,7 +82,7 @@ export default class Level1 extends Phaser.Scene {
       // new speedPowerUp(this, 900, 900, this.player);
 
       //cofre
-      new cofre(this, 1400, 1300, this.player);
+      new cofre(this, 300, 490, this.player);
 
       //cofre
       new cofre(this, 1600, 1300, this.player);
