@@ -77,12 +77,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.newPosY = Phaser.Math.Between(this.y - 500, this.y + 500);
             }
 
-            //Comprobacion de si esta quieto
-            //Sumamos los frames
-            /* this.currentRep++;
-            if (this.currentRep == this.repeCount) {
-                this.repeticiones();
-            }*/
 
             if (this !== undefined) {
                 this.enemyAnimsFlip();
@@ -168,7 +162,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //Muerte de enemigo
     EnemyDie() {
         this.hp.bar.destroy();
-        this.setActive(false)
+        this.setActive(false);
         this.destroy();
     }
 

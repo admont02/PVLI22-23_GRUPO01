@@ -16,6 +16,8 @@ import Bullet from "./bullet.js";
       this.setScale(0.02);
       this.setAngle(angle);
 
+      this.movingObject = movingObject;
+
       this.dirX = this.player.x - this.x;
       this.dirY = this.player.y - this.y;
       this.vec = new Phaser.Math.Vector2(this.dirX, this.dirY);
@@ -39,16 +41,26 @@ import Bullet from "./bullet.js";
       this.body.setVelocityX(this.speed * this.vec.x);
       this.body.setVelocityY(this.speed * this.vec.y);
 
-      //si coincide pos de bala y player se quita vida al player y se destruye bala
-      if(this.scene.physics.overlap(this.player, this))
+      if(this.scene.physics.collide(this.movingObject, this))
       {
         this.destroyBala();
-       this.player.modifyValue(-10);
       }
+
+      if(this.active)
+      {
+        //si coincide pos de bala y player se quita vida al player y se destruye bala
+        if(this.scene.physics.overlap(this.player, this))
+        {
+          this.destroyBala();
+         this.player.modifyValue(-10);
+        }
+      }
+      
     }
 
     destroyBala()
     {
+      this.setActive(false);
       this.destroy();
     }
 }

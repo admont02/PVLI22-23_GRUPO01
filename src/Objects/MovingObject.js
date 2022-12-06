@@ -1,13 +1,16 @@
 import GhostObject from "./GhostObject.js";
 
+//Clase movingObject
 export default class MovingObject extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, x, y, player) {
+  constructor(scene, x, y, player, movingObjects) {
     super(scene, x, y, 'movinObject');
 
-    this.setScale(0.05);
+    this.setScale(0.03);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
+
+    this.movingObjects = movingObjects;
 
     this.scene.physics.add.collider(this, player);
 
@@ -17,6 +20,7 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
     this.setInteractive();
 
     this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
+    this.movingObjects.add(this.ghost);
 
     this.on("pointerdown", () => {
       this.startDrag();
@@ -30,6 +34,7 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
   }
 
 
+  //Al clickar en el 
   startDrag() {
     this.dragSound = this.scene.sound.add('duckToySqueak');
     this.dragSound.play();
@@ -38,14 +43,19 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
     this.scene.input.on('pointerup', this.stopDrag, this);
   }
 
+  //Mover el objeto con la posicion del raton
   doDrag() {
     this.x = this.pointer.x + this.scene.cameras.main.midPoint.x - 500;
-    this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 300;
+    this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 250;
+
 
     this.ghost.destroy();
     this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
+    this.movingObjects.add(this.ghost);
+
   }
 
+  //Cuando se deja de clickar
   stopDrag() {
     this.scene.input.off('pointermove', this.doDrag, this);
   }
