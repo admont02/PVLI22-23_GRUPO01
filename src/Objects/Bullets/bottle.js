@@ -43,6 +43,7 @@ export default class Bottle extends Bullet {
     else if(this.scene.physics.collide(this.scene.boxLayer, this)) this.destroy();
   }
 
+  //Destruccion de la botella
   destroyBottle(){
     if(this.timer != null){
       this.timer.destroy();

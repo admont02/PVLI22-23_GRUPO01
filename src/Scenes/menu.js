@@ -1,8 +1,8 @@
+
+//Clase para el menu principal del juego
 export default class Menu extends Phaser.Scene {
   constructor() {
     super({ key: 'menu' });
-
-
 
   }
   create() {
@@ -21,21 +21,15 @@ export default class Menu extends Phaser.Scene {
     this.playbutton3.setScale(3);
     this.playbutton4.setScale(3);
 
-
     //conexion con escena level
     this.playbutton.on("pointerdown", () => {
-      //paramos musica
-
       this.menusong.destroy();
       this.scene.start('level1',{ mapName: 'finalMap1' });
     });
 
     //conexion con escena level3
     this.playbutton2.on("pointerdown", () => {
-      //paramos musica
-
       this.menusong.destroy();
-      //this.scene.start('level1',{ mapName: 'map3' }); ESTO ES LO CORRECTO
       this.scene.start('level1',{ mapName: 'map3' })
     });
 
@@ -48,8 +42,6 @@ export default class Menu extends Phaser.Scene {
 
     //conexion con escena creditos
     this.playbutton4.on("pointerdown", () => {
-      //paramos musica
-
       this.menusong.destroy();
       this.scene.start('Creditos');
     });
