@@ -1,5 +1,6 @@
 import GhostBullet from '../Objects/Bullets/ghostBullet.js';
 
+//Clase para el jefe 
 export default class Boss extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, player) {
@@ -160,6 +161,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         }
     }
 
+    //Metodo para la muerte del jefe
     dieBoss()
     {
 

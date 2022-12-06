@@ -11,9 +11,9 @@ export default class BasicEnemy extends Enemy {
     this.enemyFactorDamage = 5;
 
     this.range = 125;
-   
-
+  
     this.hp.bar.setScale(0.2);
+    
     //imgKey indica desde level el BasicEnemy que queremos
     this.play(imgKey, true);
   }
@@ -22,16 +22,16 @@ export default class BasicEnemy extends Enemy {
     super.preUpdate(t, dt);
 
     this.posPlayer();
+    //Si se encuentra cerca del jugador este empezará a seguirlo
     if (this.active && (this.dX < this.range && this.dY < this.range && this.dX > -this.range && this.dY > -this.range ))
     {
-      //console.log("moviemdome hacia el player");
       this.scene.physics.moveTo(this, this.player.x, this.player.y, this.speed);
     }
   }
 
 
+  //Metodo para la pausa
   pauseAnim() {
-    //this.play(imgKey,false); 
     this.setActive(false);
   }
 

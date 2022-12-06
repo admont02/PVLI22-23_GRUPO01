@@ -47,6 +47,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.dieSound = this.scene.sound.add('death');
         this.damageSound = this.scene.sound.add('loseLive');
 
+        //Comprobación para evitar que se queden pillados con la pared
         this.timer=this.scene.time.addEvent({
             delay: 400,
             callback: this.repeticiones,
@@ -202,10 +203,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     //Metodo para evitar que el enemigo se quede estancado en una posicion
     repeticiones() {
-        //this.currentRep = 0;
 
         if (Math.abs(this.posRepeX - this.x) < 10 && Math.abs(this.posRepeY - this.y) < 10) {
-       // if(this.body.velocity.x < 50 || this.body.velocity.y < 50){
             this.newPosX = Phaser.Math.Between(this.x - 500, this.x + 500);
             this.newPosY = Phaser.Math.Between(this.y - 500, this.y + 500);
         }

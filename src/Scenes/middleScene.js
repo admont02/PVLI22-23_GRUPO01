@@ -1,3 +1,5 @@
+
+//Clase para pasar de nivel
 export default class MiddleScene extends Phaser.Scene {
     constructor() {
         super({ key: 'middleScene' });

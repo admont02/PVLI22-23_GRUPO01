@@ -3,7 +3,6 @@ import LifePowerUp from '../PowerUps/lifePowerUp.js';
 import damagePowerUp from '../PowerUps/damagePowerUp.js';
 import speedPowerUp from '../PowerUps/speedPowerUp.js';
 
-//Area que crea el ojo(aumenta la velocidad de los enemigos si estos lo tocan)
 export default class cofre extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player) {
