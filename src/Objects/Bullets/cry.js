@@ -7,7 +7,7 @@ import Bullet from "./bullet.js";
       super(scene, x, y, 'cry');
   
       this.damage = 0.2;
-      this.setScale(0.2);
+      this.setScale(0.07);
 
       this.timer = this.scene.time.addEvent({
         delay: 1000,              

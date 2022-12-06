@@ -5,7 +5,7 @@ export default class door extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, player, level, dataMap) {
     super(scene, x, y, 'doorClosed');
 
-    this.setScale(0.15);
+    this.setScale(0.05);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 

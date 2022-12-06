@@ -5,10 +5,13 @@ export default class BasicEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player) {
 
-    super(scene, x, y, 100, imgKey, player, 20, 150);
+    super(scene, x, y, 50, imgKey, player, 20, 150);
     this.setScale(.5);
     this.hp.setScale(0.2);
     this.enemyFactorDamage = 5;
+
+    this.range = 125;
+   
 
     this.hp.bar.setScale(0.2);
     //imgKey indica desde level el BasicEnemy que queremos
@@ -18,7 +21,15 @@ export default class BasicEnemy extends Enemy {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
+    this.posPlayer();
+    if (this.active && (this.dX < this.range && this.dY < this.range && this.dX > -this.range && this.dY > -this.range ))
+    {
+      //console.log("moviemdome hacia el player");
+      this.scene.physics.moveTo(this, this.player.x, this.player.y, this.speed);
+    }
   }
+
+
   pauseAnim() {
     //this.play(imgKey,false); 
     this.setActive(false);
