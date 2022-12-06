@@ -9,28 +9,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
   /**
    * Constructor del jugador
    */
-  constructor(scene, x, y,available) {
+  constructor(scene, x, y, available) {
     super(scene, x, y, 'topA');
 
     this.scene = scene;
-    this.dashAvailable=available;
+    this.dashAvailable = available;
 
     //daño de el biberon
     this.damageBottle = 10;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this.initialSpeed = 300;
-    this.speed = 300;
-
+    this.initialSpeed = 100;
+    this.speed = 100;
+    this.setScale(0.35);
     this.dirX = 0;
     this.dirY = 0;
     this.createInput();
 
 
     this.canShoot = true;
-    this.hp = new HealthBar(scene, 56, 20, 150);
-    this.hp.bar.setScrollFactor(0)
-    this.scene.add.image(30, 30, 'cara').setScrollFactor(0).setScale(2);
+    this.hp = new HealthBar(scene, 629, 305, 150);
+    this.hp.setScale(0.5);
+    this.hp.bar.setScrollFactor(0).setScale(0.5)
+    this.scene.add.image(310, 160, 'cara').setScrollFactor(0).setScale(0.5);
     this.lento = this.scene.add.image(this.x, this.y, 'lento').setScale(2).setVisible(false);
 
     this.isSlow = false;
@@ -163,7 +164,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 */
   shootBottle() {
     if (!this.launched && this.cursors.space.isDown && (this.dirX != 0 || this.dirY != 0)) {
-      this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY,this.damageBottle);
+      this.bottle = new Bottle(this.scene, this.x + (this.body.width * this.dirX), this.y + (this.body.height * this.dirY), this.dirX, this.dirY, this.damageBottle);
       console.log(this.damageBottle);
       this.bottleTimer();
     }
@@ -318,13 +319,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   //cambia el daño que hace el bottle
-  DamageChange( damages)
-  {
+  DamageChange(damages) {
     this.damageBottle = damages;
   }
 
-  speedChange(speedynew)
-  {
+  speedChange(speedynew) {
     this.speed = speedynew;
   }
 }

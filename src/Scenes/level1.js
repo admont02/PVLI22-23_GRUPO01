@@ -41,9 +41,9 @@ export default class Level1 extends Phaser.Scene {
     this.playing = true;
     
     //map1
-    if (this.mapName === 'mapLevel1') {
+    if (this.mapName === 'finalMap1') {
 
-      this.player = new Player(this, 300, 600,false);
+      this.player = new Player(this, 1200, 600,false);
      
 
       this.numEnemigosVivos = 0;
@@ -106,7 +106,7 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new BasicEnemy(this, 1400, 1500, 'basicEnemyAmarilloDerecha', this.player, 2));
       this.enemy.add(new BasicEnemy(this, 1400, 1600, 'basicEnemyAzulDerecha', this.player, 2));
       this.enemy.add(new SpeedEnemy(this,  1400, 1800, 'MovimientoGeneralSpeedEnemy', this.player, 2));
-      this.enemy.add(new StrongEnemy(this,  1600, 2000, 'StrongEnemyWalk', this.player, 4));
+      this.enemy.add(new StrongEnemy(this,  1400, 1800, 'StrongEnemyWalk', this.player, 4));
       this.enemy.add(new RangedEnemy(this,  1800, 2200, 'RangedEnemyDer', this.player, 2));
 
       // //creamos objeto de level enemiesLEFT
@@ -148,6 +148,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
+    this.cameras.main.setZoom(2.5);
     this.createPause();
     this.sonidoGame();
 
@@ -200,9 +201,10 @@ export default class Level1 extends Phaser.Scene {
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     }
     else{
-      const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');
-      this.boxLayer = this.map.createLayer('paredes', tileset2);
+      const tileset2 = this.map.addTilesetImage('interior', 'interior');
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+      this.boxLayer = this.map.createLayer('paredes', tileset2);
+
     }
     // else {
     //   const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');//la barra _
@@ -239,8 +241,8 @@ export default class Level1 extends Phaser.Scene {
   además, se definen los eventos pointerdown para cada botón
 */
   createPause() {
-    this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
-    this.resume = this.add.text(this.scale.width / 2 - 70, this.scale.height / 2 - 20, "RESUME").setInteractive().setScrollFactor(0).setVisible(false).setScale(4);
+    this.pause = this.add.image(680, 165, 'pause').setScale(0.05).setScrollFactor(0).setInteractive();
+    this.resume = this.add.text(this.scale.width / 2 - 70, this.scale.height / 2 - 20, "RESUME").setInteractive().setScrollFactor(0).setVisible(false).setScale(2);
     //boton de pausa
     this.pause.on("pointerdown", () => {
       this.pauseEnemies(false);
