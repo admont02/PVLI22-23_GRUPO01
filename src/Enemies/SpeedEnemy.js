@@ -7,13 +7,13 @@ export default class SpeedEnemy extends Enemy {
   constructor(scene, x, y, imgKey, player) {
     super(scene, x, y, 150, imgKey, player, 30,150);
     
-    this.enemyFactorDamage = 3.75;
+    this.enemyFactorDamage=3.75;
    
-    this.speed = 150;
-    this.setScale(.5);
-    this.hp.setScale(0.2);
+    this.speed = 200;
+    this.setScale(0.1);
+    this.hp.setScale(0.7);
 
-    this.hp.bar.setScale(0.3);
+    this.hp.bar.setScale(0.7);
   }
 
   preUpdate(t, dt) {
