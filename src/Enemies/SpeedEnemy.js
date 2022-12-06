@@ -5,7 +5,7 @@ import Enemy from './enemy.js';
 export default class SpeedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 150, imgKey, player, 30,150);
+    super(scene, x, y, 125, imgKey, player, 30,150);
     
     this.enemyFactorDamage=3.75;
    
@@ -51,7 +51,7 @@ export default class SpeedEnemy extends Enemy {
       //si se mueve arriba y derecha
       else if(this.body.velocity.x >= 0 && this.body.velocity.y>=0)
       {
-        this.speed=150;
+        this.speed=125;
         //bajamos velocidad
         this.andarNormal();
         
@@ -64,7 +64,7 @@ export default class SpeedEnemy extends Enemy {
       //si se mueve abajo e izq
       else if(this.body.velocity.x < 0 && this.body.velocity.y<0)
       {
-        this.speed=150;
+        this.speed=125;
         //bajamos velocidad
         this.andarNormal();
        

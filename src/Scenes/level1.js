@@ -33,8 +33,8 @@ export default class Level1 extends Phaser.Scene {
   //Elementos del nivel 1
   create() {
     this.createTileMap();
-  
     this.enemy = this.add.group();
+    this.movingObjects = this.add.group();
     console.log(this.mapName);
     const width = this.scale.width;
     const height = this.scale.height;
@@ -49,15 +49,16 @@ export default class Level1 extends Phaser.Scene {
 
       this.numEnemigosVivos = 0;
 
-      this.movingObject1 = new movingObject(this, 500, 500, this.player);
+      this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
-      this.enemy.add(new BasicEnemy(this, 1000, 400, 'basicEnemyVerdeDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 900, 340, 'basicEnemyRojoDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAmarilloDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 700, 340, 'basicEnemyAzulDerecha', this.player, 2));
-      this.enemy.add(new SpeedEnemy(this, 400, 500, 'MovimientoGeneralSpeedEnemy', this.player, 2));
-      this.enemy.add(new StrongEnemy(this, 400, 300, 'StrongEnemyWalk', this.player, 4));
-      this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
+  
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyVerdeDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyRojoDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAmarilloDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAzulDerecha', this.player));
+      this.enemy.add(new SpeedEnemy(this, 900, 500, 'MovimientoGeneralSpeedEnemy', this.player));
+      this.enemy.add(new StrongEnemy(this, 900, 500, 'StrongEnemyWalk', this.player));
+      this.enemy.add(new RangedEnemy(this, 900, 500, 'RangedEnemyDer', this.player, this.movingObjects));
 
       //creamos objeto de level enemiesLEFT
       this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
@@ -89,7 +90,9 @@ export default class Level1 extends Phaser.Scene {
       //cofre
       new cofre(this, 1800, 1300, this.player);
 
-      this.physics.add.collider(this.enemy, this.boxLayer);
+      this.physics.add.collider(this.enemy, this.boxLayer);      
+      this.physics.add.collider(this.enemy, this.movingObjects);
+
     }
 
     //map2
@@ -97,33 +100,27 @@ export default class Level1 extends Phaser.Scene {
 
       this.player = new Player(this, 600, 1200, false);
 
-
       this.numEnemigosVivos = 0;
 
-      this.movingObject1 = new movingObject(this, 1000, 1200, this.player);
+      this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
-      this.enemy.add(new BasicEnemy(this, 1200, 1200, 'basicEnemyVerdeDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 1400, 1200, 'basicEnemyRojoDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 1400, 1500, 'basicEnemyAmarilloDerecha', this.player, 2));
-      this.enemy.add(new BasicEnemy(this, 1400, 1600, 'basicEnemyAzulDerecha', this.player, 2));
-      this.enemy.add(new SpeedEnemy(this, 1400, 1800, 'MovimientoGeneralSpeedEnemy', this.player, 2));
-      this.enemy.add(new StrongEnemy(this, 1400, 1800, 'StrongEnemyWalk', this.player, 4));
-      this.enemy.add(new RangedEnemy(this, 1800, 2200, 'RangedEnemyDer', this.player, 2));
-
-      // //creamos objeto de level enemiesLEFT
-      // this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyVerdeDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyRojoDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAmarilloDerecha', this.player));
+      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAzulDerecha', this.player));
+      this.enemy.add(new SpeedEnemy(this, 900, 500, 'MovimientoGeneralSpeedEnemy', this.player));
+      this.enemy.add(new StrongEnemy(this, 900, 500, 'StrongEnemyWalk', this.player));
+      this.enemy.add(new RangedEnemy(this, 900, 500, 'RangedEnemyDer', this.player, this.movingObjects));
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
       this.door = new Door(this, 600, 1300, this.player, 'middleScene', 'map2');
 
-
-      // this.physics.world.setBounds(0, 0, large, height);
-      //this.cameras.main.setBounds(0, 0, width, height);
-
       new LifePowerUp(this, 500, 900, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
+      this.physics.add.collider(this.enemy, this.movingObjects);
+
     }
 
     //map3
@@ -133,8 +130,6 @@ export default class Level1 extends Phaser.Scene {
 
 
       this.numEnemigosVivos = 4;
-
-
       this.enemy.add(new eyeBoss(this, 100, 100, this.player));
       this.enemy.add(new eyeBoss(this, 200, 100, this.player));
       this.enemy.add(new eyeBoss(this, 300, 100, this.player));
@@ -146,7 +141,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     }
-    this.createEnemies();
+    //this.createEnemies();
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
@@ -218,7 +213,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   updateLivesEnemy() {
-    this.label.text = 'Enemies Left: ' + this.NumEnemigos();
+    //this.label.text = 'Enemies Left: ' + this.NumEnemigos();
   }
 
   AumentarEnemyVivo() {

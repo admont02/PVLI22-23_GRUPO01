@@ -4,7 +4,7 @@ import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';
 //Clase para el Ranged Enemy
 export default class RangedEnemy extends Enemy {
 
-  constructor(scene, x, y, imgKey, player, tiempoBala) {
+  constructor(scene, x, y, imgKey, player, moving) {
     super(scene, x, y, 50, imgKey, player, 20, 150);
 
     this.setScale(.5);
@@ -14,6 +14,8 @@ export default class RangedEnemy extends Enemy {
     // this.hp.bar.setScale(0.5);
     this.playerX = this.player.x;
     this.playerY = this.player.y;
+
+    this.moving = moving;
 
     this.play('RangedEnemyDer', true);
 
@@ -40,7 +42,7 @@ export default class RangedEnemy extends Enemy {
 
     //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
     if (this.active && ((this.dX < this.range && this.dY < this.range && this.dX > -this.range && this.dY > -this.range)) )
-      new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle);
+      new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle, this.moving);
   }
 
   pauseAnim() {

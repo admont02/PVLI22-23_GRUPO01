@@ -5,7 +5,7 @@
   constructor(scene, x, y, player) {
     super(scene, x, y, 'transparente');
 
-    this.setScale(0.7);
+    this.setScale(0.3);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 
