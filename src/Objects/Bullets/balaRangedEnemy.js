@@ -7,13 +7,13 @@ import Bullet from "./bullet.js";
 
  export default class balaRangedEnemy extends Bullet{
 
-    constructor(scene, x, y, player, angle) {
+    constructor(scene, x, y, player, angle, movingObject) {
       //le pasas la escena , la x , la y y el sprite balaE
       super(scene, x, y, 'balaRanged');
 
-      this.speed = 500;
+      this.speed = 100;
       this.player = player;
-      this.setScale(0.07);
+      this.setScale(0.02);
       this.setAngle(angle);
 
       this.dirX = this.player.x - this.x;
@@ -22,15 +22,15 @@ import Bullet from "./bullet.js";
       this.vec.normalize();
 
       //creas timer que llame en 2 segundos a un metodo que destruya la bala
-      // this.timer = this.scene.time.addEvent(
-      // {
-      //   delay: 1000,
-      //   callback: () =>
-      //   {
-      //     this.destroyBala();
-      //   }
+         this.timer = this.scene.time.addEvent(
+         {
+           delay: 2000,
+           callback: () =>
+           {
+             this.destroyBala();
+           }
 
-      // });
+        });
     }
 
     preUpdate(t, dt){
@@ -43,9 +43,7 @@ import Bullet from "./bullet.js";
       if(this.scene.physics.overlap(this.player, this))
       {
         this.destroyBala();
-       // this.player.loseLive(1);
        this.player.modifyValue(-10);
-
       }
     }
 

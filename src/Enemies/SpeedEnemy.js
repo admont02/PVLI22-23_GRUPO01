@@ -5,15 +5,15 @@ import Enemy from './enemy.js';
 export default class SpeedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 300, imgKey, player, 30,150);
+    super(scene, x, y, 150, imgKey, player, 30,150);
     
-    this.enemyFactorDamage=3.75;
+    this.enemyFactorDamage = 3.75;
    
-    this.speed = 300;
-    this.setScale(1);
-    this.hp.setScale(0.7);
+    this.speed = 150;
+    this.setScale(.5);
+    this.hp.setScale(0.2);
 
-    this.hp.bar.setScale(0.7);
+    this.hp.bar.setScale(0.3);
   }
 
   preUpdate(t, dt) {
@@ -31,7 +31,7 @@ export default class SpeedEnemy extends Enemy {
 
   andardeLado()
   {
-    this.speed=300;
+    this.speed=200;
     this.play('turboLateralSpeedEnemy', true);
   }
   
@@ -39,13 +39,13 @@ export default class SpeedEnemy extends Enemy {
   {
     if(this.body.velocity.x == 0 && this.body.velocity.y>0 || this.body.velocity.x > 0 && this.body.velocity.y==0 || this.body.velocity.x < 0 && this.body.velocity.y==0)
     {
-      this.speed=300;
+      this.speed=200;
         this.play('turboAbajoSpeedEnemy', true);
     }
       //si se mueve arriba e izq
       if(this.body.velocity.x < 0 && this.body.velocity.y>=0)
       {
-        this.speed=300;
+        this.speed=200;
         this.play('turboAbajoSpeedEnemy', true);
       }
       //si se mueve arriba y derecha
@@ -71,7 +71,7 @@ export default class SpeedEnemy extends Enemy {
       }
       else
       {
-        this.speed=300;
+        this.speed=200;
         this.play('turboAbajoSpeedEnemy', true);
       }
 

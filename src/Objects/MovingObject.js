@@ -5,7 +5,7 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, player) {
     super(scene, x, y, 'movinObject');
 
-    this.setScale(0.1);
+    this.setScale(0.05);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
 
@@ -40,9 +40,7 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
 
   doDrag() {
     this.x = this.pointer.x + this.scene.cameras.main.midPoint.x - 500;
-    this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 250;
-
-    console.log(this.scene.cameras.main.midPoint.y);
+    this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 300;
 
     this.ghost.destroy();
     this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
