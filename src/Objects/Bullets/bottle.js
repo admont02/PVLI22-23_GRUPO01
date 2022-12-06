@@ -13,7 +13,7 @@ export default class Bottle extends Bullet {
     this.speed = 500;
     this.dirX = dirX;
     this.dirY = dirY;
-    this.setScale(.05);
+    this.setScale(.0125);
 
     // Cambia la orientacion del sprite
     this.setFlipX(dirX < 0);
