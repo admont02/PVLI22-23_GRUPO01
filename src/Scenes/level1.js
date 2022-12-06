@@ -59,7 +59,7 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new RangedEnemy(this, 600, 600, 'RangedEnemyDer', this.player, 2));
 
       //creamos objeto de level enemiesLEFT
-      //this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+      this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
@@ -110,7 +110,7 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new RangedEnemy(this,  1800, 2200, 'RangedEnemyDer', this.player, 2));
 
       // //creamos objeto de level enemiesLEFT
-       //this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
+      // this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
@@ -217,7 +217,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   updateLivesEnemy() {
-    //this.label.text = 'Enemies Left: ' + this.NumEnemigos();
+    this.label.text = 'Enemies Left: ' + this.NumEnemigos();
   }
 
   AumentarEnemyVivo() {
