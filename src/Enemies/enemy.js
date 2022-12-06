@@ -48,7 +48,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.damageSound = this.scene.sound.add('loseLive');
 
         this.timer=this.scene.time.addEvent({
-            delay: 500,
+            delay: 400,
             callback: this.repeticiones,
             callbackScope: this,
             loop: true

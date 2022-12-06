@@ -4,7 +4,7 @@ import Enemy from './enemy.js';
 //Clase para el enemigo tanque
 export default class StrongEnemy extends Enemy {
   constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 25, imgKey, player, 40, 150);
+    super(scene, x, y, 30, imgKey, player, 40, 150);
 
     this.setScale(.5);
     this.hp.setScale(0.5);
