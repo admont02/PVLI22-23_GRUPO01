@@ -52,11 +52,11 @@ export default class Boot extends Phaser.Scene {
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
     this.load.image('morado', 'morado.jpg');
     this.load.image('movinObject', 'cojin.png');
-   
+
     //cargamos powerUps
-     //animaciones de damage
-     this.load.setPath('assets/sprites');
-     this.load.spritesheet('damage', 'dañooo.png', { frameWidth: 310, frameHeight: 225, endFrame: 3 });
+    //animaciones de damage
+    this.load.setPath('assets/sprites');
+    this.load.spritesheet('damage', 'dañooo.png', { frameWidth: 310, frameHeight: 225, endFrame: 3 });
     //velocidad
     this.load.spritesheet('speedyPower', 'speedd.png', { frameWidth: 120, frameHeight: 60, endFrame: 9 });
 
@@ -82,7 +82,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('rightA', 'anim3.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('idle', 'anim4.png', { frameWidth: 34, frameHeight: 50, endFrame: 1 });
 
-   
+
 
     //para animaciones de enemy
     //EnemyBasic
@@ -144,7 +144,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('patronesLevel1', 'tilesetForest.png');
     this.load.image('dungeon', 'dungeon_.png');
     this.load.image('interior', 'interior.png');
-
+    this.load.image('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls.png');
+    this.load.image('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1.png')
     this.load.image('suelo', 'suelo.png');
 
     // SONIDOS
