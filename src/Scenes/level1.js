@@ -146,6 +146,7 @@ export default class Level1 extends Phaser.Scene {
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setZoom(2.5);
+   // this.cameras.main.setDeadzone(width, height);
     this.createPause();
     this.sonidoGame();
 
@@ -198,7 +199,9 @@ export default class Level1 extends Phaser.Scene {
     }
     else {
       const tileset2 = this.map.addTilesetImage('interior', 'interior');
-      this.backgroundLayer = this.map.createLayer('suelo', tileset2);
+      const tileset3=this.map.addTilesetImage('TopDownHouse_FloorsAndWalls','TopDownHouse_FloorsAndWalls');
+      const tileset4=this.map.addTilesetImage('TopDownHouse_FurnitureState1','TopDownHouse_FurnitureState1');
+      this.backgroundLayer = this.map.createLayer('suelo', [tileset2,tileset3,tileset4]);
       this.boxLayer = this.map.createLayer('paredes', tileset2);
 
     }
