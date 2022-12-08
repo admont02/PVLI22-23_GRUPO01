@@ -8,7 +8,7 @@ export default class cofre extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, player) {
     super(scene, x, y, 'cofreCerrado');
 
-    this.setScale(0.22);
+    //this.setScale(0.22);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 
