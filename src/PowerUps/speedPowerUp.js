@@ -1,20 +1,19 @@
+import PowerUp from "./powerUp.js";
+
 /**
  * El jugador recuperará una vida al coger este objeto
  * (si no supera las vidas máximas)
  */
-export default class speedPowerUp extends Phaser.GameObjects.Sprite {
+export default class speedPowerUp extends PowerUp {
 
     constructor(scene, x, y, player) {
-        super(scene, x, y, 'speedyPower');
+        super(scene, x, y, 'heart',player);
 
         //con 2 argumentos cambias x e y
-        this.setScale(0.6 , 0.6);
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this, true);
-        this.player = player;
+       
 
         
-        this.play('speedyPower', true);
+        //this.play('speedyPower', true);
     }
 
     preUpdate(t, dt) {
