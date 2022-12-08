@@ -1,12 +1,21 @@
 
 
-export default class Enemy extends Phaser.GameObjects.Sprite {
+export default class PowerUp extends Phaser.GameObjects.Sprite {
 
-    constructor(scene, x, y, speed, sprite, player, life, lifeValue) {
+    constructor(scene, x, y, sprite, player) {
         super(scene, x, y, sprite);
-
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this, true);
         this.player = player;
-
+        //this.setScale(0.05)
+        this.scene.tweens.add({
+            targets: this,
+            y: y+1,
+            duration: 1000,
+            ease: 'Sine.easeInOut',
+            repeat: -1,
+            //yoyo: true
+        });
     }
 
     preUpdate(t, dt) {

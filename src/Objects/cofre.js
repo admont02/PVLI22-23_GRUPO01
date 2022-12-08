@@ -32,9 +32,9 @@ export default class cofre extends Phaser.GameObjects.Sprite {
       {
         console.log("Han entrado en radio de accion del cofre")
           //como repeat es 0 se ejecutará 1 vez 
-          this.play("animacionCofre",true);
+         // this.play("animacionCofre",true);
           //después dejamos el cofre abierto
-          this.setTexture('cofreAbierto');
+         // this.setTexture('cofreAbierto');
           //ahora hacemos un random que elija entre un powerUp
           var value = Phaser.Math.Between(0, 2);
           console.log(value);

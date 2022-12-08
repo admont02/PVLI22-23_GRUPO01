@@ -92,6 +92,7 @@ export default class Level1 extends Phaser.Scene {
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
+      new LifePowerUp(this, 600, 850, this.player);
 
     }
 
