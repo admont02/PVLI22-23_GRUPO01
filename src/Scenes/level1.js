@@ -51,14 +51,14 @@ export default class Level1 extends Phaser.Scene {
 
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
-  
-      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyVerdeDerecha', this.player));
-      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyRojoDerecha', this.player));
-      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAmarilloDerecha', this.player));
-      this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAzulDerecha', this.player));
-      this.enemy.add(new SpeedEnemy(this, 900, 500, 'MovimientoGeneralSpeedEnemy', this.player));
-      this.enemy.add(new StrongEnemy(this, 900, 500, 'StrongEnemyWalk', this.player));
-      this.enemy.add(new RangedEnemy(this, 900, 500, 'RangedEnemyDer', this.player, this.movingObjects));
+
+      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyVerdeDerecha', this.player));
+      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyRojoDerecha', this.player));
+      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAmarilloDerecha', this.player));
+      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAzulDerecha', this.player));
+      // this.enemy.add(new SpeedEnemy(this, 900, 500, 'MovimientoGeneralSpeedEnemy', this.player));
+      // this.enemy.add(new StrongEnemy(this, 900, 500, 'StrongEnemyWalk', this.player));
+      // this.enemy.add(new RangedEnemy(this, 900, 500, 'RangedEnemyDer', this.player, this.movingObjects));
 
       //creamos objeto de level enemiesLEFT
       this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
@@ -90,7 +90,7 @@ export default class Level1 extends Phaser.Scene {
       //cofre
       new cofre(this, 1800, 1300, this.player);
 
-      this.physics.add.collider(this.enemy, this.boxLayer);      
+      this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
 
     }
@@ -141,12 +141,12 @@ export default class Level1 extends Phaser.Scene {
 
 
     }
-    //this.createEnemies();
+    this.createEnemies();
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setZoom(2.5);
-   // this.cameras.main.setDeadzone(width, height);
+    // this.cameras.main.setDeadzone(width, height);
     this.createPause();
     this.sonidoGame();
 
@@ -199,10 +199,12 @@ export default class Level1 extends Phaser.Scene {
     }
     else {
       const tileset2 = this.map.addTilesetImage('interior', 'interior');
-      const tileset3=this.map.addTilesetImage('TopDownHouse_FloorsAndWalls','TopDownHouse_FloorsAndWalls');
-      const tileset4=this.map.addTilesetImage('TopDownHouse_FurnitureState1','TopDownHouse_FurnitureState1');
-      this.backgroundLayer = this.map.createLayer('suelo', [tileset2,tileset3,tileset4]);
+      const tileset3 = this.map.addTilesetImage('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls');
+      const tileset4 = this.map.addTilesetImage('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1');
+      const tileset5=this.map.addTilesetImage('TopDownHouse_SmallItems','TopDownHouse_SmallItems');
+      this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4]);
       this.boxLayer = this.map.createLayer('paredes', tileset2);
+      this.adornosLayer=this.map.createLayer('adornos',[tileset5,tileset4])
 
     }
     // else {
@@ -273,14 +275,14 @@ export default class Level1 extends Phaser.Scene {
     for (const basicEn of this.map.getObjectLayer('basicEnemies').objects) {
       this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, 'basicEnemyVerdeDerecha', this.player, 2));
     }
-    for (const strongEn of this.map.getObjectLayer('strongEnemies').objects){
-
+    for (const strongEn of this.map.getObjectLayer('strongEnemies').objects) {
+      this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player));
     }
-    for (const speedEn of this.map.getObjectLayer('speedEnemies').objects){
-
+    for (const speedEn of this.map.getObjectLayer('speedEnemies').objects) {
+      this.enemy.add(new SpeedEnemy(this, speedEn.x, speedEn.y, 'MovimientoGeneralSpeedEnemy', this.player));
     }
-    for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects){
-
+    for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
+      this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects));
     }
   }
 }
