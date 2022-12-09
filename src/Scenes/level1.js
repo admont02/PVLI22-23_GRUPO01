@@ -28,11 +28,15 @@ export default class Level1 extends Phaser.Scene {
   }
   init(data) {
     this.mapName = data.mapName;
+    this.canPlayerDash=data.dash;
   }
 
   //Elementos del nivel 1
   create() {
+
     this.createTileMap();
+    this.createPlayer();
+
     this.enemy = this.add.group();
     this.movingObjects = this.add.group();
     console.log(this.mapName);
@@ -44,7 +48,6 @@ export default class Level1 extends Phaser.Scene {
     //map1
     if (this.mapName === 'finalMap1') {
 
-      this.player = new Player(this, 1200, 600, false);
 
 
       this.numEnemigosVivos = 0;
@@ -83,7 +86,7 @@ export default class Level1 extends Phaser.Scene {
     //map2
     else if (this.mapName === 'map2') {
 
-      this.player = new Player(this, 1200, 600, false);
+     // this.player = new Player(this, 1200, 600, false);
 
       this.numEnemigosVivos = 0;
 
@@ -107,7 +110,6 @@ export default class Level1 extends Phaser.Scene {
 
       //  this.player = new Player(this, 700, 300, true);
 
-      this.createPlayer();
       this.numEnemigosVivos = 4;
       this.enemy.add(new eyeBoss(this, 100, 100, this.player));
       this.enemy.add(new eyeBoss(this, 200, 100, this.player));
@@ -120,7 +122,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     }
-    this.createEnemies();
+   // this.createEnemies();
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
@@ -251,7 +253,7 @@ export default class Level1 extends Phaser.Scene {
   }
   createPlayer() {
     for (const p of this.map.getObjectLayer('player').objects) {
-      this.player = new Player(this, p.x, p.y, true);
+      this.player = new Player(this, p.x, p.y, this.canPlayerDash);
     }
   }
   saveFile() {
