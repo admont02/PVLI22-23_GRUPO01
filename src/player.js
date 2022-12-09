@@ -51,6 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.loseLiveSound = this.scene.sound.add('loseLive');
   }
 
+  
   /**
  * Método para crear los controles del player.
  */
@@ -124,7 +125,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
   createCry() {
-    if (this.e.isDown && !this.cryLaunched) {
+    if (this.e.isDown && !this.cryLaunched) 
+    {
       new Cry(this.scene, this.x, this.y);
 
       this.crySound = this.scene.sound.add('cry');

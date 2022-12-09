@@ -286,4 +286,26 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects));
     }
   }
+  saveFile()
+  {
+    //guardamos la vida del player
+    //guardamos el numero de enemigos
+    //guardamos el grupo de enemigos para poder ver cuales quedan
+    // window.addEventListener("guardar", event =>
+    // {
+    //   //guardamos algo con un nombre
+    //   window.localStorage.setItem('vidaPlayer' ,this.healthPlayer )
+    // });
+  }
+
+  loadFile()
+  {
+    //ponemos la vida del player actualizandola
+    //establecemos el grupo de enemigos
+    // window.addEventListener("cargar", event =>
+    // {
+    //   //guardamos algo con un nombre
+    //   this.healthPlayer =window.localStorage.getItem('vidaPlayer')
+    // });
+  }
 }
