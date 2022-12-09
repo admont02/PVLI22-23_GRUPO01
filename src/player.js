@@ -180,15 +180,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
       else this.play('lastAxis', true);
     }
     else {
-      if (this.cursors.down.isDown || this.s.isDown)
+      if (this.s.isDown)
         this.play('bottom', true);
-      else if (this.cursors.up.isDown || this.w.isDown)
+      else if (this.w.isDown)
         this.play('top', true);
-      else if (this.cursors.left.isDown || this.a.isDown) {
+      else if (this.a.isDown) {
         this.setFlip(true, false);
         this.play('xAxis', true);
       }
-      else if (this.cursors.right.isDown || this.d.isDown) {
+      else if (this.d.isDown) {
         this.setFlip(false, false);
         this.play('xAxis', true);
       }
@@ -201,13 +201,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
   movePlayer() {
     //eje Y
     if (!this.isDash) {
-      if (this.cursors.down.isDown || this.s.isDown) {
+      if (this.s.isDown) {
         this.body.setVelocityY(this.speed);
         this.sDown = true;
         this.dirY = 1;
         this.setDirX();
       }
-      else if (this.cursors.up.isDown || this.w.isDown) {
+      else if (this.w.isDown) {
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
@@ -219,13 +219,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.sDown = false;
       }
       //eje X
-      if (this.cursors.right.isDown || this.d.isDown) {
+      if (this.d.isDown) {
         this.body.setVelocityX(this.speed);
         this.dDown = true;
         this.dirX = 1;
         this.setDirY();
       }
-      else if (this.cursors.left.isDown || this.a.isDown) {
+      else if (this.a.isDown) {
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
@@ -237,18 +237,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.dDown = false;
       }
     }
-
-    console.log(this.dirX + " " + this.dirY);
-
   }
 
   // Metodos auxiliares para conocer la direccion del jugador
   setDirX() {
-    if (this.cursors.left.isUp && this.cursors.right.isUp && this.a.isUp && this.d.isUp) this.dirX = 0;
+    if (this.a.isUp && this.d.isUp) this.dirX = 0;
   }
 
   setDirY() {
-    if (this.cursors.up.isUp && this.cursors.down.isUp && this.w.isUp && this.s.isUp) this.dirY = 0;
+    if (this.w.isUp && this.s.isUp) this.dirY = 0;
   }
 
   /**
