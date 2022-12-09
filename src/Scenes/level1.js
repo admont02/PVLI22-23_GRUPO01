@@ -28,7 +28,7 @@ export default class Level1 extends Phaser.Scene {
   }
   init(data) {
     this.mapName = data.mapName;
-    this.canPlayerDash=data.dash;
+    this.canPlayerDash = data.dash;
   }
 
   //Elementos del nivel 1
@@ -86,7 +86,7 @@ export default class Level1 extends Phaser.Scene {
     //map2
     else if (this.mapName === 'map2') {
 
-     // this.player = new Player(this, 1200, 600, false);
+      // this.player = new Player(this, 1200, 600, false);
 
       this.numEnemigosVivos = 0;
 
@@ -122,7 +122,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     }
-   // this.createEnemies();
+    // this.createEnemies();
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
@@ -161,17 +161,16 @@ export default class Level1 extends Phaser.Scene {
       key: this.mapName,
 
     });
-
+    const tileset1 = this.map.addTilesetImage('Props2', 'Props2');
     const tileset2 = this.map.addTilesetImage('interior', 'interior');
     const tileset3 = this.map.addTilesetImage('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls');
     const tileset4 = this.map.addTilesetImage('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1');
     const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
-    const kitchenTiles = this.map.addTilesetImage('kitchen', 'kitchen');
-    const sueloTiles = this.map.addTilesetImage('suelitopasillo', 'interior_free');
-    const propTiles = this.map.addTilesetImage('Props2', 'Props2');
-    this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, kitchenTiles, sueloTiles]);
-    this.boxLayer = this.map.createLayer('paredes', [tileset2, kitchenTiles]);
-    this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, kitchenTiles, propTiles])
+    const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
+    const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
+    this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7]);
+    this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
+    this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
 
 
 
@@ -251,6 +250,9 @@ export default class Level1 extends Phaser.Scene {
     }
 
   }
+  /**
+* Método en el que se crean el jugador de la escena
+*/
   createPlayer() {
     for (const p of this.map.getObjectLayer('player').objects) {
       this.player = new Player(this, p.x, p.y, this.canPlayerDash);
