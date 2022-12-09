@@ -51,15 +51,6 @@ export default class Level1 extends Phaser.Scene {
 
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
-
-      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyVerdeDerecha', this.player));
-      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyRojoDerecha', this.player));
-      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAmarilloDerecha', this.player));
-      // this.enemy.add(new BasicEnemy(this, 900, 500, 'basicEnemyAzulDerecha', this.player));
-      // this.enemy.add(new SpeedEnemy(this, 900, 500, 'MovimientoGeneralSpeedEnemy', this.player));
-      // this.enemy.add(new StrongEnemy(this, 900, 500, 'StrongEnemyWalk', this.player));
-      // this.enemy.add(new RangedEnemy(this, 900, 500, 'RangedEnemyDer', this.player, this.movingObjects));
-
       //creamos objeto de level enemiesLEFT
       this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
@@ -72,14 +63,7 @@ export default class Level1 extends Phaser.Scene {
       // this.physics.world.setBounds(0, 0, large, height);
       //this.cameras.main.setBounds(0, 0, width, height);
 
-      // lifepowerUp
-      // new LifePowerUp(this, 500, 900, this.player);
-
-      // //damagepowerUp
-      // new damagePowerUp(this,700, 900,this.player);
-
-      // //speedpowerUp
-      // new speedPowerUp(this, 900, 900, this.player);
+    
 
       //cofre
       new cofre(this, 300, 490, this.player);
@@ -127,9 +111,9 @@ export default class Level1 extends Phaser.Scene {
     //map3
     else {
 
-      this.player = new Player(this, 700, 300, true);
+      //  this.player = new Player(this, 700, 300, true);
 
-
+      this.createPlayer();
       this.numEnemigosVivos = 4;
       this.enemy.add(new eyeBoss(this, 100, 100, this.player));
       this.enemy.add(new eyeBoss(this, 200, 100, this.player));
@@ -189,7 +173,7 @@ export default class Level1 extends Phaser.Scene {
     //   this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     // }
     if (this.mapName === 'map3') {
-      const tileset2 = this.map.addTilesetImage('dungeon_', 'dungeon');//la barra _
+      const tileset2 = this.map.addTilesetImage('interior', 'interior');//la barra _
       this.boxLayer = this.map.createLayer('paredes', tileset2);
       this.backgroundLayer = this.map.createLayer('suelo', tileset2);
     }
@@ -202,20 +186,16 @@ export default class Level1 extends Phaser.Scene {
       const tileset2 = this.map.addTilesetImage('interior', 'interior');
       const tileset3 = this.map.addTilesetImage('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls');
       const tileset4 = this.map.addTilesetImage('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1');
-      const tileset5=this.map.addTilesetImage('TopDownHouse_SmallItems','TopDownHouse_SmallItems');
-      const kitchenTiles=this.map.addTilesetImage('kitchen','kitchen');
-      const sueloTiles=this.map.addTilesetImage('suelitopasillo','interior_free');
-      const propTiles=this.map.addTilesetImage('Props2','Props2');
-      this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4,kitchenTiles,sueloTiles]);
-      this.boxLayer = this.map.createLayer('paredes', [tileset2,kitchenTiles]);
-      this.adornosLayer=this.map.createLayer('adornos',[tileset5,tileset4,kitchenTiles,propTiles])
+      const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
+      const kitchenTiles = this.map.addTilesetImage('kitchen', 'kitchen');
+      const sueloTiles = this.map.addTilesetImage('suelitopasillo', 'interior_free');
+      const propTiles = this.map.addTilesetImage('Props2', 'Props2');
+      this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, kitchenTiles, sueloTiles]);
+      this.boxLayer = this.map.createLayer('paredes', [tileset2, kitchenTiles]);
+      this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, kitchenTiles, propTiles])
 
     }
-    // else {
-    //   const tileset2 = this.map.addTilesetImage('dungeon', 'dungeon');//la barra _
-    //   this.boxLayer = this.map.createLayer('paredes', tileset2);
-    //   this.backgroundLayer = this.map.createLayer('suelo', tileset2);
-    // }
+
   }
 
   update() {
@@ -276,17 +256,25 @@ export default class Level1 extends Phaser.Scene {
 * Método en el que se crean los enemigos de la escena
 */
   createEnemies() {
-    for (const basicEn of this.map.getObjectLayer('basicEnemies').objects) {
-      this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, 'basicEnemyVerdeDerecha', this.player, 2));
+    if (this.mapName !== 'map3') {
+      for (const basicEn of this.map.getObjectLayer('basicEnemies').objects) {
+        this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, 'basicEnemyVerdeDerecha', this.player, 2));
+      }
+      for (const strongEn of this.map.getObjectLayer('strongEnemies').objects) {
+        this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player));
+      }
+      for (const speedEn of this.map.getObjectLayer('speedEnemies').objects) {
+        this.enemy.add(new SpeedEnemy(this, speedEn.x, speedEn.y, 'MovimientoGeneralSpeedEnemy', this.player));
+      }
+      for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
+        this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects));
+      }
     }
-    for (const strongEn of this.map.getObjectLayer('strongEnemies').objects) {
-      this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player));
-    }
-    for (const speedEn of this.map.getObjectLayer('speedEnemies').objects) {
-      this.enemy.add(new SpeedEnemy(this, speedEn.x, speedEn.y, 'MovimientoGeneralSpeedEnemy', this.player));
-    }
-    for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
-      this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects));
+
+  }
+  createPlayer() {
+    for (const p of this.map.getObjectLayer('player').objects) {
+      this.player = new Player(this, p.x, p.y, true);
     }
   }
 }
