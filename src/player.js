@@ -307,10 +307,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
   durante 5 segundos y aparece un icono correspondiente
 */
   modifySpeed(fact) {
-    this.speed = this.speed / fact;
     switch (fact) {
       case 2:
         if (!this.isSlow) {
+          this.speed = this.speed / fact;
           this.isSlow = true;
           this.lento.setVisible(true);
         }
@@ -318,6 +318,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         break;
       case 0.5:
         if (!this.isQuick) {
+          this.speed = this.speed / fact;
           this.isQuick = true;
         }
         break;

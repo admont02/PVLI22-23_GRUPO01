@@ -7,7 +7,7 @@ import PowerUp from "./powerUp.js";
 export default class speedPowerUp extends PowerUp {
 
     constructor(scene, x, y, player) {
-        super(scene, x, y, 'heart', player);
+        super(scene, x, y, 'boots', player);
     }
 
     preUpdate(t, dt) {

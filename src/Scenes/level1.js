@@ -79,7 +79,7 @@ export default class Level1 extends Phaser.Scene {
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
-      new LifePowerUp(this, 600, 850, this.player);
+      new speedPowerUp(this, 600, 850, this.player);
 
     }
 
@@ -98,7 +98,7 @@ export default class Level1 extends Phaser.Scene {
 
       this.door = new Door(this, 300, 400, this.player, 'middleScene', 'map2');
 
-      new LifePowerUp(this, 500, 900, this.player);
+      new speedPowerUp(this, 500, 900, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
@@ -122,7 +122,7 @@ export default class Level1 extends Phaser.Scene {
 
 
     }
-    // this.createEnemies();
+    this.createEnemies();
     this.physics.add.collider(this.player, this.boxLayer);
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
@@ -236,7 +236,19 @@ export default class Level1 extends Phaser.Scene {
   createEnemies() {
     if (this.mapName !== 'map3') {
       for (const basicEn of this.map.getObjectLayer('basicEnemies').objects) {
-        this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, 'basicEnemyVerdeDerecha', this.player, 2));
+        var value = Phaser.Math.Between(0, 3);
+        //random para el color del basic enemy
+        switch (value) {
+          case 0: this.basicEnSprite = 'basicEnemyVerdeDerecha';
+            break;
+          case 1: this.basicEnSprite = 'basicEnemyRojoDerecha';
+            break;
+          case 2: this.basicEnSprite = 'basicEnemyAmarilloDerecha';
+            break;
+          case 3: this.basicEnSprite = 'basicEnemyAzulDerecha';
+            break;
+        }
+        this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, this.basicEnSprite, this.player, 2));
       }
       for (const strongEn of this.map.getObjectLayer('strongEnemies').objects) {
         this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player));
