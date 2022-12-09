@@ -137,7 +137,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('mapLevel1', 'nivel1.json');
     this.load.tilemapTiledJSON('map2', 'nivel2.json');
 
-    this.load.tilemapTiledJSON('map3', 'level3.json');
+    this.load.tilemapTiledJSON('map3', 'finalMap3.json');
     this.load.tilemapTiledJSON('finalMap1', 'finalMap1.json');
 
 
@@ -147,6 +147,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls.png');
     this.load.image('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1.png');
     this.load.image('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems.png');
+    this.load.image('kitchen', 'kitchen.png');
+    this.load.image('suelitopasillo', 'interior_free.png');
+    this.load.image('Props2', 'Props2.png');
+
 
     this.load.image('suelo', 'suelo.png');
 
