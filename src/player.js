@@ -202,17 +202,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //eje Y
     if (!this.isDash) {
       if (this.cursors.down.isDown || this.s.isDown) {
-        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(this.speed);
         this.sDown = true;
         this.dirY = 1;
+        this.setDirX();
       }
       else if (this.cursors.up.isDown || this.w.isDown) {
-        if (this.cursors.left.isUp && this.cursors.right.isUp) this.dirX = 0;
         this.body.setVelocityY(-this.speed);
         this.wDown = true;
         this.dirY = -1;
-
+        this.setDirX();
       }
       else {
         this.body.setVelocityY(0);
@@ -221,17 +220,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
       //eje X
       if (this.cursors.right.isDown || this.d.isDown) {
-        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(this.speed);
         this.dDown = true;
         this.dirX = 1;
+        this.setDirY();
       }
       else if (this.cursors.left.isDown || this.a.isDown) {
-        if (this.cursors.down.isUp && this.cursors.up.isUp) this.dirY = 0;
         this.body.setVelocityX(-this.speed);
         this.aDown = true;
         this.dirX = -1;
-
+        this.setDirY();
       }
       else {
         this.body.setVelocityX(0);
@@ -240,7 +238,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
 
+    console.log(this.dirX + " " + this.dirY);
+
   }
+
+  // Metodos auxiliares para conocer la direccion del jugador
+  setDirX() {
+    if (this.cursors.left.isUp && this.cursors.right.isUp && this.a.isUp && this.d.isUp) this.dirX = 0;
+  }
+
+  setDirY() {
+    if (this.cursors.up.isUp && this.cursors.down.isUp && this.w.isUp && this.s.isUp) this.dirY = 0;
+  }
+
   /**
 * Método en el que el jugador pierde/gana vida
 */
