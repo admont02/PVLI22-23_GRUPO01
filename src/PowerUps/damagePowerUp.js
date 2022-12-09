@@ -7,42 +7,21 @@ import PowerUp from "./powerUp.js";
 export default class damagePowerUp extends PowerUp {
 
     constructor(scene, x, y, player) {
-        super(scene, x, y, 'heart',player);
-
-        //this.play('damage', true);
-        this.setScale(0.15);
-        // this.scene.add.existing(this);
-        // this.scene.physics.add.existing(this, true);
-        // this.player = player;
-
-        
-       
-
+        super(scene, x, y, 'heart', player);
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
-        if (this.scene.physics.overlap(this, this.player)) {
-            //lo hacemos invisible
-            this.setVisible(false);
-            this.player.DamageChange(100);
-             //aumentamos daño que hace el jugador en clase bottle durante 10 segundos
-             this.timer = this.scene.time.addEvent({
-                delay: 10000,
-                 //ponemos otra vez daño normal en clase bottle
-                callback: () => {
-                    this.player.DamageChange(10);
-                }
-              });
-
-           
-           
-            //desactivamos
-            this.setActive(false);
-            //destruimos
-            this.destroy();
-           
-        }
+    }
+    effectToPlayer() {
+        this.player.DamageChange(20);
+        //aumentamos daño que hace el jugador en clase bottle durante 10 segundos
+        this.timer = this.scene.time.addEvent({
+            delay: 10000,
+            //ponemos otra vez daño normal en clase bottle
+            callback: () => {
+                this.player.DamageChange(10);
+            }
+        });
     }
 }

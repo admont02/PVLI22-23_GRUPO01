@@ -19,7 +19,7 @@ export default class StrongEnemy extends Enemy {
     super.preUpdate(t, dt);
   }
   effectToPlayer() {
-    this.player.slowDown();
+    this.player.modifySpeed(2);
   }
   pauseAnim(){
     this.play('StrongEnemyWalk', false);
