@@ -135,7 +135,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/tilemap/');
     this.load.tilemapTiledJSON('map1', 'prueba.json');
     this.load.tilemapTiledJSON('mapLevel1', 'nivel1.json');
-    this.load.tilemapTiledJSON('map2', 'nivel2.json');
+    this.load.tilemapTiledJSON('map2', 'finalMap2.json');
 
     this.load.tilemapTiledJSON('map3', 'finalMap3.json');
     this.load.tilemapTiledJSON('finalMap1', 'finalMap1.json');

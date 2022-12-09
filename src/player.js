@@ -51,7 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.loseLiveSound = this.scene.sound.add('loseLive');
   }
 
-  
+
   /**
  * Método para crear los controles del player.
  */
@@ -125,8 +125,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
   createCry() {
-    if (this.e.isDown && !this.cryLaunched) 
-    {
+    if (this.e.isDown && !this.cryLaunched) {
       new Cry(this.scene, this.x, this.y);
 
       this.crySound = this.scene.sound.add('cry');
@@ -304,21 +303,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
   }
   /**
-* Método que se llama al chocar con StrongEnemy, nos ralentiza durante 5 segundos y aparece un icono
+* Método que se llama al chocar con StrongEnemy/ o al coger un powerUp de velocidad, nos ralentiza/hace más rápidos (para ello el parámetro)
+  durante 5 segundos y aparece un icono correspondiente
 */
-  slowDown() {
-    if (!this.isSlow) {
-      this.speed = this.speed / 2;
-      this.isSlow = true;
-      this.lento.setVisible(true);
-      this.scene.time.addEvent({
-        delay: 4000,
-        callback: this.resetDefaultSpeed,
-        callbackScope: this
-      });
-    }
-
-  }
   modifySpeed(fact) {
     this.speed = this.speed / fact;
     switch (fact) {
@@ -330,8 +317,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         break;
       case 0.5:
-        if(!this.isQuick){
-          this.isQuick=true;
+        if (!this.isQuick) {
+          this.isQuick = true;
         }
         break;
     }
@@ -342,25 +329,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
     });
   }
   /**
-* Método en el que se resetea la velocidad una vez acabado el ralentizamiento del método slowDown
+* Método en el que se resetea la velocidad una vez acabado el ralentizamiento/aumento de la velocidad del jugador
 */
   resetDefaultSpeed() {
     this.speed = this.initialSpeed;
-    if(this.isSlow){
+    if (this.isSlow) {
       this.isSlow = false;
       this.lento.setVisible(false);
     }
-   if(this.isQuick){
-    this.isQuick=false;
-   }
+    if (this.isQuick) {
+      this.isQuick = false;
+    }
   }
 
   //cambia el daño que hace el bottle
   DamageChange(damages) {
     this.damageBottle = damages;
-  }
-
-  speedChange(speedynew) {
-    this.speed = speedynew;
   }
 }
