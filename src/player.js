@@ -35,6 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.lento = this.scene.add.image(this.x, this.y, 'lento').setScale(2).setVisible(false);
 
     this.isSlow = false;
+    this.isQuick = false;
     this.enableDashTimer = true;
     this.isDash = false;
     this.canDash = true;
@@ -316,13 +317,40 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
   }
+  modifySpeed(fact) {
+    this.speed = this.speed / fact;
+    switch (fact) {
+      case 2:
+        if (!this.isSlow) {
+          this.isSlow = true;
+          this.lento.setVisible(true);
+        }
+
+        break;
+      case 0.5:
+        if(!this.isQuick){
+          this.isQuick=true;
+        }
+        break;
+    }
+    this.scene.time.addEvent({
+      delay: 4000,
+      callback: this.resetDefaultSpeed,
+      callbackScope: this
+    });
+  }
   /**
 * Método en el que se resetea la velocidad una vez acabado el ralentizamiento del método slowDown
 */
   resetDefaultSpeed() {
     this.speed = this.initialSpeed;
-    this.isSlow = false;
-    this.lento.setVisible(false);
+    if(this.isSlow){
+      this.isSlow = false;
+      this.lento.setVisible(false);
+    }
+   if(this.isQuick){
+    this.isQuick=false;
+   }
   }
 
   //cambia el daño que hace el bottle
