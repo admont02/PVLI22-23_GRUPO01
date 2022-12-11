@@ -48,6 +48,11 @@ export default class MovingObject extends Phaser.GameObjects.Sprite {
     this.x = this.pointer.x + this.scene.cameras.main.midPoint.x - 500;
     this.y = this.pointer.y + this.scene.cameras.main.midPoint.y - 250;
 
+    console.log(this.pointer.x);
+    console.log(this.pointer.y);
+    console.log("POSICION DEL OBJETO");
+    console.log(this.x);
+    console.log(this.y);
 
     this.ghost.destroy();
     this.ghost = new GhostObject(this.scene, this.x, this.y, this.player);
