@@ -20,7 +20,7 @@ export default class door extends Phaser.GameObjects.Sprite {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    if (this.scene.NumEnemigos() == 0) {
+    if (this.scene.NumEnemigos() >= 0) {
       this.setTexture('doorOpen');
 
       if (this.scene.physics.overlap(this.player, this)) {
