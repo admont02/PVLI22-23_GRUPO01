@@ -27,10 +27,11 @@ export default class RangedEnemy extends Enemy {
       loop: true
     });
 
+    this.shots = this.scene.add.group();
   }
 
   preUpdate(t, dt) {
-    super.preUpdate(t, dt);  
+    super.preUpdate(t, dt);
   }
 
 
@@ -41,8 +42,8 @@ export default class RangedEnemy extends Enemy {
     this.posPlayer();
 
     //creas la bala y le pasas el origen de disparo y la direccion que es la resta entre el destino y el origen
-    if (this.active && ((this.dX < this.range && this.dY < this.range && this.dX > -this.range && this.dY > -this.range)) )
-      new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle, this.moving);
+    if (this.active && ((this.dX < this.range && this.dY < this.range && this.dX > -this.range && this.dY > -this.range)))
+      this.shots.add(new balaRangedEnemy(this.scene, this.x, this.y, this.player, this.angle, this.moving));
   }
 
   pauseAnim() {
