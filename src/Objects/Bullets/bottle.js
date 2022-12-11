@@ -22,6 +22,7 @@ export default class Bottle extends Bullet {
 
     this.damageBottle = damageBottle;
 
+    // timer que despues de 1 segundo llama a un metodo que destruye la botella
     this.timer = this.scene.time.addEvent({
       delay: 1000,
       callback: () =>
@@ -39,21 +40,25 @@ export default class Bottle extends Bullet {
     this.body.setVelocityX(this.speed * this.dirX);
     this.body.setVelocityY(this.speed * this.dirY);
 
+    // Si colisiona con un enemigo se destruye la botella y el enemigo recibe daño
     if (this.scene.physics.overlap(this.scene.enemy, this, (o1, o2) => { o1.takeDamage(this.damageBottle); o2.destroyBottle(); }));
+    // Si colisiona con las paredes se destruye la botella
     else if(this.scene.physics.collide(this.scene.boxLayer, this)) this.destroy();
   }
 
   //Destruccion de la botella
   destroyBottle(){
+    // Se destruye el timer
     if(this.timer != null){
       this.timer.destroy();
       this.timer = null;
     }
 
+    // Sonido de la botella al romperse
     this.glassSound.play();
 
     this.destroy();
   }
 
-  
+
 }

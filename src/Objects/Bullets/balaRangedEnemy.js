@@ -42,19 +42,15 @@ export default class balaRangedEnemy extends Bullet {
     this.body.setVelocityX(this.speed * this.vec.x);
     this.body.setVelocityY(this.speed * this.vec.y);
 
-    if (this.scene.physics.collide(this.movingObject, this)) {
+    //si coincide pos de bala y player se quita vida al player y se destruye bala
+    if (this.scene.physics.overlap(this.player, this)) {
       this.destroyBala();
+      this.player.modifyValue(-10);
     }
-
-    if (this.active) {
-      //si coincide pos de bala y player se quita vida al player y se destruye bala
-      if (this.scene.physics.overlap(this.player, this)) {
-        this.destroyBala();
-        this.player.modifyValue(-10);
-      }
-      else if(this.scene.physics.collide(this.scene.boxLayer, this)) this.destroyBala();
-    }
-
+    // Si colisiona con un objeto se destruye la bala
+    else if (this.scene.physics.collide(this.movingObject, this)) this.destroyBala();
+    // Si colisiona con las paredes se destruye la bala
+    else if (this.scene.physics.collide(this.scene.boxLayer, this)) this.destroyBala();
   }
 
   destroyBala() {
