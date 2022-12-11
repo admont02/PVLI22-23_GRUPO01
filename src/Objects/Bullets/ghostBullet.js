@@ -7,10 +7,10 @@ import Bullet from "./bullet.js";
       super(scene, x, y, 'bossBullet');
   
       this.play('bulletBoss', true);
-      this.speed = 250;
+      this.speed = 100;
    
       this.followPlayer = true;
-      this.setScale(1.5);
+      this.setScale(0.5);
       this.player = player;
 
       //Tiempo de vida

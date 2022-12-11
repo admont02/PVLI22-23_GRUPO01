@@ -7,7 +7,7 @@
 
     this.life = 50;
 
-    this.setScale(0.5);
+    this.setScale(0.25);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 

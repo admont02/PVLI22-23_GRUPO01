@@ -10,9 +10,9 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
         this.isDash = false;
         this.doAction = false;
-        this.setScale(2);
+        this.setScale(0.75);
 
-        this.speed = 100;
+        this.speed = 50;
 
         this.scene.add.existing(this)
         this.setOrigin(0, 0);
@@ -32,7 +32,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         }
 
         //Los ataques se realizaran de manera aleatoria en un tiempo aleatorio
-        this.value = Phaser.Math.Between(0, 1000);
+        this.value = Phaser.Math.Between(0, 750);
 
         //Hacer accion
         if (this.value == 0) this.makeAc();
@@ -67,7 +67,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
             this.stop();
 
             this.timer = this.scene.time.addEvent({
-                delay: 1000,
+                delay: 2000,
                 callback: () => {
                     this.random = Phaser.Math.Between(0, 2);
 
@@ -110,7 +110,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.dx = this.player.x;
         this.dy = this.player.y;
 
-        this.scene.physics.moveTo(this, this.dx, this.dy, 500);
+        this.scene.physics.moveTo(this, this.dx, this.dy, 150);
 
         this.timer = this.scene.time.addEvent({
             delay: 900,
@@ -124,7 +124,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
     bossInvisible() {
         if (this !== undefined) {
             this.setVisible(false);
-            this.speed = 50;
+            this.speed = 25;
 
             this.timer = this.scene.time.addEvent({
                 delay: 2000,
