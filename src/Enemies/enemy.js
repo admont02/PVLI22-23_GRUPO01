@@ -2,7 +2,7 @@ import HealthBar from '../healthbar.js';
 
 export default class Enemy extends Phaser.GameObjects.Sprite {
 
-    constructor(scene, x, y, speed, sprite, player, life, lifeValue) {
+    constructor(scene, x, y, speed, sprite, player, life, lifeValue, click) {
         super(scene, x, y, sprite);
 
         //posicion inicial
@@ -17,11 +17,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.pointer = this.scene.input.activePointer;
         this.setInteractive();
 
+        this.canClick = click;
+
         //Arrastre de los enemigos
         this.on("pointerdown", () => {
             this.startDrag();
         });
 
+        if(this.canClick)
         this.on("pointerup", () => {
             this.takeDamage(1);
         });
@@ -213,7 +216,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.posRepeY = this.y;
 
     }
-    
+
     /**
     * Método virtual que sobreescriben los enemigos que tienen algún efecto al chocar con el jugador
     */
@@ -232,8 +235,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     this.playerY = this.player.y * -1;
     else this.playerY = this.player.y
 
-    this.dX = this.playerX - this.x; 
-    this.dY = this.playerY - this.y; 
-    
+    this.dX = this.playerX - this.x;
+    this.dY = this.playerY - this.y;
+
     }
 }

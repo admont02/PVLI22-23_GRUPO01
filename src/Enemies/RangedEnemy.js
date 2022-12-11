@@ -4,8 +4,8 @@ import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';
 //Clase para el Ranged Enemy
 export default class RangedEnemy extends Enemy {
 
-  constructor(scene, x, y, imgKey, player, moving) {
-    super(scene, x, y, 50, imgKey, player, 20, 150);
+  constructor(scene, x, y, imgKey, player, moving, click) {
+    super(scene, x, y, 50, imgKey, player, 20, 150, click);
 
     this.setScale(.5);
     this.hp.setScale(0.5);

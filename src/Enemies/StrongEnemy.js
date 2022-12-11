@@ -3,15 +3,15 @@ import Enemy from './enemy.js';
 
 //Clase para el enemigo tanque
 export default class StrongEnemy extends Enemy {
-  constructor(scene, x, y, imgKey, player) {
-    super(scene, x, y, 30, imgKey, player, 40, 150);
+  constructor(scene, x, y, imgKey, player, click) {
+    super(scene, x, y, 30, imgKey, player, 40, 150, click);
 
     this.setScale(0.75);
     this.hp.setScale(0.5);
     // this.player = player;
     this.hp.bar.setScale(0.5);
-    this.enemyFactorDamage=3;
-    
+    this.enemyFactorDamage = 3;
+
     this.play('StrongEnemyWalk', true);
   }
 
@@ -21,7 +21,7 @@ export default class StrongEnemy extends Enemy {
   effectToPlayer() {
     this.player.modifySpeed(2);
   }
-  pauseAnim(){
+  pauseAnim() {
     this.play('StrongEnemyWalk', false);
   }
 }

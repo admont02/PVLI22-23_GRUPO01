@@ -29,6 +29,7 @@ export default class Level1 extends Phaser.Scene {
   init(data) {
     this.mapName = data.mapName;
     this.canPlayerDash = data.dash;
+    this.canClick = data.click;
   }
 
   //Elementos del nivel 1
@@ -78,6 +79,7 @@ export default class Level1 extends Phaser.Scene {
       new cofre(this, 1800, 1300, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
+      this.physics.add.collider(this.enemy, this.movingObjects);
       this.physics.add.collider(this.enemy, this.movingObjects);
       new speedPowerUp(this, 600, 850, this.player);
 
@@ -252,16 +254,16 @@ export default class Level1 extends Phaser.Scene {
           case 3: this.basicEnSprite = 'basicEnemyAzulDerecha';
             break;
         }
-        this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, this.basicEnSprite, this.player, 2));
+        this.enemy.add(new BasicEnemy(this, basicEn.x, basicEn.y, this.basicEnSprite, this.player, this.canClick));
       }
       for (const strongEn of this.map.getObjectLayer('strongEnemies').objects) {
-        this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player));
+        this.enemy.add(new StrongEnemy(this, strongEn.x, strongEn.y, 'StrongEnemyWalk', this.player, this.canClick));
       }
       for (const speedEn of this.map.getObjectLayer('speedEnemies').objects) {
-        this.enemy.add(new SpeedEnemy(this, speedEn.x, speedEn.y, 'MovimientoGeneralSpeedEnemy', this.player));
+        this.enemy.add(new SpeedEnemy(this, speedEn.x, speedEn.y, 'MovimientoGeneralSpeedEnemy', this.player, this.canClick));
       }
       for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
-        this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects));
+        this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects, this.canClick));
       }
     }
 
