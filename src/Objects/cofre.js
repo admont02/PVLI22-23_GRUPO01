@@ -3,7 +3,7 @@ import LifePowerUp from '../PowerUps/lifePowerUp.js';
 import damagePowerUp from '../PowerUps/damagePowerUp.js';
 import speedPowerUp from '../PowerUps/speedPowerUp.js';
 
-export default class cofre extends Phaser.GameObjects.Sprite {
+export default class Cofre extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player) {
     super(scene, x, y, 'cofreCerrado');

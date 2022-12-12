@@ -18,7 +18,7 @@ import Door from '../Objects/door.js';
 import eyeBoss from '../Objects/eyeBoss.js';
 import Boss from '../Enemies/boss.js';
 //cofres
-import cofre from '../Objects/cofre.js';
+import Cofre from '../Objects/cofre.js';
 
 
 //Escena del nivel 1
@@ -68,15 +68,7 @@ export default class Level1 extends Phaser.Scene {
       //this.cameras.main.setBounds(0, 0, width, height);
 
 
-
-      //cofre
-      new cofre(this, 300, 490, this.player);
-
-      //cofre
-      new cofre(this, 1600, 1300, this.player);
-
-      //cofre
-      new cofre(this, 1800, 1300, this.player);
+      this.createObjects();
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
@@ -274,6 +266,14 @@ export default class Level1 extends Phaser.Scene {
   createPlayer() {
     for (const p of this.map.getObjectLayer('player').objects) {
       this.player = new Player(this, p.x, p.y, this.canPlayerDash);
+    }
+  }
+  /**
+* Método en el que se crean los objetos de la escena
+*/
+  createObjects() {
+    for (const c of this.map.getObjectLayer('chests').objects) {
+      new Cofre(this, c.x, c.y, this.player);
     }
   }
   saveFile() {
