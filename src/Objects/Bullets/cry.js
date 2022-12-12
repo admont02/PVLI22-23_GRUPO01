@@ -6,7 +6,7 @@ import Bullet from "./bullet.js";
     constructor(scene, x, y) {
       super(scene, x, y, 'cry');
   
-      this.damage = 0.2;
+      this.damage = 0.1;
       this.setScale(0.07);
 
       this.timer = this.scene.time.addEvent({

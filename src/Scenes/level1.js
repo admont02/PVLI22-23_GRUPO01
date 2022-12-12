@@ -194,9 +194,11 @@ export default class Level1 extends Phaser.Scene {
   }
 
   changeLevel(newlevel, dataMap) {
+    this.quitarSonido();
     //pasamos de escena y cambiamos su dataMap
     this.scene.start(newlevel, { mapName: dataMap });
   }
+  
   /**
 * Método en el que se crean los diversos elementos de la pausa,
   además, se definen los eventos pointerdown para cada botón
