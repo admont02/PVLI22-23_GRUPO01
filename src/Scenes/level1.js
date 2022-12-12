@@ -217,7 +217,11 @@ export default class Level1 extends Phaser.Scene {
 */
   createPause() {
     this.pause = this.add.image(680, 165, 'pause').setScale(0.05).setScrollFactor(0).setInteractive();
-    this.resume = this.add.text(this.scale.width / 2 - 70, this.scale.height / 2 - 20, "RESUME").setInteractive().setScrollFactor(0).setVisible(false).setScale(2);
+    this.panel=this.add.image(this.scale.width / 2 , this.scale.height / 2 ,'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
+    this.resume = this.add.image(this.scale.width / 2+25 , this.scale.height / 2 -10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
+    this.options = this.add.image(this.scale.width / 2 , this.scale.height / 2 +35, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+    this.exit = this.add.image(this.scale.width / 2 +2, this.scale.height / 2 +75, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+
     //boton de pausa
     this.pause.on("pointerdown", () => {
       this.pauseEnemies(false);
@@ -240,6 +244,10 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.getChildren()[i].setActive(isAct);
     }
     this.resume.setVisible(!isAct);
+    this.panel.setVisible(!isAct);
+    this.options.setVisible(!isAct);
+    this.exit.setVisible(!isAct);
+
 
   }
   /**
