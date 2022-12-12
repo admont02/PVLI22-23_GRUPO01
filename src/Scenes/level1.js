@@ -20,11 +20,19 @@ import Boss from '../Enemies/boss.js';
 //cofres
 import Cofre from '../Objects/cofre.js';
 
+//cargamos intro
+import EventDispatcher from '../eventos/eventDispatcher.js'
+import IntroDialogo from '../Dialogos/introDialogo.js';
+
 
 //Escena del nivel 1
 export default class Level1 extends Phaser.Scene {
   constructor() {
     super({ key: 'level1' });
+    //para poder hacer el evento
+    this.emitter = EventDispatcher.getInstance();
+    this.previousLetterTime = 0;
+   
   }
   init(data) {
     this.mapName = data.mapName;
@@ -33,11 +41,14 @@ export default class Level1 extends Phaser.Scene {
   }
 
   //Elementos del nivel 1
-  create() {
+  create() 
+  {
+    this.emitter.destroy();
 
     this.createTileMap();
     this.createPlayer();
 
+    
     this.enemy = this.add.group();
     this.movingObjects = this.add.group();
     console.log(this.mapName);
@@ -47,9 +58,11 @@ export default class Level1 extends Phaser.Scene {
     this.playing = true;
 
     //map1
-    if (this.mapName === 'finalMap1') {
+    if (this.mapName === 'finalMap1') 
+    {
 
-
+     //iniciamos intro
+      this.Intro();
 
       this.numEnemigosVivos = 0;
 
@@ -174,8 +187,7 @@ export default class Level1 extends Phaser.Scene {
 
   }
 
-  update() {
-  }
+  
 
   updateLivesEnemy() {
     //this.label.text = 'Enemies Left: ' + this.NumEnemigos();
@@ -289,7 +301,8 @@ export default class Level1 extends Phaser.Scene {
     // });
   }
 
-  loadFile() {
+  loadFile()
+  {
     //ponemos la vida del player actualizandola
     //establecemos el grupo de enemigos
     // window.addEventListener("cargar", event =>
@@ -297,5 +310,38 @@ export default class Level1 extends Phaser.Scene {
     //   //guardamos algo con un nombre
     //   this.healthPlayer =window.localStorage.getItem('vidaPlayer')
     // });
+  }
+
+  //ejecuta intro
+  Intro()
+  {
+    console.log("intro");
+    //pone imagen de pergamino 
+    this.image = this.add.image(1218, 650, 'pergamino');
+    this.image.setScale(0.35);
+    //creamos cuadro de dialogo
+		this.IntroDialogo = new IntroDialogo(this, 1092, 620, 300); 
+    
+    //creamos el evento y lo emitimos te lleva directamente a donde el metodo esta definido
+    this.emitter.emit("introPergamino" );
+
+    //metemos boton  okey para quitar intro
+    this.playbutton = this.add.text( 1200, 660, "okey ",{fontFamily:'CustomFont' , fontSize:25 , color:'#000000'}).setInteractive();
+    this.playbutton.setScale(1.5);
+    this.playbutton.on("pointerdown", () => {
+      this.quitarIntro()
+    });   
+  }
+
+  quitarIntro()
+  {
+    //quitamos boton
+    this.playbutton.setVisible(false);
+    this.playbutton.setActive(false);
+    //quitamos imagen
+    this.image.setVisible(false);
+    this.image.setActive(false);
+    //quitamos texto
+    this.IntroDialogo.clearText();  
   }
 }

@@ -5,6 +5,7 @@ import Configuracion from './Configuracion.js'
 import Creditos from './creditos.js'
 import Final from './final.js';
 import MiddleScene from './middleScene.js';
+// import IntroDialogo from '../Dialogos/IntroDialogo.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos

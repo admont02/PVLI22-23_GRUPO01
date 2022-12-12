@@ -53,6 +53,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
     this.load.image('morado', 'morado.jpg');
     this.load.image('movinObject', 'cojin.png');
+    //cargamos imagen pergaminoInicio
+    this.load.image('pergamino', 'pergamino.png');
 
     //cargamos powerUps
     //animaciones de damage
@@ -220,14 +222,14 @@ export default class Boot extends Phaser.Scene {
     //RangedEnemy
     this.anims.create({
       key: 'RangedEnemyDer',
-      frames: this.anims.generateFrameNumbers('RangedEnemyDer', { start: 0, end: 5 }),
+      frames: this.anims.generateFrameNumbers('RangedEnemyDer', { start: 2, end: 5 }),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: 'RangedEnemyIzq',
-      frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 0, end: 5 }),
+      frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 2, end: 5 }),
       frameRate: 10,
       repeat: -1
     });
