@@ -12,7 +12,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.doAction = false;
         this.setScale(0.75);
 
-        this.speed = 50;
+        this.speed = 60;
 
         this.scene.add.existing(this)
         this.setOrigin(0, 0);
@@ -32,14 +32,14 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         }
 
         //Los ataques se realizaran de manera aleatoria en un tiempo aleatorio
-        this.value = Phaser.Math.Between(0, 750);
+        this.value = Phaser.Math.Between(0, 780);
 
         //Hacer accion
         if (this.value == 0) this.makeAc();
 
         //Colision con el jugador
         if (this.scene.physics.overlap(this.player, this)) {
-            this.player.modifyValue(-30);
+            this.player.modifyValue(-25);
             this.changePos();
         }
 
@@ -93,7 +93,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
     //Reestablecer velocidad
     startMoving() {
-        this.speed = 100;
+        this.speed = 60;
     }
 
     //Disparar fantasma
@@ -110,7 +110,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.dx = this.player.x;
         this.dy = this.player.y;
 
-        this.scene.physics.moveTo(this, this.dx, this.dy, 150);
+        this.scene.physics.moveTo(this, this.dx, this.dy, 120);
 
         this.timer = this.scene.time.addEvent({
             delay: 900,
@@ -169,6 +169,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
         this.timer = this.scene.time.addEvent({
             delay: 1000,
             callback: () => {
+                
+                this.scene.quitarSonido();
                 this.scene.scene.start('final', {text : 'Has ganado'});
                 this.destroy();
             }
