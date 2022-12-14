@@ -37,7 +37,7 @@ export default class MiddleScene extends Phaser.Scene {
             //level2
             this.playButton.on("pointerdown", () => {
 
-                this.scene.start('level1', { mapName: 'map2' });
+                this.scene.start('level1', { mapName: 'map3' });
             });
         }
         // te pasas level2
