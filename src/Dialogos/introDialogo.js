@@ -32,7 +32,7 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
 		{
 			  this.clearText();	// Borrar texto previo
 			  //pasamos texto que se pondrá en pantalla y dará permiso a update para hacer metodo write
-			  this.myText = 'Bienvenido al mundo del sueño...lo siento Otis , pero todo depende de tí , debes acabar con las pesadillas, suerte';
+			  this.myText = 'Bienvenido al mundo del sueño...lo siento Otis , pero todo depende de tí , debes acabar con las pesadillas y con el terrible Agnan... suerte pequeño... , lo vas a necesitar';
 			  this.setFontFamily('CustomFont');
 			  //cambiar de color el texto latexColor
 			  this.setTint(0x000000);
