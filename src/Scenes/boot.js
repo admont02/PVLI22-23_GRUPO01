@@ -55,6 +55,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bottle', 'bottleBlue.png');
     this.load.image('configuracion', 'Configuracion.png');
     this.load.image('fondoMenu', 'fondoDefinitivo.png');
+    this.load.image('fondo', 'fondo.png');
     this.load.image('morado', 'morado.jpg');
     this.load.image('movinObject', 'cojin.png');
     //cargamos imagen pergaminoInicio

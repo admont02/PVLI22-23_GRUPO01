@@ -21,14 +21,14 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
     	// Cambia la fuente del texto
 		this.setFontFamily('Silkscreen');
 
-		/* Si quiereis cambiar el tamaño de la letra usar esta instruccion, 
+		/* Si quiereis cambiar el tamaño de la letra usar esta instruccion,
 		volver a contar los caracteres por linea y actualizar el comentario de setTextToDisplay */
 		this.setFontSize(14);
     	//asociamos evento a variable
 		// this.emitter = EventDispatcher.getInstance();
 
 		//ejecutamos evento y lo escuchamos cuando se emita
-		this.scene.emitter.on("introPergamino",() => 
+		this.scene.emitter.on("introPergamino",() =>
 		{
 			  this.clearText();	// Borrar texto previo
 			  //pasamos texto que se pondrá en pantalla y dará permiso a update para hacer metodo write
@@ -50,7 +50,7 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
 		  if(this.isWritting && this.timePerLetter <= this.scene.previousLetterTime){
 			  this.write();
 				//quitamos permiso de escritura
-				
+
 			  this.scene.previousLetterTime = 0;
 		  }
 	}
@@ -62,7 +62,7 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
 			this.textToDisplay = text;
 			this.isWritting = true;
 		}
-		else console.log('Ya se esta escribiendo un texto'); 
+		else console.log('Ya se esta escribiendo un texto');
 	}
 
 	// Permite cambiar la velocidad de escritura
@@ -84,7 +84,7 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
 		let letter = this.textToDisplay.charAt(this.letterPos);
     	//esa letra se la sumamos al texto actual para que lo escriba letra por letra
 		this.text += letter;
-    
+
 		this.updateText();
 		this.letterPos++;
 		//si queremos ejecutar el evento otra vez
@@ -110,9 +110,9 @@ export default class IntroDialogo extends Phaser.GameObjects.Text{
 		this.updateText();
 	}
 
-	
 
-  
-  
-  
+
+
+
+
 }

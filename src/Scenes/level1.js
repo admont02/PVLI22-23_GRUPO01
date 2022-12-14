@@ -332,15 +332,24 @@ export default class Level1 extends Phaser.Scene {
   //ejecuta intro
   Intro()
   {
-    console.log("intro");
-    //pone imagen de pergamino
-    this.image = this.add.image(1218, 650, 'pergamino');
-    this.image.setScale(0.35);
-    //creamos cuadro de dialogo
-		this.IntroDialogo = new IntroDialogo(this, 1092, 620, 300);
+		console.log("intro");
+		//pone imagen de pergamino
+		this.image = this.add.image(1218, 650, 'pergamino');
+		this.image.setScale(0.35);
 
-    //creamos el evento y lo emitimos te lleva directamente a donde el metodo esta definido
-    this.emitter.emit("introPergamino" );
+    //creamos cuadro de dialogo
+    this.IntroDialogo = new IntroDialogo(this, 1092, 620, 300);
+
+		this.tween = this.tweens.add({
+			targets: [ this.image ],
+			scaleX: 0.4,
+			scaleY: 0.4,
+			duration: 1000,
+			repeat: 0,
+      onComplete: () => {
+        //creamos el evento y lo emitimos te lleva directamente a donde el metodo esta definido
+        this.emitter.emit("introPergamino" ); }
+		});
 
     //pausamos el juego mientras .enemigos y fisicas
     for (let i = 0; i < this.enemy.getLength(); i++) {
