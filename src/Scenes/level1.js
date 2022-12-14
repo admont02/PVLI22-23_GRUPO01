@@ -342,10 +342,24 @@ export default class Level1 extends Phaser.Scene {
     //creamos el evento y lo emitimos te lleva directamente a donde el metodo esta definido
     this.emitter.emit("introPergamino" );
 
+    //pausamos el juego mientras .enemigos y fisicas
+    for (let i = 0; i < this.enemy.getLength(); i++) {
+      this.enemy.getChildren()[i].setActive(false);
+    }
+    this.playing = false;
+    this.physics.pause();
+
     //metemos boton  okey para quitar intro
     this.playbutton = this.add.text( 1200, 660, "okey ",{fontFamily:'CustomFont' , fontSize:25 , color:'#000000'}).setInteractive();
     this.playbutton.setScale(1.5);
     this.playbutton.on("pointerdown", () => {
+      //quitamos la pausa
+      for (let i = 0; i < this.enemy.getLength(); i++) {
+        this.enemy.getChildren()[i].setActive(true);
+      }
+      this.playing = true;
+      this.physics.resume();
+      //pausamos el juego mientras .enemigos y fisicas
       this.quitarIntro()
     });
   }
