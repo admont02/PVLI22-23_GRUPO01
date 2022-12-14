@@ -4,7 +4,7 @@ export default class Creditos extends Phaser.Scene {
   }
   create()
    {
-        this.sonidoMenu();
+      this.sonidoMenu();
       // this es Scene
       this.image = this.add.image(125, 200, 'creditos').setOrigin(0,0);
       // this.image =this.add.image(-200, -1000, 'fondoMenu');
