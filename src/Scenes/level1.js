@@ -108,7 +108,7 @@ export default class Level1 extends Phaser.Scene {
 
 
 
-      this.door = new Door(this, 400, 400, this.player, 'level1', 'middleScene', 'two');
+      this.door = new Door(this,600, 50, this.player, 'level1', 'middleScene', 'two');
 
 
       this.physics.add.collider(this.enemy, this.boxLayer);
