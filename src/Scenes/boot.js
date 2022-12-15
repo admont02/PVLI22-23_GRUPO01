@@ -60,6 +60,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('movinObject', 'cojin.png');
     //cargamos imagen pergaminoInicio
     this.load.image('pergamino', 'pergamino.png');
+    //cargamos iconos habilidades
+    this.load.image('icono1', 'iconoVelocidad.png');
+    this.load.image('icono2', 'iconoClick.png');
+
 
     //cargamos powerUps
     //animaciones de damage
