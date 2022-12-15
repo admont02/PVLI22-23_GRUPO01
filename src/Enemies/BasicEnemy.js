@@ -1,6 +1,8 @@
 import Enemy from './enemy.js';
 
-//Clase del basicEnemy
+/**
+* Clase para elBasic Enemy, destaca por su ligero tamaño 
+*/
 export default class BasicEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player, click) {

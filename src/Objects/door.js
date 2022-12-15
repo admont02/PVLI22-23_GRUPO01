@@ -1,5 +1,7 @@
 
-//Area que crea el ojo(aumenta la velocidad de los enemigos si estos lo tocan)
+/**
+* Clase que representa la puerta con la que podrás ir cambiando de nivel
+*/
 export default class Door extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, level, dataMap,middleSceneNumber) {

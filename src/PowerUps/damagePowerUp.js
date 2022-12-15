@@ -1,8 +1,8 @@
 import PowerUp from "./powerUp.js";
 
 /**
- * El jugador recuperará una vida al coger este objeto
- * (si no supera las vidas máximas)
+ * El jugador duplicara su fuerza al coger este powerUp
+ *
  */
 export default class damagePowerUp extends PowerUp {
 

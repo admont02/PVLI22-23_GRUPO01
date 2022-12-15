@@ -1,5 +1,7 @@
 import HealthBar from '../healthbar.js';
-
+/**
+* Clasepadre Enemy de la que heredan todos los enemigos
+*/
 export default class Enemy extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, speed, sprite, player, life, lifeValue, click) {

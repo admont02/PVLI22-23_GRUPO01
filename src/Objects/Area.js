@@ -1,6 +1,8 @@
 
-//Area que crea el ojo(aumenta la velocidad de los enemigos si estos lo tocan)
- export default class area extends Phaser.GameObjects.Sprite {
+/**
+* Area que crea el ojo(aumenta la velocidad de los enemigos si estos lo tocan)
+*/
+ export default class Area extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
     super(scene, x, y, 'area');

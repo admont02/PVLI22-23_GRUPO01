@@ -1,5 +1,7 @@
-
-// Clase encargada de la vida del jefe
+/**
+* Clase encargada de la vida de los ojos del nivel del boss
+*/
+// 
  export default class eyeBoss extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player) {

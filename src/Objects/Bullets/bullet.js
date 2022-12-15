@@ -1,5 +1,7 @@
 
-//Clase padre Bullet de la que heredarna todas las balas del juego
+/**
+* Clase padre Bullet de la que heredaran todas las balas del juego
+*/
  export default class Bullet extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, sprite) {
