@@ -2,7 +2,7 @@ import PowerUp from "./powerUp.js";
 
 /**
  * El jugador recuperará vida al coger este objeto
- * (si no supera la vida máximas)
+ * (si no supera la vida máxima)
  */
 export default class LifePowerUp extends PowerUp {
 

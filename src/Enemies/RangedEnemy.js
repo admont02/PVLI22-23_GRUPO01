@@ -1,7 +1,9 @@
 import Enemy from './enemy.js';
 import balaRangedEnemy from '../Objects/Bullets/balaRangedEnemy.js';
 
-//Clase para el Ranged Enemy
+/**
+* Clase para el Ranged Enemy, que dispara potentes balas
+*/
 export default class RangedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player, moving, click) {

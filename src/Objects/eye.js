@@ -1,7 +1,9 @@
-import area from "./Area.js";
+import Area from "./Area.js";
 import HealthBar from "../healthbar.js";
 
-//Ojo de agnan
+/**
+* Clase de los Ojoa de agnan, que hacen mas rapidos a los enemigos en su rango de alcance
+*/
 export default class Eye extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, player, enemies) {
@@ -38,7 +40,7 @@ export default class Eye extends Phaser.GameObjects.Sprite {
   //Abrir ojo crea un area
   openEye() {
     this.setTexture('eyeOpen');
-    this.area = new area(this.scene, this.x, this.y, this.player, this.enemies);
+    this.area = new Area(this.scene, this.x, this.y, this.player, this.enemies);
     this.eyeTimer();
   }
 

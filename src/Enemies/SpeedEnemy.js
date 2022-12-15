@@ -1,7 +1,9 @@
 import Enemy from './enemy.js';
 
 
-//Clase para el enemigo rapido
+/**
+* Clase relativa al Speed Enemy
+*/
 export default class SpeedEnemy extends Enemy {
 
   constructor(scene, x, y, imgKey, player, click) {

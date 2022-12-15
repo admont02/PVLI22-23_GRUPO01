@@ -392,9 +392,11 @@ export default class Level1 extends Phaser.Scene {
       this.IntroDialogo.clearText();
     }, this);
   }
-
+ /**
+* Método en el que se pasa a la escena de fin tras haber muerto, y poder reiniciar el nivel
+*/
   diedScreen() {
-   //parametros para reiniciar si el jugador quiere
+   //parametros para reiniciar 
 
     this.scene.start('final', { text: 'LOSE',mapName:this.mapName,dash:this.canPlayerDash,click:this.canClick,middle:this.middleSceneNumber });
   }

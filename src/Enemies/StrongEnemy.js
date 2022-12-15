@@ -1,7 +1,9 @@
 import Enemy from './enemy.js';
 
 
-//Clase para el enemigo tanque
+/**
+* Clase del Strong Enmy, te ralentiza al colisionar con él.
+*/
 export default class StrongEnemy extends Enemy {
   constructor(scene, x, y, imgKey, player, click) {
     super(scene, x, y, 30, imgKey, player, 40, 150, click);
