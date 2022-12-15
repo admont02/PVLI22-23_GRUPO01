@@ -166,7 +166,9 @@ export default class Level1 extends Phaser.Scene {
     this.gamesong.destroy();
   }
 
-  //Creacion del tilemap
+  /**
+* Método en el que se crea el tilemap con sus respectivas capas
+*/
   createTileMap() {
     this.map = this.make.tilemap({
       key: this.mapName,
@@ -187,6 +189,9 @@ export default class Level1 extends Phaser.Scene {
 
 
   }
+  /**
+* Método en el que se obtienen enemigos restantes del nivel
+*/
   getEnemiesRemaining() {
     return this.enemy.getLength();
   }
