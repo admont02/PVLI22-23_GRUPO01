@@ -32,7 +32,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //Velocidad
         this.speed = speed;
         this.speedBolean = false;
-        this.scene.AumentarEnemyVivo();
 
         this.scene.add.existing(this)
         this.setOrigin(0, 0);
@@ -131,27 +130,24 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.lives -= damage;
             this.hp.modify(-damage*this.enemyFactorDamage);
             //repetir el parpadeo 3 veces
-            this.EnemyInvisible();
+            this.EnemyFeedback();
         }
         else {
 
             this.dieSound.play();
-
-            this.scene.QuitarEnemyVivo();
-            this.scene.updateLivesEnemy();
             this.EnemyDie();
         }
     }
 
     //Convertir al enemy en invisible
-    EnemyInvisible() {
+    EnemyFeedback() {
         if (this !== undefined) {
             //this.setVisible(false);
             this.setTint(0xff0000)
             this.timer = this.scene.time.addEvent({
                 delay: 250,
                 callback: () => {
-                    this.EnemyVisible();
+                    this.ClearEnemyTint();
                 }
             });
 
@@ -159,7 +155,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     //Hacer al enemy visible
-    EnemyVisible() {
+    ClearEnemyTint() {
         //this.setVisible(true);
         this.clearTint()
     }

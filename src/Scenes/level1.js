@@ -33,6 +33,9 @@ export default class Level1 extends Phaser.Scene {
     this.emitter = EventDispatcher.getInstance();
     this.previousLetterTime = 0;
     this.introFinished = false;
+    this.maxVol = 0.7;
+    this.muteVol = 0;
+    this.isMute = false;
 
   }
   init(data) {
@@ -66,13 +69,8 @@ export default class Level1 extends Phaser.Scene {
       //iniciamos intro
       this.Intro();
 
-      this.numEnemigosVivos = 0;
 
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
-
-      //creamos objeto de level enemiesLEFT
-
-      this.eye = new Eye(this, 1000, 4000, this.player, this.enemy);
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
@@ -97,25 +95,21 @@ export default class Level1 extends Phaser.Scene {
         this.door = new Door(this, 160, 0, this.player, 'middleScene', 'map2', 'two');
       }
 
-      //this.createObjects();
     }
 
     //map2
     else if (this.mapName === 'map2') {
 
-      // this.player = new Player(this, 1200, 600, false);
 
-      this.numEnemigosVivos = 0;
+
 
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
 
 
-      this.eye = new Eye(this, 1000, 4000, this.player, this.enemy);
 
       this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'two');
 
-      new speedPowerUp(this, 500, 900, this.player);
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
@@ -146,7 +140,6 @@ export default class Level1 extends Phaser.Scene {
     this.boxLayer.setCollisionBetween(0, 999);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setZoom(2.5);
-    // this.cameras.main.setDeadzone(width, height);
     this.createPause();
     this.sonidoGame();
 
@@ -158,8 +151,8 @@ export default class Level1 extends Phaser.Scene {
 
   sonidoGame() {
     const config = {
-      mute: false,
-      volume: 0.75,
+      mute: this.isMute,
+      volume: this.maxVol,
       rate: 1,
       detune: 0,
       seek: 0,
@@ -187,6 +180,7 @@ export default class Level1 extends Phaser.Scene {
     const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
     const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
     const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
+
     this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7]);
     this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
     this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
@@ -196,21 +190,6 @@ export default class Level1 extends Phaser.Scene {
   }
   getEnemiesRemaining() {
     return this.enemy.getLength();
-  }
-  updateLivesEnemy() {
-    //this.label.text = 'Enemies Left: ' + this.NumEnemigos();
-  }
-
-  AumentarEnemyVivo() {
-    this.numEnemigosVivos++;
-  }
-
-  QuitarEnemyVivo() {
-    this.numEnemigosVivos--;
-  }
-
-  NumEnemigos() {
-    return this.numEnemigosVivos;
   }
 
   changeLevel(newlevel, dataMap, middleValue) {
@@ -226,9 +205,13 @@ export default class Level1 extends Phaser.Scene {
   createPause() {
     this.pause = this.add.image(680, 165, 'pause').setScale(0.05).setScrollFactor(0).setInteractive();
     this.panel = this.add.image(this.scale.width / 2, this.scale.height / 2, 'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
-    this.resume = this.add.image(this.scale.width / 2 -40, this.scale.height / 2 - 10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
-    this.options = this.add.image(this.scale.width / 2-60, this.scale.height / 2 + 55, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.45);
+    this.resume = this.add.image(this.scale.width / 2 - 40, this.scale.height / 2 - 10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
+    this.options = this.add.image(this.scale.width / 2 - 60, this.scale.height / 2 + 55, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.45);
+    this.config = this.add.image(this.scale.width / 2, this.scale.height / 2, 'configuracion').setScrollFactor(0).setVisible(false).setScale(0.25);
     this.exit = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 + 55, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+    this.fullsound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'on').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
+    this.mutesound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'off').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
+    this.back=this.add.image(this.scale.width / 2, this.scale.height / 2 +40, 'back').setScale(0.05).setScrollFactor(0).setInteractive().setVisible(false);
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
@@ -244,8 +227,55 @@ export default class Level1 extends Phaser.Scene {
       this.physics.resume();
       this.playing = true;
     })
-    this.exit.on("pointerdown",()=>{
+    //boton settings
+    this.options.on("pointerdown", () => {
+      this.config.setVisible(true);
+      this.back.setVisible(true);
+      this.resume.setVisible(false)
+      this.exit.setVisible(false);
+      this.options.setVisible(false);
+      if (!this.isMute) {
+        this.fullsound.setVisible(false);
+      }
+      else {
+        this.mutesound.setVisible(false);
+      }
+
+    })
+    //boton de salir al menú
+    this.exit.on("pointerdown", () => {
       this.scene.start('menu');
+      this.gamesong.destroy();
+    })
+    //pulsas boton de volumen
+    this.fullsound.on("pointerdown", () => {
+      this.fullsound.setVisible(false);
+      this.isMute = true;
+      this.mutesound.setVisible(true);
+      this.gamesong.setVolume(0);
+
+    })
+    //pulsas volumen muteado
+    this.mutesound.on("pointerdown", () => {
+      this.mutesound.setVisible(false);
+      this.isMute = false;
+      this.fullsound.setVisible(true);
+      this.gamesong.setVolume(this.maxVol);
+
+    })
+    //boton back de config
+    this.back.on("pointerdown", () => {
+      this.config.setVisible(false);
+      this.back.setVisible(false);
+      this.resume.setVisible(true);
+      this.exit.setVisible(true);
+      this.options.setVisible(true);
+      if (!this.isMute) {
+        this.fullsound.setVisible(true);
+      }
+      else {
+        this.mutesound.setVisible(true);
+      }
     })
   }
   /**
@@ -259,6 +289,12 @@ export default class Level1 extends Phaser.Scene {
     this.panel.setVisible(!isAct);
     this.options.setVisible(!isAct);
     this.exit.setVisible(!isAct);
+    if (!this.isMute) {
+      this.fullsound.setVisible(!isAct);
+    }
+    else {
+      this.mutesound.setVisible(!isAct);
+    }
 
 
   }
@@ -266,7 +302,6 @@ export default class Level1 extends Phaser.Scene {
 * Método en el que se crean los enemigos de la escena
 */
   createEnemies() {
-    console.log(this.mapName);
     if (this.mapName !== 'map3' && this.mapName !== 'middleScene') {
       for (const basicEn of this.map.getObjectLayer('basicEnemies').objects) {
         var value = Phaser.Math.Between(0, 3);
@@ -292,14 +327,14 @@ export default class Level1 extends Phaser.Scene {
       for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
         this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects, this.canClick));
       }
-      for(const e of this.map.getObjectLayer('eyes').objects){
+      for (const e of this.map.getObjectLayer('eyes').objects) {
         new Eye(this, e.x, e.y, this.player, this.enemy);
       }
     }
 
   }
   /**
-* Método en el que se crean el jugador de la escena
+* Método en el que se crea el jugador de la escena
 */
   createPlayer() {
     for (const p of this.map.getObjectLayer('player').objects) {
@@ -313,26 +348,6 @@ export default class Level1 extends Phaser.Scene {
     for (const c of this.map.getObjectLayer('chests').objects) {
       new Cofre(this, c.x, c.y, this.player);
     }
-  }
-  saveFile() {
-    //guardamos la vida del player
-    //guardamos el numero de enemigos
-    //guardamos el grupo de enemigos para poder ver cuales quedan
-    // window.addEventListener("guardar", event =>
-    // {
-    //   //guardamos algo con un nombre
-    //   window.localStorage.setItem('vidaPlayer' ,this.healthPlayer )
-    // });
-  }
-
-  loadFile() {
-    //ponemos la vida del player actualizandola
-    //establecemos el grupo de enemigos
-    // window.addEventListener("cargar", event =>
-    // {
-    //   //guardamos algo con un nombre
-    //   this.healthPlayer =window.localStorage.getItem('vidaPlayer')
-    // });
   }
 
   //ejecuta intro
@@ -373,18 +388,38 @@ export default class Level1 extends Phaser.Scene {
       this.physics.resume();
       this.emitter.destroy("introPergamino");
       //pausamos el juego mientras .enemigos y fisicas
-      this.quitarIntro();
+      this.image.setVisible(false);
+      this.image.setActive(false);
+      this.IntroDialogo.clearText();
     }, this);
   }
 
-  quitarIntro() {
-    //quitamos boton
-    //this.playbutton.setVisible(false);
-    //this.playbutton.setActive(false);
-    //quitamos imagen
-    this.image.setVisible(false);
-    this.image.setActive(false);
-    //quitamos texto
-    this.IntroDialogo.clearText();
+
+
+
+
+
+
+
+  //los siguientes metodos se quieren realizar como mejora en navidades:
+  saveFile() {
+    //guardamos la vida del player
+    //guardamos el numero de enemigos
+    //guardamos el grupo de enemigos para poder ver cuales quedan
+    // window.addEventListener("guardar", event =>
+    // {
+    //   //guardamos algo con un nombre
+    //   window.localStorage.setItem('vidaPlayer' ,this.healthPlayer )
+    // });
+  }
+
+  loadFile() {
+    //ponemos la vida del player actualizandola
+    //establecemos el grupo de enemigos
+    // window.addEventListener("cargar", event =>
+    // {
+    //   //guardamos algo con un nombre
+    //   this.healthPlayer =window.localStorage.getItem('vidaPlayer')
+    // });
   }
 }
