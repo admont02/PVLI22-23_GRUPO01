@@ -207,10 +207,11 @@ export default class Level1 extends Phaser.Scene {
     this.panel = this.add.image(this.scale.width / 2, this.scale.height / 2, 'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
     this.resume = this.add.image(this.scale.width / 2 - 40, this.scale.height / 2 - 10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
     this.options = this.add.image(this.scale.width / 2 - 60, this.scale.height / 2 + 55, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.45);
-    this.config = this.add.image(this.scale.width / 2, this.scale.height / 2, 'configuracion').setScrollFactor(0).setVisible(false).setScale(0.1);
+    this.config = this.add.image(this.scale.width / 2, this.scale.height / 2, 'configuracion').setScrollFactor(0).setVisible(false).setScale(0.25);
     this.exit = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 + 55, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
     this.fullsound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'on').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
     this.mutesound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'off').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
+    this.back=this.add.image(this.scale.width / 2, this.scale.height / 2 +40, 'back').setScale(0.05).setScrollFactor(0).setInteractive().setVisible(false);
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
@@ -229,6 +230,11 @@ export default class Level1 extends Phaser.Scene {
     //boton settings
     this.options.on("pointerdown", () => {
       this.config.setVisible(true);
+      this.back.setVisible(true);
+      this.resume.setVisible(false)
+      this.exit.setVisible(false);
+      this.options.setVisible(false);
+
     })
     //boton de salir al menú
     this.exit.on("pointerdown", () => {
@@ -249,6 +255,14 @@ export default class Level1 extends Phaser.Scene {
       this.fullsound.setVisible(true);
       this.gamesong.setVolume(this.maxVol);
 
+    })
+    //boton back de config
+    this.back.on("pointerdown", () => {
+      this.config.setVisible(false);
+      this.back.setVisible(false);
+      this.resume.setVisible(true);
+      this.exit.setVisible(true);
+      this.options.setVisible(true);
     })
   }
   /**
