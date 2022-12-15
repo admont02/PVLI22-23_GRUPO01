@@ -49,6 +49,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.dieSound = this.scene.sound.add('death');
     this.dashSound = this.scene.sound.add('dash');
     this.loseLiveSound = this.scene.sound.add('loseLive');
+    const config = {
+      volume: 0.5,
+      rate: 1,
+      delay: 1
+    };
+    this.crySound = this.scene.sound.add('cry', config);
   }
 
 
@@ -128,7 +134,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.e.isDown && !this.cryLaunched) {
       new Cry(this.scene, this.x, this.y);
 
-      this.crySound = this.scene.sound.add('cry');
       this.crySound.play();
 
       this.cryTimer();
@@ -299,7 +304,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.quitarSonido();
       //this.scene.scene.start('final', 'Has perdido');
 
-      this.scene.scene.start('final', { text: 'LOSE' });
+      //this.scene.scene.start('final', { text: 'LOSE' });
+      this.scene.diedScreen();
     }
   }
   /**

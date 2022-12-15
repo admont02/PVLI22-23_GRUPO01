@@ -7,23 +7,34 @@ export default class Final extends Phaser.Scene {
 
   create(data) {
     this.sonidoMenu();
+    this.mapName = data.mapName;
+    this.canPlayerDash = data.dash;
+    this.canClick = data.click;
+    //numero de middleScene que es segun nivel
+    this.middleSceneNumber = data.middle;
     this.text = data.text;
-    if (this.text === 'LOSE'){
+    if (this.text === 'LOSE') {
       this.image = this.add.image(500, 250, 'lost');
+      this.playbutton = this.add.image(this.scale.width / 2, this.scale.height / 2 + 200, 'back').setInteractive().setScale(0.15);
+      this.playbutton.on("pointerdown", () => {
+        //paramos musica
+       // this.menusong.destroy();
+        this.scene.start('level1',{ mapName: this.mapName,dash:this.canPlayerDash, click:this.canClick , middle:this.middleSceneNumber });
+      });
     }
-      //this.image = this.add.image(500, 250, 'morado');
-    this.textFinal = this.add.text(this.scale.width / 2 - 250, this.scale.height / 5.6, this.text).setInteractive();
-    this.textFinal.setScale(5)
+    else {
+      this.image = this.add.image(500, 250, 'win');
+      this.playbutton = this.add.image(this.scale.width / 2, this.scale.height / 2 + 200, 'back').setInteractive().setScale(0.15);
+      this.menusong = this.sound.add('winsong');
+      this.menusong.play();
+      this.playbutton.on("pointerdown", () => {
+        //paramos musica
+        this.menusong.destroy();
+        this.scene.start('menu');
+      });
 
-    this.playbutton = this.add.text(this.scale.width / 2 - 140, this.scale.height / 5.6 + 200, 'Return menu').setInteractive();
-    this.playbutton.setScale(3);
 
-    //conexion con escena level
-    this.playbutton.on("pointerdown", () => {
-      //paramos musica
-      this.menusong.destroy();
-      this.scene.start('menu');
-    });
+    }
   }
 
   sonidoMenu() {
@@ -36,7 +47,6 @@ export default class Final extends Phaser.Scene {
       loop: true,
       delay: 0
     };
-    this.menusong = this.sound.add('menusong');
-    this.menusong.play();
+    //this.menusong = this.sound.add('winsong');
   }
 }
