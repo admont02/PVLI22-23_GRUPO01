@@ -237,13 +237,6 @@ export default class Boot extends Phaser.Scene {
 
     //StrongEnemy
     this.anims.create({
-      key: 'StrongEnemyIzq',
-      frames: this.anims.generateFrameNumbers('StrongEnemyIzq', { start: 0, end: 8 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
       key: 'StrongEnemyWalk',
       frames: this.anims.generateFrameNumbers('StrongEnemyWalk', { start: 0, end: 8 }),
       frameRate: 10,
@@ -257,14 +250,6 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-
-    this.anims.create({
-      key: 'RangedEnemyIzq',
-      frames: this.anims.generateFrameNumbers('RangedEnemyIzq', { start: 2, end: 5 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
     //SpeedEnemy
     this.anims.create({
       key: 'MovimientoGeneralSpeedEnemy',
