@@ -119,15 +119,15 @@ export default class Level1 extends Phaser.Scene {
     //map3
     else {
 
-      // this.enemy.add(new eyeBoss(this, 100, 100, this.player));
-      // this.enemy.add(new eyeBoss(this, 100, 150, this.player));
-      // this.enemy.add(new eyeBoss(this, 100, 200, this.player));
-      // this.enemy.add(new eyeBoss(this, 100, 250, this.player));
+      this.enemy.add(new eyeBoss(this, 100, 100, this.player));
+      this.enemy.add(new eyeBoss(this, 100, 150, this.player));
+      this.enemy.add(new eyeBoss(this, 100, 200, this.player));
+      this.enemy.add(new eyeBoss(this, 100, 250, this.player));
 
-      // this.enemy.add(new eyeBoss(this, 300, 100, this.player));
-      // this.enemy.add(new eyeBoss(this, 300, 150, this.player));
-      // this.enemy.add(new eyeBoss(this, 300, 200, this.player));
-      // this.enemy.add(new eyeBoss(this, 300, 250, this.player));
+      this.enemy.add(new eyeBoss(this, 300, 100, this.player));
+      this.enemy.add(new eyeBoss(this, 300, 150, this.player));
+      this.enemy.add(new eyeBoss(this, 300, 200, this.player));
+      this.enemy.add(new eyeBoss(this, 300, 250, this.player));
 
 
       this.boss = new Boss(this, 300, 300, this.player);
