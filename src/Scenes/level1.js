@@ -32,7 +32,7 @@ export default class Level1 extends Phaser.Scene {
     //para poder hacer el evento
     this.emitter = EventDispatcher.getInstance();
     this.previousLetterTime = 0;
-    
+    this.introFinished=false;
 
   }
   init(data) {
@@ -379,7 +379,7 @@ export default class Level1 extends Phaser.Scene {
     this.playing = false;
     this.physics.pause();
 
-    this.input.keyboard.on('keydown', function (event) {
+    this.input.keyboard.once("keydown", () => {
         // quitamos la pausa
         for (let i = 0; i < this.enemy.getLength(); i++) {
           this.enemy.getChildren()[i].setActive(true);
