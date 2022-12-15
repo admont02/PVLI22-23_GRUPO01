@@ -32,7 +32,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         //Velocidad
         this.speed = speed;
         this.speedBolean = false;
-        this.scene.AumentarEnemyVivo();
 
         this.scene.add.existing(this)
         this.setOrigin(0, 0);
@@ -136,9 +135,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         else {
 
             this.dieSound.play();
-
-            this.scene.QuitarEnemyVivo();
-            this.scene.updateLivesEnemy();
             this.EnemyDie();
         }
     }

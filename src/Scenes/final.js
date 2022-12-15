@@ -8,8 +8,10 @@ export default class Final extends Phaser.Scene {
   create(data) {
     this.sonidoMenu();
     this.text = data.text;
-
-    this.image = this.add.image(500, 250, 'morado');
+    if (this.text === 'LOSE'){
+      this.image = this.add.image(500, 250, 'lost');
+    }
+      //this.image = this.add.image(500, 250, 'morado');
     this.textFinal = this.add.text(this.scale.width / 2 - 250, this.scale.height / 5.6, this.text).setInteractive();
     this.textFinal.setScale(5)
 
