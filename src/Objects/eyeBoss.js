@@ -13,6 +13,11 @@
 
     this.scene.physics.add.collider(this, player);
 
+    this.setInteractive();
+    this.on("pointerup", () => {
+      this.takeDamage(5);
+  });
+
     this.player = player;
   
   }
