@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="90" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="16">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="90" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="31">
  <tileset firstgid="1" name="interior" tilewidth="16" tileheight="16" tilecount="216" columns="8">
   <image source="interior.png" width="128" height="432"/>
  </tileset>
@@ -130,7 +130,7 @@
 </data>
  </layer>
  <objectgroup id="10" name="player">
-  <object id="14" x="1217.18" y="636.042">
+  <object id="16" x="455.272" y="745.843">
    <ellipse/>
   </object>
  </objectgroup>
@@ -189,43 +189,50 @@
 </data>
  </layer>
  <objectgroup id="8" name="speedEnemies">
-  <object id="12" x="573" y="697">
+  <object id="20" x="719.333" y="590.667">
    <point/>
   </object>
-  <object id="13" x="812" y="352">
+  <object id="21" x="724.667" y="112.667">
+   <point/>
+  </object>
+  <object id="22" x="445.333" y="274">
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="5" name="basicEnemies">
-  <object id="2" x="649" y="120">
+  <object id="23" x="769.333" y="288">
    <point/>
   </object>
-  <object id="3" x="456" y="643">
+  <object id="24" x="766.667" y="394">
    <point/>
   </object>
-  <object id="4" x="574" y="202">
+  <object id="25" x="521.333" y="477.333">
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="6" name="strongEnemies">
-  <object id="6" x="203" y="222">
-   <ellipse/>
-  </object>
-  <object id="7" x="315" y="676">
-   <ellipse/>
-  </object>
+  <object id="26" x="505.333" y="82.6667"/>
+  <object id="27" x="652.667" y="452"/>
  </objectgroup>
  <objectgroup id="7" name="rangedEnemies">
-  <object id="8" x="710" y="592">
+  <object id="28" x="871.333" y="754">
+   <point/>
+  </object>
+  <object id="29" x="873.333" y="291.333">
+   <point/>
+  </object>
+  <object id="30" x="614" y="142.667">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="eyes">
+  <object id="17" x="572" y="284.5">
    <ellipse/>
   </object>
-  <object id="9" x="490" y="494">
+  <object id="18" x="385.333" y="355.333">
    <ellipse/>
   </object>
-  <object id="10" x="228" y="444">
-   <ellipse/>
-  </object>
-  <object id="11" x="863" y="142">
+  <object id="19" x="858.667" y="406">
    <ellipse/>
   </object>
  </objectgroup>
