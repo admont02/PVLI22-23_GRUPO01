@@ -33,6 +33,9 @@ export default class Level1 extends Phaser.Scene {
     this.emitter = EventDispatcher.getInstance();
     this.previousLetterTime = 0;
     this.introFinished = false;
+    this.maxVol = 0.7;
+    this.muteVol = 0;
+    this.isMute = false;
 
   }
   init(data) {
@@ -97,7 +100,7 @@ export default class Level1 extends Phaser.Scene {
     //map2
     else if (this.mapName === 'map2') {
 
-      
+
 
 
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
@@ -148,8 +151,8 @@ export default class Level1 extends Phaser.Scene {
 
   sonidoGame() {
     const config = {
-      mute: false,
-      volume: 0.75,
+      mute: this.isMute,
+      volume: this.maxVol,
       rate: 1,
       detune: 0,
       seek: 0,
@@ -177,7 +180,7 @@ export default class Level1 extends Phaser.Scene {
     const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
     const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
     const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
-    
+
     this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7]);
     this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
     this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
@@ -188,7 +191,7 @@ export default class Level1 extends Phaser.Scene {
   getEnemiesRemaining() {
     return this.enemy.getLength();
   }
-  
+
   changeLevel(newlevel, dataMap, middleValue) {
     this.quitarSonido();
     //pasamos de escena y cambiamos su dataMap
@@ -204,8 +207,10 @@ export default class Level1 extends Phaser.Scene {
     this.panel = this.add.image(this.scale.width / 2, this.scale.height / 2, 'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
     this.resume = this.add.image(this.scale.width / 2 - 40, this.scale.height / 2 - 10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
     this.options = this.add.image(this.scale.width / 2 - 60, this.scale.height / 2 + 55, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.45);
-    this.config=this.add.image(this.scale.width / 2 , this.scale.height / 2 , 'configuracion').setScrollFactor(0).setVisible(false).setScale(0.1);
+    this.config = this.add.image(this.scale.width / 2, this.scale.height / 2, 'configuracion').setScrollFactor(0).setVisible(false).setScale(0.1);
     this.exit = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 + 55, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+    this.fullsound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'on').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
+    this.mutesound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'off').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
@@ -229,6 +234,22 @@ export default class Level1 extends Phaser.Scene {
     this.exit.on("pointerdown", () => {
       this.scene.start('menu');
     })
+    //pulsas boton de volumen
+    this.fullsound.on("pointerdown", () => {
+      this.fullsound.setVisible(false);
+      this.isMute = true;
+      this.mutesound.setVisible(true);
+      this.gamesong.setVolume(0);
+
+    })
+    //pulsas volumen muteado
+    this.mutesound.on("pointerdown", () => {
+      this.mutesound.setVisible(false);
+      this.isMute = false;
+      this.fullsound.setVisible(true);
+      this.gamesong.setVolume(this.maxVol);
+
+    })
   }
   /**
 * Método en el que se pausan/reanudan los elementos de la escena
@@ -241,6 +262,12 @@ export default class Level1 extends Phaser.Scene {
     this.panel.setVisible(!isAct);
     this.options.setVisible(!isAct);
     this.exit.setVisible(!isAct);
+    if (!this.isMute) {
+      this.fullsound.setVisible(!isAct);
+    }
+    else {
+      this.mutesound.setVisible(!isAct);
+    }
 
 
   }
