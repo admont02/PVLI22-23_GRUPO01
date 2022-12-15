@@ -7,7 +7,7 @@ import PowerUp from "./powerUp.js";
 export default class damagePowerUp extends PowerUp {
 
     constructor(scene, x, y, player) {
-        super(scene, x, y, 'heart', player);
+        super(scene, x, y, 'candy', player);
     }
 
     preUpdate(t, dt) {
