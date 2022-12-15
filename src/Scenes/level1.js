@@ -232,10 +232,11 @@ export default class Level1 extends Phaser.Scene {
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
-      this.pauseEnemies(false);
-      this.playing = false;
-      this.physics.pause();
-
+      if(this.playing){
+        this.pauseEnemies(false);
+        this.playing = false;
+        this.physics.pause();
+      }
     })
     //boton de resume
     this.resume.on("pointerdown", () => {
@@ -338,7 +339,7 @@ export default class Level1 extends Phaser.Scene {
 		this.image.setScale(0.35);
 
     //creamos cuadro de dialogo
-    this.IntroDialogo = new IntroDialogo(this, 1092, 620, 300);
+    this.IntroDialogo = new IntroDialogo(this, 1080, 610, 300);
 
 		this.tween = this.tweens.add({
 			targets: [ this.image ],
@@ -358,26 +359,24 @@ export default class Level1 extends Phaser.Scene {
     this.playing = false;
     this.physics.pause();
 
-    //metemos boton  okey para quitar intro
-    this.playbutton = this.add.text( 1200, 660, "okey ",{fontFamily:'CustomFont' , fontSize:25 , color:'#000000'}).setInteractive();
-    this.playbutton.setScale(1.5);
-    this.playbutton.on("pointerdown", () => {
-      //quitamos la pausa
-      for (let i = 0; i < this.enemy.getLength(); i++) {
-        this.enemy.getChildren()[i].setActive(true);
-      }
-      this.playing = true;
-      this.physics.resume();
-      //pausamos el juego mientras .enemigos y fisicas
-      this.quitarIntro()
-    });
+    this.input.keyboard.on('keydown', function (event) {
+        // quitamos la pausa
+        for (let i = 0; i < this.enemy.getLength(); i++) {
+          this.enemy.getChildren()[i].setActive(true);
+        }
+        this.playing = true;
+        this.physics.resume();
+        this.emitter.destroy("introPergamino");
+        //pausamos el juego mientras .enemigos y fisicas
+        this.quitarIntro();
+    }, this);
   }
 
   quitarIntro()
   {
     //quitamos boton
-    this.playbutton.setVisible(false);
-    this.playbutton.setActive(false);
+    //this.playbutton.setVisible(false);
+    //this.playbutton.setActive(false);
     //quitamos imagen
     this.image.setVisible(false);
     this.image.setActive(false);
