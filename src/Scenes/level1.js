@@ -55,7 +55,6 @@ export default class Level1 extends Phaser.Scene {
 
     this.enemy = this.add.group();
     this.movingObjects = this.add.group();
-    console.log(this.mapName);
     const width = this.scale.width;
     const height = this.scale.height;
     const large = width * 10;
@@ -79,17 +78,11 @@ export default class Level1 extends Phaser.Scene {
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
       this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'one');
 
-
-      // this.physics.world.setBounds(0, 0, large, height);
-      //this.cameras.main.setBounds(0, 0, width, height);
-
-
       this.createObjects();
 
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
       this.physics.add.collider(this.enemy, this.movingObjects);
-      new speedPowerUp(this, 600, 850, this.player);
 
     }
     else if (this.mapName == 'middleScene') {
@@ -146,9 +139,6 @@ export default class Level1 extends Phaser.Scene {
 
       this.boss = new Boss(this, 300, 300, this.player);
 
-      //this.cameras.main.setBounds(0, 0, large, height);
-
-
     }
 
     this.createEnemies();
@@ -169,7 +159,7 @@ export default class Level1 extends Phaser.Scene {
   sonidoGame() {
     const config = {
       mute: false,
-      volume: 1,
+      volume: 0.75,
       rate: 1,
       detune: 0,
       seek: 0,

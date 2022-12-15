@@ -80,30 +80,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":21,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":429.830760647201,
-                 "y":283.875767156407
-                }, 
-                {
-                 "height":0,
-                 "id":22,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":156.667286591036,
-                 "y":322.707829644783
-                }, 
-                {
-                 "height":0,
                  "id":23,
                  "name":"",
                  "point":true,
@@ -113,6 +89,29 @@
                  "width":0,
                  "x":421.79654082202,
                  "y":478.036079598289
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"door",
+         "objects":[
+                {
+                 "ellipse":true,
+                 "height":0,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":178.091872791519,
+                 "y":120.51329737772
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -407,8 +406,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":30,
+ "nextlayerid":14,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
