@@ -24,13 +24,13 @@ export default class Menu extends Phaser.Scene {
     //conexion con escena level
     this.playbutton.on("pointerdown", () => {
       this.menusong.destroy();
-      this.scene.start('level1',{ mapName: 'finalMap1',dash:false, click:false });
+      this.scene.start('level1',{ mapName: 'finalMap1',dash:false, click:false, middle:'one' });
     });
 
     //conexion con escena level3
     this.playbutton2.on("pointerdown", () => {
       this.menusong.destroy();
-      this.scene.start('level1',{ mapName: 'map3',dash:true, click:true })
+      this.scene.start('level1',{ mapName: 'map3',dash:true, click:true , middle:'one' })
     });
 
     //conexion con escena configuracion

@@ -2,7 +2,7 @@
 //Area que crea el ojo(aumenta la velocidad de los enemigos si estos lo tocan)
 export default class door extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, x, y, player, level, dataMap) {
+  constructor(scene, x, y, player, level, dataMap,middleSceneNumber) {
     super(scene, x, y, 'doorClosed');
 
     this.setScale(0.05);
@@ -13,6 +13,8 @@ export default class door extends Phaser.GameObjects.Sprite {
     this.player = player;
     this.level = level;
     this.dataMap = dataMap;
+    this.middleSceneNumber = middleSceneNumber;
+    console.log(this.middleSceneNumber);
 
     this.doorSound = this.scene.sound.add('door');
   }
@@ -25,7 +27,7 @@ export default class door extends Phaser.GameObjects.Sprite {
 
       if (this.scene.physics.overlap(this.player, this)) {
         this.doorSound.play();
-        this.scene.changeLevel(this.level,this.dataMap);
+        this.scene.changeLevel(this.level,this.dataMap,this.middleSceneNumber);
       }
     }
 

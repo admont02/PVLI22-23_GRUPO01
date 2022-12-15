@@ -32,12 +32,15 @@ export default class Level1 extends Phaser.Scene {
     //para poder hacer el evento
     this.emitter = EventDispatcher.getInstance();
     this.previousLetterTime = 0;
+    
 
   }
   init(data) {
     this.mapName = data.mapName;
     this.canPlayerDash = data.dash;
     this.canClick = data.click;
+    //numero de middleScene que es segun nivel
+    this.middleSceneNumber = data.middle;
   }
 
   //Elementos del nivel 1
@@ -48,6 +51,8 @@ export default class Level1 extends Phaser.Scene {
     this.createTileMap();
     this.createPlayer();
 
+    console.log(this.middleSceneNumber);
+    console.log(this.mapName);
 
     this.enemy = this.add.group();
     this.movingObjects = this.add.group();
@@ -75,7 +80,7 @@ export default class Level1 extends Phaser.Scene {
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene');
+      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene','one');
 
 
       // this.physics.world.setBounds(0, 0, large, height);
@@ -92,9 +97,20 @@ export default class Level1 extends Phaser.Scene {
     }
     else if(this.mapName == 'middleScene')
     {
-       //envias parametro de a que escena quieres ir y que nivel te has pasado
-      this.door = new Door(this, 160, 0, this.player, 'middleScene', 'mapLevel1');
-      //this.createObjects();
+          //pasillo que conecta level 1 con 2
+          if(this.middleSceneNumber =='one')
+          {
+            //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
+            this.door = new Door(this, 160, 0, this.player, 'middleScene', 'mapLevel1','two');
+          }
+          //pasillo que conecta level 2 con 3
+          else if(this.middleSceneNumber =='two')
+          {
+            //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
+            this.door = new Door(this, 160, 0, this.player, 'middleScene', 'map2','two');
+          }
+          
+          //this.createObjects();
     }
 
     //map2
@@ -110,7 +126,7 @@ export default class Level1 extends Phaser.Scene {
 
       this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
 
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene');
+      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene','two');
 
       new speedPowerUp(this, 500, 900, this.player);
 
@@ -150,6 +166,10 @@ export default class Level1 extends Phaser.Scene {
     this.createPause();
     this.sonidoGame();
 
+  }
+  añadirNivelCompletado()
+  {
+    this.num
   }
 
   isScenePlaying() {
@@ -213,10 +233,10 @@ export default class Level1 extends Phaser.Scene {
     return this.numEnemigosVivos;
   }
 
-  changeLevel(newlevel, dataMap) {
+  changeLevel(newlevel, dataMap,middleValue) {
     this.quitarSonido();
     //pasamos de escena y cambiamos su dataMap
-    this.scene.start(newlevel, { mapName: dataMap });
+    this.scene.start(newlevel, { mapName: dataMap , middle:middleValue});
   }
 
   /**
