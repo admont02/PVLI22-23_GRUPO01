@@ -30,7 +30,7 @@ export default class Cofre extends Phaser.GameObjects.Sprite {
     this.on("pointerdown", () => {
       if(this.open) return;
       console.log(this.distanceCofrePlayer);
-      if (this.distanceCofrePlayer < 10 && this.distanceCofrePlayer > -10) {
+      if (this.distanceCofrePlayer < 100 && this.distanceCofrePlayer > -100) {
         console.log("Han entrado en radio de accion del cofre")
         //como repeat es 0 se ejecutará 1 vez 
         // this.play("animacionCofre",true);

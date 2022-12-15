@@ -1,5 +1,5 @@
 import Boot from './boot.js';
-import Level1 from './level1.js';
+import Level from './level1.js';
 import Menu from './menu.js';
 import Configuracion from './Configuracion.js'
 import Creditos from './creditos.js'
@@ -20,11 +20,11 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Menu, Level1, MiddleScene, Configuracion,Creditos, Final],
+    scene: [Boot, Menu, Level, MiddleScene, Configuracion,Creditos, Final],
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     }
 };
