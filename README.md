@@ -2,7 +2,7 @@
 Este proyecto es un trabajo universitario para la asignatura PVLI (Programación de Videojuegos en Lenguajes Interpretados) del Grado en Desarrollo de Videojuegos
 de la Universidad Complutense de Madrid.
 
-![image](https://user-images.githubusercontent.com/82326212/198403784-8eaeeefb-abdd-489d-9ffe-8a5409bc4231.png)
+![image](https://user-images.githubusercontent.com/82326212/207975497-13b93889-d6d3-46d0-92f4-ac81b0a0e231.png)
 
 
 Nuestro proyecto “Good Nightmare Sweetie”, es un videojuego web hecho con Phaser3 y JavaScript en el cuál, tomarás el papel de Otis, un bebé capaz de entrar en el mundo de los sueños,que se encontraba en calma hasta que las pesadillas se hicieron con el control, impidiendo a la gente conciliar el sueño. Otis, con los poderes que adquiere en este mundo, deberá plantar cara a todas las calamidades con las que se cruce a su paso para conseguir despertar y salvarse.
@@ -16,7 +16,19 @@ Actualmente, nuestro proyecto cuenta con este diagrama UML (Unified Modeling Lan
 ![image](https://user-images.githubusercontent.com/82326212/198404418-682fdf8f-75a2-4927-8208-96d3f8a19405.png)
 
 ## Assets
-Actualmente disponemos de assets temporales sacados de https://www.spriters-resource.com y nuestros enemigos son sacados de los videojuegos de Kirby
+La gran mayoría de nuestros assets son descargados, a excepción de la puerta, el moving object, los ojos..nuestros enemigos son sacados de los videojuegos de Kirby. A continuación, incluyo enlaces de donde hemos sacado diversos elementos para el videojuego:
+
+https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack?download
+
+https://simodias.itch.io/heart
+
+https://gif-superretroworld.itch.io/dungeon-pack?download
+
+https://limezu.itch.io/kitchen?download
+
+https://tilation.itch.io/16x16-small-indoor-tileset?download
+
+https://penzilla.itch.io/top-down-retro-house
 
 # GDD
 ***GRUPO 1***
