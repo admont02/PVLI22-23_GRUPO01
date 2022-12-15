@@ -74,7 +74,7 @@ export default class Level1 extends Phaser.Scene {
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'one');
+      this.door = new Door(this,150, 100, this.player, 'level1', 'middleScene', 'one');
 
       this.createObjects();
 
@@ -108,7 +108,7 @@ export default class Level1 extends Phaser.Scene {
 
 
 
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'two');
+      this.door = new Door(this, 400, 400, this.player, 'level1', 'middleScene', 'two');
 
 
       this.physics.add.collider(this.enemy, this.boxLayer);
@@ -118,17 +118,16 @@ export default class Level1 extends Phaser.Scene {
 
     //map3
     else {
-      this.numEnemigosVivos = 8;
 
-      this.enemy.add(new eyeBoss(this, 100, 100, this.player));
-      this.enemy.add(new eyeBoss(this, 100, 150, this.player));
-      this.enemy.add(new eyeBoss(this, 100, 200, this.player));
-      this.enemy.add(new eyeBoss(this, 100, 250, this.player));
+      // this.enemy.add(new eyeBoss(this, 100, 100, this.player));
+      // this.enemy.add(new eyeBoss(this, 100, 150, this.player));
+      // this.enemy.add(new eyeBoss(this, 100, 200, this.player));
+      // this.enemy.add(new eyeBoss(this, 100, 250, this.player));
 
-      this.enemy.add(new eyeBoss(this, 300, 100, this.player));
-      this.enemy.add(new eyeBoss(this, 300, 150, this.player));
-      this.enemy.add(new eyeBoss(this, 300, 200, this.player));
-      this.enemy.add(new eyeBoss(this, 300, 250, this.player));
+      // this.enemy.add(new eyeBoss(this, 300, 100, this.player));
+      // this.enemy.add(new eyeBoss(this, 300, 150, this.player));
+      // this.enemy.add(new eyeBoss(this, 300, 200, this.player));
+      // this.enemy.add(new eyeBoss(this, 300, 250, this.player));
 
 
       this.boss = new Boss(this, 300, 300, this.player);
@@ -211,7 +210,7 @@ export default class Level1 extends Phaser.Scene {
     this.exit = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 + 55, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
     this.fullsound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'on').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
     this.mutesound = this.add.image(this.scale.width / 2 + 60, this.scale.height / 2 - 10, 'off').setScale(0.07).setScrollFactor(0).setInteractive().setVisible(false);
-    this.back=this.add.image(this.scale.width / 2, this.scale.height / 2 +40, 'back').setScale(0.05).setScrollFactor(0).setInteractive().setVisible(false);
+    this.back = this.add.image(this.scale.width / 2, this.scale.height / 2 + 40, 'back').setScale(0.05).setScrollFactor(0).setInteractive().setVisible(false);
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
@@ -394,7 +393,11 @@ export default class Level1 extends Phaser.Scene {
     }, this);
   }
 
+  diedScreen() {
+   //parametros para reiniciar si el jugador quiere
 
+    this.scene.start('final', { text: 'LOSE',mapName:this.mapName,dash:this.canPlayerDash,click:this.canClick,middle:this.middleSceneNumber });
+  }
 
 
 

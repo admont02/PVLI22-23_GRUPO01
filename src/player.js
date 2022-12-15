@@ -304,7 +304,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.quitarSonido();
       //this.scene.scene.start('final', 'Has perdido');
 
-      this.scene.scene.start('final', { text: 'LOSE' });
+      //this.scene.scene.start('final', { text: 'LOSE' });
+      this.scene.diedScreen();
     }
   }
   /**

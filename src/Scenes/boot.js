@@ -190,6 +190,8 @@ export default class Boot extends Phaser.Scene {
     //musica menu
     this.load.audio('menusong', 'creepymenu.mp3');
     this.load.audio('juegosong', 'creepyjuego.mp3');
+    this.load.audio('winsong', 'winMus.mp3');
+
 
     // Font
     this.load.setPath('assets/fonts');

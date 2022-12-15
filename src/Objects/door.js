@@ -17,13 +17,13 @@ export default class Door extends Phaser.GameObjects.Sprite {
     console.log(this.middleSceneNumber);
 
     this.doorSound = this.scene.sound.add('door');
-    this.label = this.scene.add.text(this.x, this.y, "Enemies Left: " + this.scene.getEnemiesRemaining());
+    this.label = this.scene.add.text(this.x-50, this.y-50, "Enemies Left: " + this.scene.getEnemiesRemaining()).setTint(0xff0000).setScale(0.75);
 
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-    this.label.text = 'Enemies Left: ' + this.scene.getEnemiesRemaining();
+    this.label.text = 'Enemies Left:  ' + this.scene.getEnemiesRemaining();
     if (this.scene.getEnemiesRemaining() >= 0) { ///===
       this.setTexture('doorOpen');
 

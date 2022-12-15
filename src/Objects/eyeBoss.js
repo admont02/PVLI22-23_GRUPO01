@@ -38,7 +38,7 @@
   //Destruccion del ojo
   die()
   {
-    this.scene.QuitarEnemyVivo();
+   
     this.destroy();
   }
 
