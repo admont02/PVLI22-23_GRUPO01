@@ -234,11 +234,18 @@ export default class Level1 extends Phaser.Scene {
       this.resume.setVisible(false)
       this.exit.setVisible(false);
       this.options.setVisible(false);
+      if (!this.isMute) {
+        this.fullsound.setVisible(false);
+      }
+      else {
+        this.mutesound.setVisible(false);
+      }
 
     })
     //boton de salir al menú
     this.exit.on("pointerdown", () => {
       this.scene.start('menu');
+      this.gamesong.destroy();
     })
     //pulsas boton de volumen
     this.fullsound.on("pointerdown", () => {
@@ -263,6 +270,12 @@ export default class Level1 extends Phaser.Scene {
       this.resume.setVisible(true);
       this.exit.setVisible(true);
       this.options.setVisible(true);
+      if (!this.isMute) {
+        this.fullsound.setVisible(true);
+      }
+      else {
+        this.mutesound.setVisible(true);
+      }
     })
   }
   /**
