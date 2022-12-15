@@ -90,8 +90,6 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('rightA', 'anim3.png', { frameWidth: 34, frameHeight: 50, endFrame: 3 });
     this.load.spritesheet('idle', 'anim4.png', { frameWidth: 34, frameHeight: 50, endFrame: 1 });
 
-
-
     //para animaciones de enemy
     //EnemyBasic
     this.load.setPath('assets/anims/AnimsEnemy/BasicEnemy');
@@ -181,6 +179,10 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('menusong', 'creepymenu.mp3');
     this.load.audio('juegosong', 'creepyjuego.mp3');
 
+    // Font
+    this.load.setPath('assets/fonts');
+    this.loadFont("pixelFont", "VT323-Regular.ttf");
+
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
     var loadingText = this.make.text({
@@ -207,6 +209,23 @@ export default class Boot extends Phaser.Scene {
 
   }
 
+  /**
+     * Método auxiliar para cargar la fuente TTF de un archivo local
+     */
+  loadFont(name, url) {
+    let self = this;
+    let newFont = new FontFace(name, `url(${url})`);
+    newFont.load()
+    // Función que se llamará cuando las fuentes estén cargadas
+    // en este caso, load devuelve lo que llamamos una promesa
+    // más info en: https://developer.mozilla.org/en-US/docs/Web/API/FontFace/load
+    .then(function (loaded) {
+        document.fonts.add(loaded);
+        self.continueCreate();
+    }).catch(function (error) {
+        return error;
+    });
+}
 
   createAnims() {
 
