@@ -12,7 +12,7 @@ import LifePowerUp from '../PowerUps/lifePowerUp.js';
 import damagePowerUp from '../PowerUps/damagePowerUp.js';
 import speedPowerUp from '../PowerUps/speedPowerUp.js';
 //Eye
-import eye from '../Objects/eye.js';
+import Eye from '../Objects/eye.js';
 //Puerta final de nivel
 import Door from '../Objects/door.js';
 import eyeBoss from '../Objects/eyeBoss.js';
@@ -32,7 +32,7 @@ export default class Level1 extends Phaser.Scene {
     //para poder hacer el evento
     this.emitter = EventDispatcher.getInstance();
     this.previousLetterTime = 0;
-    this.introFinished=false;
+    this.introFinished = false;
 
   }
   init(data) {
@@ -44,8 +44,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   //Elementos del nivel 1
-  create()
-  {
+  create() {
     this.emitter.destroy();
 
     this.createTileMap();
@@ -63,10 +62,9 @@ export default class Level1 extends Phaser.Scene {
     this.playing = true;
 
     //map1
-    if (this.mapName === 'finalMap1')
-    {
+    if (this.mapName === 'finalMap1') {
 
-     //iniciamos intro
+      //iniciamos intro
       this.Intro();
 
       this.numEnemigosVivos = 0;
@@ -74,13 +72,12 @@ export default class Level1 extends Phaser.Scene {
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
       //creamos objeto de level enemiesLEFT
-      this.label = this.add.text(850, 10, "Enemies Left: " + this.numEnemigosVivos).setScrollFactor(0);
 
-      this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
+      this.eye = new Eye(this, 1000, 4000, this.player, this.enemy);
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene','one');
+      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'one');
 
 
       // this.physics.world.setBounds(0, 0, large, height);
@@ -95,22 +92,19 @@ export default class Level1 extends Phaser.Scene {
       new speedPowerUp(this, 600, 850, this.player);
 
     }
-    else if(this.mapName == 'middleScene')
-    {
-          //pasillo que conecta level 1 con 2
-          if(this.middleSceneNumber =='one')
-          {
-            //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
-            this.door = new Door(this, 160, 0, this.player, 'middleScene', 'mapLevel1','two');
-          }
-          //pasillo que conecta level 2 con 3
-          else if(this.middleSceneNumber =='two')
-          {
-            //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
-            this.door = new Door(this, 160, 0, this.player, 'middleScene', 'map2','two');
-          }
-          
-          //this.createObjects();
+    else if (this.mapName == 'middleScene') {
+      //pasillo que conecta level 1 con 2
+      if (this.middleSceneNumber == 'one') {
+        //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
+        this.door = new Door(this, 160, 0, this.player, 'middleScene', 'mapLevel1', 'two');
+      }
+      //pasillo que conecta level 2 con 3
+      else if (this.middleSceneNumber == 'two') {
+        //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
+        this.door = new Door(this, 160, 0, this.player, 'middleScene', 'map2', 'two');
+      }
+
+      //this.createObjects();
     }
 
     //map2
@@ -124,9 +118,9 @@ export default class Level1 extends Phaser.Scene {
 
 
 
-      this.eye = new eye(this, 1000, 4000, this.player, this.enemy);
+      this.eye = new Eye(this, 1000, 4000, this.player, this.enemy);
 
-      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene','two');
+      this.door = new Door(this, 300, 400, this.player, 'level1', 'middleScene', 'two');
 
       new speedPowerUp(this, 500, 900, this.player);
 
@@ -166,10 +160,6 @@ export default class Level1 extends Phaser.Scene {
     this.createPause();
     this.sonidoGame();
 
-  }
-  añadirNivelCompletado()
-  {
-    this.num
   }
 
   isScenePlaying() {
@@ -214,9 +204,9 @@ export default class Level1 extends Phaser.Scene {
 
 
   }
-
-
-
+  getEnemiesRemaining() {
+    return this.enemy.getLength();
+  }
   updateLivesEnemy() {
     //this.label.text = 'Enemies Left: ' + this.NumEnemigos();
   }
@@ -233,10 +223,10 @@ export default class Level1 extends Phaser.Scene {
     return this.numEnemigosVivos;
   }
 
-  changeLevel(newlevel, dataMap,middleValue) {
+  changeLevel(newlevel, dataMap, middleValue) {
     this.quitarSonido();
     //pasamos de escena y cambiamos su dataMap
-    this.scene.start(newlevel, { mapName: dataMap , middle:middleValue});
+    this.scene.start(newlevel, { mapName: dataMap, middle: middleValue });
   }
 
   /**
@@ -245,14 +235,14 @@ export default class Level1 extends Phaser.Scene {
 */
   createPause() {
     this.pause = this.add.image(680, 165, 'pause').setScale(0.05).setScrollFactor(0).setInteractive();
-    this.panel=this.add.image(this.scale.width / 2 , this.scale.height / 2 ,'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
-    this.resume = this.add.image(this.scale.width / 2+25 , this.scale.height / 2 -10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
-    this.options = this.add.image(this.scale.width / 2 , this.scale.height / 2 +35, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
-    this.exit = this.add.image(this.scale.width / 2 +2, this.scale.height / 2 +75, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+    this.panel = this.add.image(this.scale.width / 2, this.scale.height / 2, 'panelpausa').setScale(0.75).setScrollFactor(0).setVisible(false);
+    this.resume = this.add.image(this.scale.width / 2 + 25, this.scale.height / 2 - 10, 'resume').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.5);
+    this.options = this.add.image(this.scale.width / 2, this.scale.height / 2 + 35, 'options').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
+    this.exit = this.add.image(this.scale.width / 2 + 2, this.scale.height / 2 + 75, 'exit').setInteractive().setScrollFactor(0).setVisible(false).setScale(0.35);
 
     //boton de pausa
     this.pause.on("pointerdown", () => {
-      if(this.playing){
+      if (this.playing) {
         this.pauseEnemies(false);
         this.playing = false;
         this.physics.pause();
@@ -309,6 +299,9 @@ export default class Level1 extends Phaser.Scene {
       for (const rangedEn of this.map.getObjectLayer('rangedEnemies').objects) {
         this.enemy.add(new RangedEnemy(this, rangedEn.x, rangedEn.y, 'RangedEnemyDer', this.player, this.movingObjects, this.canClick));
       }
+      for(const e of this.map.getObjectLayer('eyes').objects){
+        new Eye(this, e.x, e.y, this.player, this.enemy);
+      }
     }
 
   }
@@ -339,8 +332,7 @@ export default class Level1 extends Phaser.Scene {
     // });
   }
 
-  loadFile()
-  {
+  loadFile() {
     //ponemos la vida del player actualizandola
     //establecemos el grupo de enemigos
     // window.addEventListener("cargar", event =>
@@ -351,26 +343,26 @@ export default class Level1 extends Phaser.Scene {
   }
 
   //ejecuta intro
-  Intro()
-  {
-		console.log("intro");
-		//pone imagen de pergamino
-		this.image = this.add.image(1218, 650, 'pergamino');
-		this.image.setScale(0.35);
+  Intro() {
+    console.log("intro");
+    //pone imagen de pergamino
+    this.image = this.add.image(1218, 650, 'pergamino');
+    this.image.setScale(0.35);
 
     //creamos cuadro de dialogo
     this.IntroDialogo = new IntroDialogo(this, 1080, 610, 300);
 
-		this.tween = this.tweens.add({
-			targets: [ this.image ],
-			scaleX: 0.4,
-			scaleY: 0.4,
-			duration: 1000,
-			repeat: 0,
+    this.tween = this.tweens.add({
+      targets: [this.image],
+      scaleX: 0.4,
+      scaleY: 0.4,
+      duration: 1000,
+      repeat: 0,
       onComplete: () => {
         //creamos el evento y lo emitimos te lleva directamente a donde el metodo esta definido
-        this.emitter.emit("introPergamino" ); }
-		});
+        this.emitter.emit("introPergamino");
+      }
+    });
 
     //pausamos el juego mientras .enemigos y fisicas
     for (let i = 0; i < this.enemy.getLength(); i++) {
@@ -380,20 +372,19 @@ export default class Level1 extends Phaser.Scene {
     this.physics.pause();
 
     this.input.keyboard.once("keydown", () => {
-        // quitamos la pausa
-        for (let i = 0; i < this.enemy.getLength(); i++) {
-          this.enemy.getChildren()[i].setActive(true);
-        }
-        this.playing = true;
-        this.physics.resume();
-        this.emitter.destroy("introPergamino");
-        //pausamos el juego mientras .enemigos y fisicas
-        this.quitarIntro();
+      // quitamos la pausa
+      for (let i = 0; i < this.enemy.getLength(); i++) {
+        this.enemy.getChildren()[i].setActive(true);
+      }
+      this.playing = true;
+      this.physics.resume();
+      this.emitter.destroy("introPergamino");
+      //pausamos el juego mientras .enemigos y fisicas
+      this.quitarIntro();
     }, this);
   }
 
-  quitarIntro()
-  {
+  quitarIntro() {
     //quitamos boton
     //this.playbutton.setVisible(false);
     //this.playbutton.setActive(false);

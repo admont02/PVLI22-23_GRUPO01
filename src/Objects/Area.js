@@ -5,7 +5,7 @@
   constructor(scene, x, y, player, enemies) {
     super(scene, x, y, 'area');
     
-    this.setScale(0.6);
+    this.setScale(0.3);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
 
