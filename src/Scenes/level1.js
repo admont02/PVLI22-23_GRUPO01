@@ -38,16 +38,26 @@ export default class Level1 extends Phaser.Scene {
     this.isMute = false;
 
   }
-  init(data) {
-    this.mapName = data.mapName;
+
+  preload()
+  {
+    this.loadFile();
+  }
+  
+  init(data) 
+  {
+
+    this.mapName =  data.mapName;
     this.canPlayerDash = data.dash;
     this.canClick = data.click;
     //numero de middleScene que es segun nivel
     this.middleSceneNumber = data.middle;
   }
-
+  
+  
   //Elementos del nivel 1
   create() {
+    
     this.emitter.destroy();
 
     this.createTileMap();
@@ -63,21 +73,19 @@ export default class Level1 extends Phaser.Scene {
     const large = width * 10;
     this.playing = true;
 
+    this.Guardar();
+
     //map1
     if (this.mapName === 'finalMap1') {
 
       //iniciamos intro
       this.Intro();
-
-
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
       this.door = new Door(this,250, 170, this.player, 'level1', 'middleScene', 'one');
-
       this.createObjects();
-
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
       this.physics.add.collider(this.enemy, this.movingObjects);
@@ -92,25 +100,15 @@ export default class Level1 extends Phaser.Scene {
       //pasillo que conecta level 2 con 3
       else if (this.middleSceneNumber == 'two') {
         //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
-        this.door = new Door(this, 160, 0, this.player, 'middleScene', 'map2', 'two');
+        this.door = new Door(this, 250, 100, this.player, 'middleScene', 'map2', 'two');
       }
 
     }
 
     //map2
     else if (this.mapName === 'map2') {
-
-
-
-
       this.movingObjects1 = new movingObject(this, 500, 500, this.player, this.movingObjects);
-
-
-
-
       this.door = new Door(this,600, 100, this.player, 'level1', 'middleScene', 'two');
-
-
       this.physics.add.collider(this.enemy, this.boxLayer);
       this.physics.add.collider(this.enemy, this.movingObjects);
 
@@ -128,8 +126,6 @@ export default class Level1 extends Phaser.Scene {
       this.enemy.add(new eyeBoss(this, 300, 150, this.player));
       this.enemy.add(new eyeBoss(this, 300, 200, this.player));
       this.enemy.add(new eyeBoss(this, 300, 250, this.player));
-
-
       this.boss = new Boss(this, 300, 300, this.player);
 
     }
@@ -172,27 +168,23 @@ export default class Level1 extends Phaser.Scene {
   createTileMap() {
     this.map = this.make.tilemap({
       key: this.mapName,
-
     });
-    const tileset2 = this.map.addTilesetImage('interior', 'interior');
-    const tileset1 = this.map.addTilesetImage('Props2', 'Props2');
-    const tileset3 = this.map.addTilesetImage('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls');
-    const tileset4 = this.map.addTilesetImage('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1');
-    const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
-    const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
-    const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
-    //añadimos fondo y nubes
-    const tileset8 = this.map.addTilesetImage('Abismo', 'Abismo');
-    const tileset9 = this.map.addTilesetImage('Basement', 'Basement');
-    const tileset10 = this.map.addTilesetImage('Clouds_3', 'Clouds_3');
-    const tileset11 = this.map.addTilesetImage('nubes2', 'nubes2');
-    //añadimos este a capa suelo como extra
-    this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7,tileset8,tileset9,tileset10,tileset11]);
-    this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
-    this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
-
-
-
+      const tileset2 = this.map.addTilesetImage('interior', 'interior');
+      const tileset1 = this.map.addTilesetImage('Props2', 'Props2');
+      const tileset3 = this.map.addTilesetImage('TopDownHouse_FloorsAndWalls', 'TopDownHouse_FloorsAndWalls');
+      const tileset4 = this.map.addTilesetImage('TopDownHouse_FurnitureState1', 'TopDownHouse_FurnitureState1');
+      const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
+      const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
+      const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
+      //añadimos fondo y nubes
+      const tileset8 = this.map.addTilesetImage('Abismo', 'Abismo');
+      const tileset9 = this.map.addTilesetImage('Basement', 'Basement');
+      const tileset10 = this.map.addTilesetImage('Clouds_3', 'Clouds_3');
+      const tileset11 = this.map.addTilesetImage('nubes2', 'nubes2');
+      //añadimos este a capa suelo como extra
+      this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7,tileset8,tileset9,tileset10,tileset11]);
+      this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
+      this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
   }
   /**
 * Método en el que se obtienen enemigos restantes del nivel
@@ -407,28 +399,26 @@ export default class Level1 extends Phaser.Scene {
 */
   diedScreen() {
    //parametros para reiniciar 
-
     this.scene.start('final', { text: 'LOSE',mapName:this.mapName,dash:this.canPlayerDash,click:this.canClick,middle:this.middleSceneNumber });
+    
   }
 
-
-
-
-
-
-  //los siguientes metodos se quieren realizar como mejora en navidades:
-  saveFile() {
-    //guardamos la vida del player
+  Guardar()
+  {
+     //guardamos la vida del player
     //guardamos el numero de enemigos
     //guardamos el grupo de enemigos para poder ver cuales quedan
-    // window.addEventListener("guardar", event =>
-    // {
-    //   //guardamos algo con un nombre
-    //   window.localStorage.setItem('vidaPlayer' ,this.healthPlayer )
-    // });
+    //Eventos ejecutados al abrir y cerrar la pestaña de juego
+    console.log("mapa actualizado");
+    //guardar
+    window.addEventListener("beforeunload", event => {
+			window.localStorage.setItem('levelActual', this.mapName);
+		});
   }
 
-  loadFile() {
+  loadFile() 
+  {
+
     //ponemos la vida del player actualizandola
     //establecemos el grupo de enemigos
     // window.addEventListener("cargar", event =>
@@ -436,5 +426,10 @@ export default class Level1 extends Phaser.Scene {
     //   //guardamos algo con un nombre
     //   this.healthPlayer =window.localStorage.getItem('vidaPlayer')
     // });
+    window.addEventListener("load", event =>
+    {
+      //guardamos algo con un nombre
+      this.mapName = window.localStorage.getItem('levelActual');
+    });
   }
 }
