@@ -87,7 +87,7 @@ export default class Level1 extends Phaser.Scene {
       //pasillo que conecta level 1 con 2
       if (this.middleSceneNumber == 'one') {
         //envias parametro de a que escena quieres ir y que nivel te has pasado y a que pasillo quieres ir
-        this.door = new Door(this, 160, 0, this.player, 'middleScene', 'mapLevel1', 'two');
+        this.door = new Door(this, 250, 100, this.player, 'middleScene', 'mapLevel1', 'two');
       }
       //pasillo que conecta level 2 con 3
       else if (this.middleSceneNumber == 'two') {
