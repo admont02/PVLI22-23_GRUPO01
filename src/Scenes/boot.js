@@ -161,6 +161,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('middleScene', 'middleScene.json');
 
 
+    //tileSets añadidos
     this.load.image('patronesLevel1', 'tilesetForest.png');
     this.load.image('dungeon', 'dungeon_.png');
     this.load.image('interior', 'interior.png');
@@ -170,6 +171,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('kitchen', 'kitchen.png');
     this.load.image('Interiors_free_16x16', 'Interiors_free_16x16.png');
     this.load.image('Props2', 'Props2.png');
+    //tileSets extra
+    this.load.image('Abismo', 'Abismo.png');
+    this.load.image('Basement', 'Basement-Tileset-Pixel-Art.png');
+    this.load.image('Clouds_3', 'Clouds_3.png');
+    this.load.image('nubes2', 'nubes2.png');
+
 
 
     this.load.image('suelo', 'suelo.png');

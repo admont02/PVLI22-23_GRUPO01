@@ -181,8 +181,13 @@ export default class Level1 extends Phaser.Scene {
     const tileset5 = this.map.addTilesetImage('TopDownHouse_SmallItems', 'TopDownHouse_SmallItems');
     const tileset6 = this.map.addTilesetImage('kitchen', 'kitchen');
     const tileset7 = this.map.addTilesetImage('Interiors_free_16x16', 'Interiors_free_16x16');
-
-    this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7]);
+    //añadimos fondo y nubes
+    const tileset8 = this.map.addTilesetImage('Abismo', 'Abismo');
+    const tileset9 = this.map.addTilesetImage('Basement', 'Basement');
+    const tileset10 = this.map.addTilesetImage('Clouds_3', 'Clouds_3');
+    const tileset11 = this.map.addTilesetImage('nubes2', 'nubes2');
+    //añadimos este a capa suelo como extra
+    this.backgroundLayer = this.map.createLayer('suelo', [tileset2, tileset3, tileset4, tileset6, tileset7,tileset8,tileset9,tileset10,tileset11]);
     this.boxLayer = this.map.createLayer('paredes', [tileset2, tileset6]);
     this.adornosLayer = this.map.createLayer('adornos', [tileset5, tileset4, tileset6, tileset1, tileset7])
 
