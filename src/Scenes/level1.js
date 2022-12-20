@@ -74,7 +74,7 @@ export default class Level1 extends Phaser.Scene {
 
       //envias parametro de a que escena quieres ir y que nivel te has pasado
       // this.door = new Door(this, 300, 400, this.player, 'middleScene', 'mapLevel1');
-      this.door = new Door(this,150, 100, this.player, 'level1', 'middleScene', 'one');
+      this.door = new Door(this,250, 170, this.player, 'level1', 'middleScene', 'one');
 
       this.createObjects();
 
@@ -108,7 +108,7 @@ export default class Level1 extends Phaser.Scene {
 
 
 
-      this.door = new Door(this,600, 50, this.player, 'level1', 'middleScene', 'two');
+      this.door = new Door(this,600, 100, this.player, 'level1', 'middleScene', 'two');
 
 
       this.physics.add.collider(this.enemy, this.boxLayer);
@@ -363,11 +363,11 @@ export default class Level1 extends Phaser.Scene {
   Intro() {
     console.log("intro");
     //pone imagen de pergamino
-    this.image = this.add.image(1218, 650, 'pergamino');
+    this.image = this.add.image(1310, 740, 'pergamino');
     this.image.setScale(0.35);
 
     //creamos cuadro de dialogo
-    this.IntroDialogo = new IntroDialogo(this, 1080, 610, 300);
+    this.IntroDialogo = new IntroDialogo(this, 1200, 700, 300);
 
     this.tween = this.tweens.add({
       targets: [this.image],
